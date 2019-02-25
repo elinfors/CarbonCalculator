@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-
+import TravelModel from './Data/TravelModel'
 import './App.css';
 
 
@@ -9,7 +9,7 @@ class App extends Component {
       <div className="App">
       <header className="App-header">
 
-    
+      
         
       </header>
     </div>

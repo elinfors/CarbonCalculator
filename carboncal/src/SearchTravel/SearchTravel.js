@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import TopBar from '../TopBar/TopBar';
 import './SearchTravel.css';
 class SearchTravel extends Component {
-    state = {  }
+    state = {}
     render() { 
         return (
       <React.Fragment>
