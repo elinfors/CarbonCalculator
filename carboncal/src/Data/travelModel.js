@@ -8,6 +8,7 @@ const httpOptions = {
 class TravelModel{
 
     constructor(){
+    //super();
     this.numberOfTravelers = 1;
 
     }
