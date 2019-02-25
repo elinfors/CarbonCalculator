@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import './TravelResults.css';
 
 class TravelResults extends Component {
     constructor(){
@@ -22,7 +23,7 @@ class TravelResults extends Component {
         this.props.model.getUserTravel()
           .then(travel => {
             this.setState({
-              travel: travel.resourceSets[0].resources[0].travelDistance
+              travel: travel.resourceSets[0].resources[0].travelDistance,
             });
             this.props.model.list.push(this.createOtbject());
           })
@@ -42,9 +43,11 @@ class TravelResults extends Component {
 
     render() { 
         let travelList = this.state.travel;
+        let carbonEmission = this.props.model.getCarbonEmission();
         return (
             <React.Fragment>
-            <h2>{travelList}</h2>
+            <h2>Distance: {travelList} km</h2>
+            <h2>Carbon emission: {carbonEmission} TON CO2/person</h2>
             </React.Fragment>
            
           );

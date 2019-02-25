@@ -10,19 +10,11 @@ class TravelModel extends ObservableModel {
 
     constructor(){
     super();
-      this.travelType = {
-              smallCar:2,
-              mediumCar:3,
-              largeCar:4,
-              plane:5,
-              train:6,
-              ship:7
-      };
     this.numberOfTravelers = 1;
     this.savedTravels = []; //fylls med objekt från API:t
     this.routeResult = "";
+    this.carbonEmission = 0;
     this.list = [];
-
     }
 
     setUserTravel(userTravelObject){
@@ -31,7 +23,12 @@ class TravelModel extends ObservableModel {
         console.log(this.routeResult);
         //this.allResults.push(this.routeResult);
         this.getCarbon(userTravelObject.travelType);
-        //this.notifyObservers();
+        console.log(this.carbonEmission);
+        this.notifyObservers();
+    }
+
+    getCarbonEmission(){
+      return this.carbonEmission;
     }
 
     getUserTravel() {
@@ -51,17 +48,9 @@ class TravelModel extends ObservableModel {
       })*/
       console.log(travelType);
       this.routeResult.then(data => {
-        console.log(carbonCalculator.calculateCarbonEmission(data.resourceSets[0].resources[0].travelDistance,travelType))
+        this.carbonEmission = carbonCalculator.calculateCarbonEmission(data.resourceSets[0].resources[0].travelDistance,travelType);
       })
      
-      /*setTimeout(function(){
-      const startLat = this.state.startLat;
-      const startLng = this.state.startLng;
-      const endLat = this.state.endLat;
-      const endLng = this.state.endLng;
-      const carbonUrl = `http://api.commutegreener.com/api/co2/emissions?startLat=`+ startLat + `&startLng=` + startLng + `&endLat=` + endLat + `&endLng=` + endLng + `&format=json`;
-      console.log(fetch(carbonUrl,{mode:"no-cors"}).then(this.processResponse));
-    },3000)*/
     }
 
     getRoute(startPosition,endPosition) {
