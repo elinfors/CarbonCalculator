@@ -17,6 +17,8 @@ class TravelModel extends ObservableModel{
               train:6,
               ship:7
       };
+    this.userTravel = {};
+
     this.numberOfTravelers = 1;
     this.savedTravels = []; //fylls med objekt från API:t
 
@@ -24,6 +26,7 @@ class TravelModel extends ObservableModel{
 
     setUserTravel(userTravelObject){
         alert(userTravelObject.travelType);
+        this.userTravel = userTravelObject;
         this.notifyObservers();
     }
 
