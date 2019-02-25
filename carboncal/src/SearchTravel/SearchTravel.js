@@ -6,7 +6,7 @@ class SearchTravel extends Component {
     constructor(){
     super();
     this.state = { 
-       travleType: "",
+       travelType: "",
        startPoint: "",
        endPoint: "",
     }
@@ -126,7 +126,7 @@ handleTravelSearch(){
                 </div> 
             </div>
             
-             <TravelResults model={this.props.model}/>  
+             <TravelResults model={this.props.model} type={this.state.travelType} start={this.state.startPoint} end={this.state.endPoint}/>  
     </React.Fragment>
         
           );

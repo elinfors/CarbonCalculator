@@ -4,7 +4,6 @@ class TravelResults extends Component {
     constructor(){
     super();
     this.state = {  
-        
     }
     }
     update = () => {
@@ -14,14 +13,14 @@ class TravelResults extends Component {
             this.setState({
               travel: travel.resourceSets[0].resources[0].travelDistance
             });
-            this.props.model.list.push(travel);
+            //this.props.model.list.push(travel);
           })
           .catch(() => {
             this.setState({
               status: "ERROR"
             });
           })  
-        console.log(this.props.model.list.map(data =>(data.resourceSets[0].resources[0].travelDistance)));
+        //console.log(this.props.model.list.map(data =>(data.resourceSets[0].resources[0].travelDistance)));
     }
 
     componentDidMount(){
@@ -30,6 +29,15 @@ class TravelResults extends Component {
     }
 
     render() { 
+        let object = {
+            travel: this.state.travel,
+            type: this.props.type,
+            start: this.props.start,
+            end: this.props.end
+        }
+
+        this.props.model.list.push(object);
+        console.log(this.props.model.list);
         let travelList = this.state.travel;
         return (
             <React.Fragment>
@@ -42,3 +50,5 @@ class TravelResults extends Component {
 }
  
 export default TravelResults;
+
+
