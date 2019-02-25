@@ -6,6 +6,8 @@ class SearchTravel extends Component {
     super();
     this.state = { 
        travleType: "",
+       startPoint: "",
+       endPoint: "",
     }
     this.handleTravelStartPoint = this.handleTravelStartPoint.bind(this);
     this.handleTravelEndPoint = this.handleTravelEndPoint.bind(this); 
