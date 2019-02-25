@@ -1,0 +1,64 @@
+#chooseRideContainer{
+    margin-top:20px;
+    
+}
+#chooseRideText{
+    background-color:#1b1b1b;
+    font-family: 'Exo 2', sans-serif;
+    font-size:35px;
+    -webkit-box-shadow: 0px 5px 16px -3px rgba(0,0,0,0.75);
+    -moz-box-shadow: 0px 5px 16px -3px rgba(0,0,0,0.75);
+    box-shadow: 0px 5px 16px -3px rgba(0,0,0,0.75);
+}
+#chooseTextBig{
+    color:white;
+}
+
+#vehicleSymbolContainer{
+    background-color:#a7a7a7;
+    text-align:center;
+}
+
+.btn-circle.btn-xl {
+    width: 70px;
+    height: 70px;
+    padding: 10px 16px;
+    font-size: 24px;
+    line-height: 1.33;
+    border-radius: 35px;
+
+  }
+
+  #searchFormContainer{
+      background-color:#a7a7a7;
+
+  }
+  #smallBadge{
+      margin-top:10px;
+      font-size:20px;
+  }
+
+
+  #locationFrom{
+      width:100%;
+      margin-top:10px;
+  }
+  #locationTo{
+    width:100%;
+    margin-top:10px;
+}
+ 
+#chooseVehicleBox{
+    display:inline-block;
+    font-size:20px;
+}
+
+#confirmTravelButton{
+    margin-top:10px;
+}
+#infoSymbolOneBig{
+    color:#007bff;
+}
+#infoSymbolTwoBig{
+    color:orange;
+}
