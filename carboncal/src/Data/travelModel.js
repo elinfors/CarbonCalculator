@@ -40,4 +40,4 @@ class TravelModel{
 const travelInstance = new TravelModel();
 export default travelInstance;
 
-console.log(travelInstance.getRoute("tornvägen 3, täby","storgatan 309, täby"));
+//console.log(travelInstance.getRoute("tornvägen 3, täby","storgatan 309, täby"));
