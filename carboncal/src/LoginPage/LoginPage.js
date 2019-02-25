@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import './LoginPage.css'
+import { Link } from 'react-router-dom';
+
 
 class LoginPage extends Component {
     state = {  }
@@ -22,7 +24,10 @@ class LoginPage extends Component {
                                     </div>
                                 </div>
                                 <div className="col-sm-12">
+                                <Link to={"/SearchTravel"}>
                                     <button type="button" class="btn btn-success btn-lg">Sign in</button>
+                                </Link>
+                                    
                                 </div>
                                
                         </div>
