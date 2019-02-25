@@ -17,12 +17,15 @@ class TravelModel extends ObservableModel{
               train:6,
               ship:7
       };
-
     this.numberOfTravelers = 1;
     this.savedTravels = []; //fylls med objekt från API:t
 
     }
 
+    setUserTravel(userTravelObject){
+        alert(userTravelObject.travelType);
+        this.notifyObservers();
+    }
 
     getRoute(startPosition,endPosition) {
         const url = `${BASE_URL}wp.0=`+ startPosition + `&wp.1=` + endPosition + `&optmz=distance&key=AlJeTIGD1dCPM4-OE_z9xDQohB4ll2vpaaEYv72_48tSOt--Jy_oY5UaFftaiXKp`;
@@ -70,7 +73,7 @@ class TravelModel extends ObservableModel{
 
 }
 
-const travelInstance = new TravelModel();
-export default travelInstance;
+const modelInstance = new TravelModel();
+export default modelInstance;
 
 //console.log(travelInstance.getRoute("tornvägen 3, täby","storgatan 309, täby"));
