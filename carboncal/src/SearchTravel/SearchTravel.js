@@ -61,6 +61,13 @@ handleTravelSearch(){
                             <button onClick={() => this.handleTravelType("mediumCar")} id="mediumCarButton" type="button" className="btn btn-primary btn-circle btn-xl m-4">
                                 <i className="fas fa-shuttle-van"></i>
                             </button>
+                            <form className="form-group">
+                                <select className="custom-select" id="inlineFormCustomSelect">
+                                    <option selected="1">1</option>
+                                    <option value="2">2</option>
+                                    <option value="3">3</option>
+                                </select>
+                            </form>
                             <h5 className="badge badge-pill badge-light">Medium car</h5>
                         </div>
                         <div className="col-sm-2" id="chooseVehicleBox">
@@ -107,15 +114,15 @@ handleTravelSearch(){
                                 <span id="smallBadge" className="badge badge-secondary">From</span>
                                 <input id="locationFrom" className="form-control form-control-lg" type="text" placeholder="your start position..." onChange={this.handleTravelStartPoint}></input>
                             </div>
-                            <div className="col-sm-12" id="searchForms">
-                                <span id="smallBadge" className="badge badge-secondary">To</span>
-                                <input id="locationTo" className="form-control form-control-lg" type="text" placeholder="your destination..." onChange={this.handleTravelEndPoint}></input>
-                            </div>
-                        </form>
-                        <div className="col-sm-12" id="confirmTravelButton">
-                            <button type="button" className="btn btn-success btn-lg" onClick={() => this.handleTravelSearch()}>Get your result</button>
-                        </div>   
-                    </div> 
+                        <div className="col-sm-12" id="searchForms">
+                            <span id="smallBadge" className="badge badge-secondary">To</span>
+                            <input id="locationTo" className="form-control form-control-lg" type="text" placeholder="your destination..." onChange={this.handleTravelEndPoint}></input>
+                        </div>
+                    </form>
+                    <div className="col-sm-12" id="confirmTravelButton">
+                        <button type="button" className="btn btn-success btn-lg" onClick={() => this.handleTravelSearch()}>Get your result</button>
+                    </div>   
+                </div> 
             </div>
             
                     
