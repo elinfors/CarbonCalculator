@@ -5,9 +5,13 @@ import App from './App';
 import * as serviceWorker from './serviceWorker';
 import "bootstrap/dist/css/bootstrap.css";
 import SearchTravel from './SearchTravel/SearchTravel';
-import LoginPage from './LoginPage/LoginPage'
+import LoginPage from './LoginPage/LoginPage';
+import {BrowserRouter} from 'react-router-dom';
+
 ReactDOM.render(
-<SearchTravel/>, 
+<BrowserRouter>
+    <App/>
+</BrowserRouter>,
 document.getElementById('root'));
 
 // If you want your app to work offline and load faster, you can change

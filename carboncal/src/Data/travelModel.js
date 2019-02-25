@@ -2,7 +2,7 @@
 class TravelModel{
 
     constructor(){
-    super();
+    //super();
     this.numberOfTravelers = 1;
 
     }

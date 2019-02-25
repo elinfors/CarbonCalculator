@@ -14,17 +14,17 @@ class LoginPage extends Component {
                                 <h2> Sign in</h2>
                             </div>
                                 <div className="col-sm-12" id="loginBox">
-                                    <div class="form-group">
+                                    <div className="form-group">
                                         <label for="inputEmail">Email</label>
                                         <input type="email" class="form-control" id="inputEmail" placeholder="Email"></input>
                                     </div>
-                                    <div class="form-group">
+                                    <div className="form-group">
                                         <label for="inputPassword">Password</label>
                                         <input type="password" class="form-control" id="inputPassword" placeholder="Password"></input>
                                     </div>
                                 </div>
                                 <div className="col-sm-12">
-                                <Link to={"/SearchTravel"}>
+                                <Link to="/SearchTravel">
                                     <button type="button" class="btn btn-success btn-lg">Sign in</button>
                                 </Link>
                                     
