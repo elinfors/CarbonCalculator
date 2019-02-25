@@ -20,7 +20,8 @@ class TravelModel extends ObservableModel{
     this.numberOfTravelers = 1;
     this.savedTravels = []; //fylls med objekt från API:t
     this.routeResult = "";
-    this.list = [];
+    this.allResults = [];
+
     }
 
     setUserTravel(userTravelObject){
@@ -83,12 +84,12 @@ class TravelModel extends ObservableModel{
         return this.numberOfTravelers;
       }
 
-      addTravelToList(travel){
+      saveTravel(travel){
         this.savedTravels.push(travel);
         this.notifyObservers();
       }
 
-      removeTravelFromList(travel){
+      removeSavedTravel(travel){
           let list = this.savedTravels;
           for (var i in list){
               if (travel.id === list[i].id){
@@ -100,6 +101,26 @@ class TravelModel extends ObservableModel{
 
       getSavedTravels(){
         return this.savedTravels;
+      }
+
+      addToResult(travel){
+        this.allResults.push(travel);
+        this.notifyObservers();
+      }
+
+      removeResult(travel){
+          let results = this.allResults;
+          for (var i in results){
+              if (travel.id === results[i].id){
+                  results.splice(i,1);
+              }
+          }
+          this.notifyObservers();
+      }
+
+      getAllResults(){
+        return this.allResults;
+        console.log("getAllResults");
       }
 
 }
