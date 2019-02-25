@@ -6,6 +6,17 @@ class TravelResults extends Component {
     this.state = {  
     }
     }
+
+    createOtbject(){
+        let object = {
+            travel: this.state.travel,
+            type: this.props.type,
+            start: this.props.start,
+            end: this.props.end
+        }
+        return object;
+    }
+
     update = () => {
         console.log("travelResults" + this.props.model.getUserTravel());
         this.props.model.getUserTravel()
@@ -13,13 +24,14 @@ class TravelResults extends Component {
             this.setState({
               travel: travel.resourceSets[0].resources[0].travelDistance
             });
-            //this.props.model.list.push(travel);
+            this.props.model.list.push(this.createOtbject());
           })
           .catch(() => {
             this.setState({
               status: "ERROR"
             });
           })  
+          console.log(this.props.model.list);
         //console.log(this.props.model.list.map(data =>(data.resourceSets[0].resources[0].travelDistance)));
     }
 
@@ -29,15 +41,6 @@ class TravelResults extends Component {
     }
 
     render() { 
-        let object = {
-            travel: this.state.travel,
-            type: this.props.type,
-            start: this.props.start,
-            end: this.props.end
-        }
-
-        this.props.model.list.push(object);
-        console.log(this.props.model.list);
         let travelList = this.state.travel;
         return (
             <React.Fragment>
