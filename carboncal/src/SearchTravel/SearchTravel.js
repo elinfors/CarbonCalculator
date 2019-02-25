@@ -5,7 +5,7 @@ class SearchTravel extends Component {
     constructor(){
         super();
     this.state = { 
-       travleType: ,
+       travleType: "",
     }
 }
 
