@@ -3,10 +3,12 @@ import TopBar from '../TopBar/TopBar';
 import './SearchTravel.css';
 class SearchTravel extends Component {
     constructor(){
-        super();
+    super();
     this.state = { 
        travleType: "",
     }
+    this.handleTravelStartPoint = this.handleTravelStartPoint.bind(this);
+    this.handleTravelEndPoint = this.handleTravelEndPoint.bind(this); 
 }
 
 handleTravelType(selectedTravelType) {
@@ -15,11 +17,22 @@ handleTravelType(selectedTravelType) {
     });
 }
 
-handleTravelPoints(startPoint,endPoint){
+handleTravelStartPoint(event){
     this.setState({
-        startPoint: startPoint,
-        endPoint: endPoint
+        startPoint: event.target.value,
     });
+}
+
+handleTravelEndPoint(event){
+    this.setState({
+        endPoint: event.target.value,
+    });
+}
+
+handleTravelSearch(){
+    alert(this.state.travelType);
+    alert(this.state.startPoint);
+    alert(this.state.endPoint);
 }
 
     render() { 
@@ -92,15 +105,15 @@ handleTravelPoints(startPoint,endPoint){
                         <form className="form">
                             <div className="col-sm-12" id="searchForms">
                                 <span id="smallBadge" className="badge badge-secondary">From</span>
-                                <input id="locationTo" className="form-control form-control-lg" type="text" placeholder="your start position..."></input>
+                                <input id="locationFrom" className="form-control form-control-lg" type="text" placeholder="your start position..." onChange={this.handleTravelStartPoint}></input>
                             </div>
                             <div className="col-sm-12" id="searchForms">
                                 <span id="smallBadge" className="badge badge-secondary">To</span>
-                                <input id="locationFrom" className="form-control form-control-lg" type="text" placeholder="your destination..." onchange={() => this.handleTravelPoints(EventTarget.value)}></input>
+                                <input id="locationTo" className="form-control form-control-lg" type="text" placeholder="your destination..." onChange={this.handleTravelEndPoint}></input>
                             </div>
                         </form>
                         <div className="col-sm-12" id="confirmTravelButton">
-                            <button type="button" className="btn btn-success btn-lg">Get your result</button>
+                            <button type="button" className="btn btn-success btn-lg" onClick={() => this.handleTravelSearch()}>Get your result</button>
                         </div>   
                     </div> 
             </div>
