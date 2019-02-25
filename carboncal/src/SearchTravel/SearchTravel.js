@@ -5,17 +5,22 @@ class SearchTravel extends Component {
     constructor(){
         super();
     this.state = { 
-       
+       travleType: ,
     }
 }
+
 handleTravelType(selectedTravelType) {
     this.setState({
         travelType: selectedTravelType
-
     });
-    alert(this.state.travelType);
 }
 
+handleTravelPoints(startPoint,endPoint){
+    this.setState({
+        startPoint: startPoint,
+        endPoint: endPoint
+    });
+}
 
     render() { 
         return (
@@ -91,7 +96,7 @@ handleTravelType(selectedTravelType) {
                             </div>
                             <div className="col-sm-12" id="searchForms">
                                 <span id="smallBadge" className="badge badge-secondary">To</span>
-                                <input id="locationFrom" className="form-control form-control-lg" type="text" placeholder="your destination..."></input>
+                                <input id="locationFrom" className="form-control form-control-lg" type="text" placeholder="your destination..." onchange={() => this.handleTravelPoints(EventTarget.value)}></input>
                             </div>
                         </form>
                         <div className="col-sm-12" id="confirmTravelButton">
