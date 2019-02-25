@@ -16,24 +16,22 @@ class LoginPage extends Component {
                                 <div className="col-sm-12" id="loginBox">
                                     <div className="form-group">
                                         <label for="inputEmail">Email</label>
-                                        <input type="email" class="form-control" id="inputEmail" placeholder="Email"></input>
+                                        <input type="email" className="form-control" id="inputEmail" placeholder="Email"></input>
                                     </div>
                                     <div className="form-group">
                                         <label for="inputPassword">Password</label>
-                                        <input type="password" class="form-control" id="inputPassword" placeholder="Password"></input>
+                                        <input type="password" className="form-control" id="inputPassword" placeholder="Password"></input>
                                     </div>
                                 </div>
                                 <div className="col-sm-12">
                                 <Link to="/SearchTravel">
-                                    <button type="button" class="btn btn-success btn-lg">Sign in</button>
-                                </Link>
-                                    
-                                </div>
-                               
+                                    <button type="button" className="btn btn-success btn-lg">Sign in</button>
+                                </Link>    
+                            </div>       
                         </div>
                     </div>
                 </form>      
-         );
+        );
     }
 }
  

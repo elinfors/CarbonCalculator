@@ -8,6 +8,14 @@ const httpOptions = {
 class TravelModel{
 
     constructor(){
+      this.travelType = {
+              smallCar:2,
+              mediumCar:3,
+              largeCar:4,
+              plane:5,
+              train:6,
+              ship:7
+      };
     //super();
     this.numberOfTravelers = 1;
 
@@ -32,4 +40,4 @@ class TravelModel{
 const travelInstance = new TravelModel();
 export default travelInstance;
 
-console.log(travelInstance.getRoute("brinellvagen8,stockholm","hasselnotsvagen,alta"));
+console.log(travelInstance.getRoute("tornvägen 3, täby","storgatan 309, täby"));
