@@ -17,8 +17,6 @@ class TravelModel extends ObservableModel{
               train:6,
               ship:7
       };
-    this.userTravel = {};
-
     this.numberOfTravelers = 1;
     this.savedTravels = []; //fylls med objekt från API:t
     this.routeResult = "";
