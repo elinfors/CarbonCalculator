@@ -21,21 +21,25 @@ class TravelModel extends ObservableModel{
 
     this.numberOfTravelers = 1;
     this.savedTravels = []; //fylls med objekt från API:t
-    this.routeResult = ;
+    this.routeResult = "";
 
     }
 
     setUserTravel(userTravelObject){
-        alert(userTravelObject.travelType);
-        this.getRoute(userTravelObject.startPoint,userTravelObject.endPoint);
+        //alert(userTravelObject.travelType);
+        this.routeResult = this.getRoute(userTravelObject.startPoint,userTravelObject.endPoint);
         this.notifyObservers();
+    }
+
+    getUserTravel(){
+      return this.routeResult;
     }
 
     getRoute(startPosition,endPosition) {
         const url = `${BASE_URL}wp.0=`+ startPosition + `&wp.1=` + endPosition + `&optmz=distance&key=AlJeTIGD1dCPM4-OE_z9xDQohB4ll2vpaaEYv72_48tSOt--Jy_oY5UaFftaiXKp`;
         console.log(url);
         console.log("Testar URL");
-        return fetch(url).then(this.processResponse).then(result =>{console.log(result.resourceSets[0].resources[0].bbox)});
+        return fetch(url).then(this.processResponse);
       }
 
       processResponse(response) {

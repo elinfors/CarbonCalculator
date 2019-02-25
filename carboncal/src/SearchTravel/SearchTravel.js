@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import TopBar from '../TopBar/TopBar';
+import TravelResults from '../TravelResults/TravelResults'
 import './SearchTravel.css';
 class SearchTravel extends Component {
     constructor(){
@@ -125,7 +126,7 @@ handleTravelSearch(){
                 </div> 
             </div>
             
-                    
+             <TravelResults model={this.props.model}/>  
     </React.Fragment>
         
           );
