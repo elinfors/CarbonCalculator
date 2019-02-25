@@ -30,9 +30,7 @@ handleTravelEndPoint(event){
 }
 
 handleTravelSearch(){
-    alert(this.state.travelType);
-    alert(this.state.startPoint);
-    alert(this.state.endPoint);
+    this.props.model.setUserTravel(this.state);
 }
 
     render() { 
