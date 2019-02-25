@@ -20,17 +20,41 @@ class TravelModel extends ObservableModel{
     this.numberOfTravelers = 1;
     this.savedTravels = []; //fylls med objekt från API:t
     this.routeResult = "";
-
+    this.list = [];
     }
 
     setUserTravel(userTravelObject){
         //alert(userTravelObject.travelType);
         this.routeResult = this.getRoute(userTravelObject.startPoint,userTravelObject.endPoint);
+       // this.getCarbon();
         this.notifyObservers();
     }
 
-    getUserTravel(){
+    getUserTravel() {
       return this.routeResult;
+    }
+
+    getCarbon = () =>{
+      this.routeResult.then(data => {
+
+          let startLat = data.resourceSets[0].resources[0].bbox[0];
+          let startLng = data.resourceSets[0].resources[0].bbox[1];
+          let endLat = data.resourceSets[0].resources[0].bbox[2];
+          let endLng = data.resourceSets[0].resources[0].bbox[3];
+        const carbonUrl = `http://api.commutegreener.com/api/co2/emissions?startLat=`+ startLat + `&startLng=` + startLng + `&endLat=` + endLat + `&endLng=` + endLng + `&format=json`;
+        console.log(fetch(carbonUrl,{method: "GET",mode:"no-cors",headers: {
+          "Content-Type": "application/json",
+      },}).then(this.processResponse));
+        //console.log(data.resourceSets[0].resources[0].bbox[0])
+      })
+      /*setTimeout(function(){
+      const startLat = this.state.startLat;
+      const startLng = this.state.startLng;
+      const endLat = this.state.endLat;
+      const endLng = this.state.endLng;
+      const carbonUrl = `http://api.commutegreener.com/api/co2/emissions?startLat=`+ startLat + `&startLng=` + startLng + `&endLat=` + endLat + `&endLng=` + endLng + `&format=json`;
+      console.log(fetch(carbonUrl,{mode:"no-cors"}).then(this.processResponse));
+    },3000)*/
     }
 
     getRoute(startPosition,endPosition) {

@@ -14,13 +14,16 @@ class TravelResults extends Component {
             this.setState({
               travel: travel.resourceSets[0].resources[0].travelDistance
             });
+            this.props.model.list.push(travel);
           })
           .catch(() => {
             this.setState({
               status: "ERROR"
             });
           })  
-      }
+        console.log(this.props.model.list.map(data =>(data.resourceSets[0].resources[0].travelDistance)));
+    }
+
     componentDidMount(){
         //this.update()
         this.props.model.addObserver(this);
