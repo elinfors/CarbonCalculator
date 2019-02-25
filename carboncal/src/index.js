@@ -7,7 +7,7 @@ import "bootstrap/dist/css/bootstrap.css";
 import SearchTravel from './SearchTravel/SearchTravel';
 import LoginPage from './LoginPage/LoginPage'
 ReactDOM.render(
-<LoginPage/>, 
+<SearchTravel/>, 
 document.getElementById('root'));
 
 // If you want your app to work offline and load faster, you can change
