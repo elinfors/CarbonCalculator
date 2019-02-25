@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 
 import { Route } from 'react-router-dom';
 import modelInstance from './Data/travelModel';
+import calcInstance from './Data/carbonCalculator';
 import './App.css';
 
 import LoginPage from "./LoginPage/LoginPage";

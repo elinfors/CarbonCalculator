@@ -1,11 +1,12 @@
 
 import ObservableModel from "./ObservableModel"
+import carbonCalculator from "./carbonCalculator"
 const BASE_URL = "http://dev.virtualearth.net/REST/V1/Routes/driving?"
 const httpOptions = {
   headers: { "X-Mashape-Key": "AlJeTIGD1dCPM4-OE_z9xDQohB4ll2vpaaEYv72_48tSOt--Jy_oY5UaFftaiXKp"}
-};
+}
 
-class TravelModel extends ObservableModel{
+class TravelModel extends ObservableModel {
 
     constructor(){
     super();
@@ -27,27 +28,32 @@ class TravelModel extends ObservableModel{
     setUserTravel(userTravelObject){
         //alert(userTravelObject.travelType);
         this.routeResult = this.getRoute(userTravelObject.startPoint,userTravelObject.endPoint);
-       // this.getCarbon();
-        this.notifyObservers();
+        console.log(this.routeResult);
+        //this.allResults.push(this.routeResult);
+        this.getCarbon(userTravelObject.travelType);
+        //this.notifyObservers();
     }
 
     getUserTravel() {
       return this.routeResult;
     }
 
-    getCarbon = () =>{
-      this.routeResult.then(data => {
-
-          let startLat = data.resourceSets[0].resources[0].bbox[0];
-          let startLng = data.resourceSets[0].resources[0].bbox[1];
-          let endLat = data.resourceSets[0].resources[0].bbox[2];
-          let endLng = data.resourceSets[0].resources[0].bbox[3];
+    getCarbon = (travelType) => {
+      /*this.routeResult.then(data => {
+        let startLat = data.resourceSets[0].resources[0].bbox[0];
+        let startLng = data.resourceSets[0].resources[0].bbox[1];
+        let endLat = data.resourceSets[0].resources[0].bbox[2];
+        let endLng = data.resourceSets[0].resources[0].bbox[3];
         const carbonUrl = `http://api.commutegreener.com/api/co2/emissions?startLat=`+ startLat + `&startLng=` + startLng + `&endLat=` + endLat + `&endLng=` + endLng + `&format=json`;
-        console.log(fetch(carbonUrl,{method: "GET",mode:"no-cors",headers: {
-          "Content-Type": "application/json",
-      },}).then(this.processResponse));
+        const proxyurl = "https://cors-anywhere.herokuapp.com/";
+        console.log(fetch(proxyurl + carbonUrl).then(this.processResponse));
         //console.log(data.resourceSets[0].resources[0].bbox[0])
+      })*/
+      console.log(travelType);
+      this.routeResult.then(data => {
+        console.log(carbonCalculator.calculateCarbonEmission(data.resourceSets[0].resources[0].travelDistance,travelType))
       })
+     
       /*setTimeout(function(){
       const startLat = this.state.startLat;
       const startLng = this.state.startLng;

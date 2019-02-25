@@ -33,7 +33,7 @@ handleTravelEndPoint(event){
 }
 
 handleTravelSearch(){
-    this.props.model.setUserTravel(this.state);
+    //this.props.model.setUserTravel(this.state);
 }
 
     render() { 
