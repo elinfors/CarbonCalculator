@@ -5,16 +5,16 @@ import './SearchTravel.css';
 class SearchTravel extends Component {
     constructor(){
     super();
-    this.state = { 
+    this.state = {
        travleType: "",
        startPoint: "",
        endPoint: "",
        showMe:false,
        showResult: false
-      
+
     }
     this.handleTravelStartPoint = this.handleTravelStartPoint.bind(this);
-    this.handleTravelEndPoint = this.handleTravelEndPoint.bind(this); 
+    this.handleTravelEndPoint = this.handleTravelEndPoint.bind(this);
 }
 
 selectPeople(){
@@ -48,8 +48,6 @@ handleTravelSearch(){
     this.props.model.setUserTravel(this.state);
 }
 
-<<<<<<< HEAD
-
 =======
 /*
 componentDidMount(){
@@ -79,13 +77,12 @@ componentDidMount(){
                     '<br> Lat: ' + suggestionResult.location.latitude +
                     '<br> Lon: ' + suggestionResult.location.longitude;
         }
-        
+
     }
     loadMapScenario();
 }*/
->>>>>>> 37af0555fd117fe2e25c7a04ca6e18357367631d
 
-    render() { 
+    render() {
         return (
       <React.Fragment>
             <TopBar></TopBar>
@@ -101,17 +98,17 @@ componentDidMount(){
                 <div className="d-flex justify-content-center h-100">
                     <div className="col-sm-12" id="vehicleSymbolContainer">
                         <div className="col-sm-2" id="chooseVehicleBox">
-                            <button onClick={() => this.handleTravelType("smallCar")} id="smallCarButton" type="button" className="btn btn-danger btn-circle btn-xl m-4">                            
+                            <button onClick={() => this.handleTravelType("smallCar")} id="smallCarButton" type="button" className="btn btn-danger btn-circle btn-xl m-4">
                                 <i className="fas fa-car-side"></i>
                             </button>
-                            
+
                             <h5 className="badge badge-pill badge-light">Small car</h5>
                         </div>
                         <div className="col-sm-2" id="chooseVehicleBox">
                             <button onClick={() => {this.handleTravelType("mediumCar");this.selectPeople()}} id="mediumCarButton" type="button" className="btn btn-primary btn-circle btn-xl m-4">
                                 <i className="fas fa-shuttle-van"></i>
                             </button>
-                            
+
                             <h5 className="badge badge-pill badge-light">Medium car</h5>
                         </div>
                         <div className="col-sm-2" id="chooseVehicleBox">
@@ -128,13 +125,13 @@ componentDidMount(){
                         </div>
                         <div className="col-sm-2" id="chooseVehicleBox">
                             <button onClick={() => this.handleTravelType("train")} id="trainButton" type="button" className="btn btn-info btn-circle btn-xl m-4">
-                                <i className="fas fa-subway"></i>                       
+                                <i className="fas fa-subway"></i>
                             </button>
                             <h5 className="badge badge-pill badge-light">Train</h5>
                         </div>
                         <div className="col-sm-2" id="chooseVehicleBox">
                             <button onClick={() => this.handleTravelType("ship")} id="shipButton" type="button" className="btn btn-info btn-circle btn-xl m-4">
-                                <i className="fas fa-ship"></i>               
+                                <i className="fas fa-ship"></i>
                             </button>
                             <h5 className="badge badge-pill badge-light">Ship</h5>
                         </div>
@@ -175,20 +172,20 @@ componentDidMount(){
                     </form>
                     <div className="col-sm-12" id="confirmTravelButton">
                         <button type="button" className="btn btn-success btn-lg" onClick={() => {this.handleTravelSearch();this.showTheResult()}}>Get your result</button>
-                    </div>   
-                </div> 
+                    </div>
+                </div>
             </div>
 <<<<<<< HEAD
             {this.state.showResult?
-             <TravelResults model={this.props.model}/>  
+             <TravelResults model={this.props.model}/>
              :null}
 =======
-            
-             <TravelResults model={this.props.model} type={this.state.travelType} start={this.state.startPoint} end={this.state.endPoint}/>  
+
+             <TravelResults model={this.props.model} type={this.state.travelType} start={this.state.startPoint} end={this.state.endPoint}/>
 >>>>>>> 37af0555fd117fe2e25c7a04ca6e18357367631d
     </React.Fragment>
-        
+
           );
     }
-} 
+}
 export default SearchTravel;
