@@ -74,8 +74,10 @@ function initAutosuggestControl(
   );
 
   function selectedSuggestion(suggestionResult) {
+    
     document.getElementById(suggestionBoxId).value =
       suggestionResult.formattedSuggestion;
+      console.log(document.getElementById(suggestionBoxId).value);
       console.log(suggestionResult.formattedSuggestion);
   }
   

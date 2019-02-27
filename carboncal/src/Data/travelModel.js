@@ -16,6 +16,7 @@ class TravelModel extends ObservableModel {
     }
 
     setUserTravel(userTravelObject){
+        console.log(userTravelObject.startPoint);
         this.getRoute(userTravelObject.startPoint,userTravelObject.endPoint).then(data => {
           let travelData = data.resourceSets[0].resources[0];
           userTravelObject["distance"] = travelData.travelDistance;
@@ -25,7 +26,6 @@ class TravelModel extends ObservableModel {
           this.allResults.push(userTravelObject);
           this.notifyObservers();
         });
-      
     }
 
     getRoute(startPosition,endPosition) {

@@ -17,6 +17,7 @@ class SearchTravel extends Component {
 
 
 handleTravelType(selectedTravelType) {
+    document.getElementById('remindUser').style.visibility = "hidden";
     selectedTravelType === "smallCar"|| selectedTravelType === "mediumCar" || selectedTravelType === "largeCar" ? this.setState({
         travelType: selectedTravelType,
         showMe: true,
@@ -42,6 +43,12 @@ handleNumberOfTravelers = (event) => {
     this.setState({
         numberOfTravelers: event.target.value,
     })
+}
+
+remindUser(){
+    let remindUser = document.getElementById('remindUser');
+    remindUser.innerHTML ='You forgot to choose a ride!' ;
+    remindUser.style.visibility = "visible" ;
 }
 
 handleTravelSearch(){
@@ -144,7 +151,10 @@ handleTravelSearch(){
                         </div>
                     </form>
                     <div className="col-sm-12" id="confirmTravelButton">
-                        <button type="button" className="btn btn-success btn-lg" onClick={() => {this.handleTravelSearch()}}>Get your result</button>
+                        <button type="button" className="btn btn-success btn-lg" onClick={() => {this.state.travelType === "" ?this.remindUser():this.handleTravelSearch()}}>Get your result</button>
+                    </div>
+                    <div className="col-sm-12">
+                    <div className="p-3 mb-2 bg-danger text-white" id="remindUser"></div>
                     </div>
                 </div>
             </div>
