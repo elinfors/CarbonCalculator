@@ -148,9 +148,10 @@ handleTravelSearch(){
                     </div>
                 </div>
             </div>
-
+            {this.state.showResult?
              <TravelResults model={this.props.model} type={this.state.travelType} start={this.state.startPoint} end={this.state.endPoint}/>
-    </React.Fragment>
+                :null}
+             </React.Fragment>
 
           );
     }
