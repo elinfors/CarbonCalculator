@@ -49,6 +49,7 @@ handleTravelEndPoint(event){
 
 handleTravelSearch(){
     this.props.model.setUserTravel(this.state);
+
 }
 
 
@@ -148,9 +149,10 @@ handleTravelSearch(){
                     </div>
                 </div>
             </div>
+
             {this.state.showResult?
-             <TravelResults model={this.props.model} type={this.state.travelType} start={this.state.startPoint} end={this.state.endPoint}/>
-                :null}
+             <TravelResults model={this.props.model} type={this.state.travelType} start={this.state.startPoint} end={this.state.endPoint}></TravelResults>
+            :null}
              </React.Fragment>
 
           );

@@ -2,15 +2,21 @@ import React, { Component } from 'react';
 import './TravelResults.css';
 
 class TravelResults extends Component {
-    constructor(){
-    super();
+    constructor(props){
+    super(props);
     this.state = {
-      
+      status: "LOADING",
+      type: this.props.type,
+      start: this.props.start,
+      end: this.props.end,
+      emission: this.props.model.getCarbonEmission()
+
     }
     }
 
-    createOtbject(){
+    createObject(){
         let object = {
+            id: this.state.travelID,
             distance: this.state.distance,
             type: this.props.type,
             start: this.props.start,
@@ -21,13 +27,16 @@ class TravelResults extends Component {
     }
 
     update = () => {
-        //console.log("travelResults" + this.props.model.getUserTravel());
+        //console.log("travelResults" + this.props.model.getUserTravel()); 
+        //this.props.model.getRoute()
         this.props.model.getUserTravel()
           .then(distance => {
             this.setState({
               distance: distance.resourceSets[0].resources[0].travelDistance,
+              travelID: distance.resourceSets[0].resources[0].id,
+              status: "LOADED"
             });
-            this.props.model.allResults.push(this.createOtbject());
+            this.props.model.allResults.push(this.createObject());
           })
           .catch(() => {
             this.setState({
@@ -39,15 +48,42 @@ class TravelResults extends Component {
     }
    
 
-    componentDidMount(){
-        //this.update()
+    componentWillMount(){
+        this.update()
         this.props.model.addObserver(this);
     }
 
     render() { 
         let travelList = null;
-        //console.log();
-        //for (travel in this.props.model.allResults){
+        switch (this.state.status){
+            case "LOADING":
+                travelList = <em> Loading... </em>;
+                break;
+            case "LOADED":
+                travelList =  this.props.model.allResults.map(travel =>(
+                    <div key ={travel.id} className = "col-sm-4">
+                    <div id="start_end_text"className = "col-sm-12">
+                    {travel.start}<i className="fas fa-arrow-right"></i>{travel.end}
+                    </div>
+                    <div className="col-sm-12 block">
+                    <div className="round round-lg">
+                    <p>
+                        <div id="emission_text">{travel.emission}</div>
+                        <br/>
+                        <div>CO2/person</div>
+                        </p>
+                    </div>
+                    </div>
+                    <div className="col-sm-12">
+                        <button type="button" className="btn btn-success btn-lg">Add to my travels</button>
+                   </div> 
+                   </div>
+                ))
+                break;
+            default:
+            travelList = <b>Failed to load data, please try again</b>;
+        
+        }
         //   
         //} 
         //let classes = "badge m-2 badge-";
@@ -66,9 +102,8 @@ class TravelResults extends Component {
             </div>
             <div className="container h-100">
               <div className="col-sm-12" id="getResultContainer">
-                <h2>Distance: {travelList} km</h2>
                 <div className="d-flex justify-content-center h-100">
-                    <span id="carbonResult">Carbon emission: TON CO2/person</span>
+                   {travelList}
                 </div>
               </div>
             </div>
@@ -78,6 +113,8 @@ class TravelResults extends Component {
           );
     }
 }
+//<h2>Distance: {travelList} km</h2>
+// <span id="carbonResult">Carbon emission: TON CO2/person</span>
  
 export default TravelResults;
 
