@@ -48,9 +48,9 @@ class TravelResults extends Component {
 
     render() { 
         let travelList = null;
-        //console.log(this.props.model.allResults);
-        //for (travel in this.props.model.getAllResults()){
-        //    console.log(travel);
+        //console.log();
+        //for (travel in this.props.model.allResults){
+        //   
         //} 
         //let classes = "badge m-2 badge-";
         //classes += (this.props.model.getCarbonEmission() > 0.004) ? "danger" : "success";
