@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import './TopBar.css';
+import { Link } from 'react-router-dom';
+
 
 
 class TopBar extends Component {
@@ -18,7 +20,9 @@ class TopBar extends Component {
                             </button>
                             <div className="dropdown-menu">
                                 <a className="dropdown-item" href="#">My account</a>
-                                <a className="dropdown-item" href="#">My lists</a>
+                                <Link to="/UserTravels">
+                                    <a className="dropdown-item" href="#">My list</a>
+                                </Link>
                                 <div className="dropdown-divider"></div>
                                 <button className="dropdown-item" id="logOutButton" href="#">logout</button>
                             </div>

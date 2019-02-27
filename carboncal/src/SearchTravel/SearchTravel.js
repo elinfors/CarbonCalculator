@@ -143,7 +143,7 @@ componentDidMount(){
                             <span className="badge badge-dark" id="formText">Number of people:</span>
                             <form className="form-group" id="form-group">
                                 <select className="custom-select" id="inlineFormCustomSelect">
-                                    <option selected="1">1</option>
+                                    <option default="1">1</option>
                                     <option value="2">2</option>
                                     <option value="3">3</option>
                                 </select>
