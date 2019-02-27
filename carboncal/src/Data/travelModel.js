@@ -16,11 +16,12 @@ class TravelModel extends ObservableModel {
     }
 
     setUserTravel(userTravelObject){
-        this.getRoute(userTravelObject.startPoint,userTravelObject.endPoint).then(distance => {
-          userTravelObject["distance"] = distance.resourceSets[0].resources[0].travelDistance;
-          userTravelObject["travelID"] = distance.resourceSets[0].resources[0].id;
-          userTravelObject["key"] = distance.resourceSets[0].resources[0].id;
-          userTravelObject["emission"] = carbonCalculator.calculateCarbonEmission(distance.resourceSets[0].resources[0].travelDistance,userTravelObject.travelType,userTravelObject.numberOfTravelers);
+        this.getRoute(userTravelObject.startPoint,userTravelObject.endPoint).then(data => {
+          let travelData = data.resourceSets[0].resources[0];
+          userTravelObject["distance"] = travelData.travelDistance;
+          userTravelObject["travelID"] = travelData.id;
+          userTravelObject["key"] = travelData.id;
+          userTravelObject["emission"] = carbonCalculator.calculateCarbonEmission(travelData.travelDistance,userTravelObject.travelType,userTravelObject.numberOfTravelers);
           this.allResults.push(userTravelObject);
           this.notifyObservers();
         });
