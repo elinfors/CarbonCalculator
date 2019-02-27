@@ -12,45 +12,19 @@ class TravelModel extends ObservableModel {
     super();
     this.numberOfTravelers = 1;
     this.savedTravels = []; //fylls med objekt från API:t
-    this.routeResult = "";
-    this.carbonEmission = 0;
     this.allResults = [];
     }
 
     setUserTravel(userTravelObject){
-        //alert(userTravelObject.travelType);
-        this.routeResult = this.getRoute(userTravelObject.startPoint,userTravelObject.endPoint);
-        console.log(this.routeResult);
-        //this.allResults.push(this.routeResult);
-        this.getCarbon(userTravelObject.travelType);
-        console.log(this.carbonEmission);
-        this.notifyObservers();
-    }
-
-    getCarbonEmission(){
-      return this.carbonEmission;
-    }
-
-    getUserTravel() {
-      return this.routeResult;
-    }
-
-    getCarbon = (travelType) => {
-      /*this.routeResult.then(data => {
-        let startLat = data.resourceSets[0].resources[0].bbox[0];
-        let startLng = data.resourceSets[0].resources[0].bbox[1];
-        let endLat = data.resourceSets[0].resources[0].bbox[2];
-        let endLng = data.resourceSets[0].resources[0].bbox[3];
-        const carbonUrl = `http://api.commutegreener.com/api/co2/emissions?startLat=`+ startLat + `&startLng=` + startLng + `&endLat=` + endLat + `&endLng=` + endLng + `&format=json`;
-        const proxyurl = "https://cors-anywhere.herokuapp.com/";
-        console.log(fetch(proxyurl + carbonUrl).then(this.processResponse));
-        //console.log(data.resourceSets[0].resources[0].bbox[0])
-      })*/
-      console.log(travelType);
-      this.routeResult.then(data => {
-        this.carbonEmission = carbonCalculator.calculateCarbonEmission(data.resourceSets[0].resources[0].travelDistance,travelType);
-      })
-     
+        this.getRoute(userTravelObject.startPoint,userTravelObject.endPoint).then(distance => {
+          userTravelObject["distance"] = distance.resourceSets[0].resources[0].travelDistance;
+          userTravelObject["travelID"] = distance.resourceSets[0].resources[0].id;
+          userTravelObject["key"] = distance.resourceSets[0].resources[0].id;
+          userTravelObject["emission"] = carbonCalculator.calculateCarbonEmission(distance.resourceSets[0].resources[0].travelDistance,userTravelObject.travelType,userTravelObject.numberOfTravelers);
+          this.allResults.push(userTravelObject);
+          this.notifyObservers();
+        });
+      
     }
 
     getRoute(startPosition,endPosition) {
@@ -60,14 +34,14 @@ class TravelModel extends ObservableModel {
         return fetch(url).then(this.processResponse);
       }
 
-      processResponse(response) {
+    processResponse(response) {
         if (response.ok) {
           return response.json();
         }
         throw response;
       }
 
-      setNumberOfTravelers(num){
+    setNumberOfTravelers(num){
           this.numberOfTravelers = num;
           if(num < 1){
               this.numberOfTravelers = 1
@@ -75,16 +49,16 @@ class TravelModel extends ObservableModel {
           this.notifyObservers();
       }
 
-      getNumberOfTravelers(){
+    getNumberOfTravelers(){
         return this.numberOfTravelers;
       }
 
-      saveTravel(travel){
+    saveTravel(travel){
         this.savedTravels.push(travel);
         this.notifyObservers();
       }
 
-      removeSavedTravel(travel){
+    removeSavedTravel(travel){
           let list = this.savedTravels;
           for (var i in list){
               if (travel.id === list[i].id){
@@ -94,16 +68,11 @@ class TravelModel extends ObservableModel {
           this.notifyObservers();
       }
 
-      getSavedTravels(){
+    getSavedTravels(){
         return this.savedTravels;
       }
 
-      addToResult(travel){
-        this.allResults.push(travel);
-        this.notifyObservers();
-      }
-
-      removeResult(travel){
+    removeResult(travel){
           let results = this.allResults;
           for (var i in results){
               if (travel.id === results[i].id){
@@ -113,9 +82,8 @@ class TravelModel extends ObservableModel {
           this.notifyObservers();
       }
 
-      getAllResults(){
+    getAllResults(){
         return this.allResults;
-        //console.log("getAllResults");
       }
 
 }

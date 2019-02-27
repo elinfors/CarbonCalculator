@@ -10,8 +10,9 @@ class CarbonCalculator{
               ship:"0"
       };
     }
-    calculateCarbonEmission(distance,travelType){ 
-    return  Math.floor(distance * this.state[travelType]* 100000) / 100000;
+    calculateCarbonEmission(distance,travelType,numberOfTravelers){ 
+    console.log(numberOfTravelers);
+    return numberOfTravelers*(Math.floor(distance * this.state[travelType]* 100000) / 100000);
     };
 }
 const calcInstance = new CarbonCalculator();

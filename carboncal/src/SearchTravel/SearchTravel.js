@@ -9,55 +9,47 @@ class SearchTravel extends Component {
        travelType: "",
        startPoint: "",
        endPoint: "",
+       numberOfTravelers: 1,
        showMe:false,
        showResult: false
-
     }
-    this.handleTravelStartPoint = this.handleTravelStartPoint.bind(this);
-    this.handleTravelEndPoint = this.handleTravelEndPoint.bind(this);
-}
-
-
-
-showTheResult(){
-    this.setState({showResult: true});
 }
 
 
 handleTravelType(selectedTravelType) {
     selectedTravelType === "smallCar"|| selectedTravelType === "mediumCar" || selectedTravelType === "largeCar" ? this.setState({
         travelType: selectedTravelType,
-        showMe: true
+        showMe: true,
     }) : this.setState({
         travelType: selectedTravelType,
-        showMe: false
-    }) ;
-    
+        numberOfTravelers: 1,
+        showMe: false,
+    }) ;   
 }
 
-handleTravelStartPoint(event){
+handleTravelStartPoint = (event) => {
     this.setState({
         startPoint: event.target.value,
     });
 }
 
-handleTravelEndPoint(event){
+handleTravelEndPoint = (event) => {
     this.setState({
         endPoint: event.target.value,
     });
 }
+handleNumberOfTravelers = (event) => {
+    this.setState({
+        numberOfTravelers: event.target.value,
+    })
+}
 
 handleTravelSearch(){
     this.props.model.setUserTravel(this.state);
-
+    this.setState({
+        showResult: true,
+    });
 }
-
-componentDidMount() { 
-    //postscribe('#myMap',''); 
-    
-
-}
-
     render() {
         return (
       <React.Fragment>
@@ -116,8 +108,8 @@ componentDidMount() {
                             <div className="col-sm-6" id="chooseNumberOfPeopleBox">
                             <span className="badge badge-dark" id="formText">Number of people:</span>
                             <form className="form-group" id="form-group">
-                                <select className="custom-select" id="inlineFormCustomSelect">
-                                    <option default="1">1</option>
+                                <select className="custom-select" id="inlineFormCustomSelect" onChange={this.handleNumberOfTravelers}>
+                                    <option value="1">1</option>
                                     <option value="2">2</option>
                                     <option value="3">3</option>
                                 </select>
@@ -143,22 +135,22 @@ componentDidMount() {
                             <div className="col-sm-12" id="searchForms">
                                 <span id="smallBadge" className="badge badge-secondary">From</span>
                                 <div id='printoutPanelFrom'></div>
-                                <input id="locationFrom" className="form-control form-control-lg" autocomplete="off" type="text" placeholder="Your start position..." onClick={this.handleTravelStartPoint}></input>
+                                <input id="locationFrom" className="form-control form-control-lg" autoComplete="off" type="text" placeholder="Your start position..." onClick={this.handleTravelStartPoint}></input>
                             </div>
                         <div className="col-sm-12" id="searchForm">
                             <div id='printoutPanelTo'></div>
                             <span id="smallBadge" className="badge badge-secondary">To</span>
-                            <input id="locationTo" className="form-control form-control-lg" autocomplete="off" type="text" placeholder="Your destination..." onClick={this.handleTravelEndPoint}></input>
+                            <input id="locationTo" className="form-control form-control-lg" autoComplete="off" type="text" placeholder="Your destination..." onClick={this.handleTravelEndPoint}></input>
                         </div>
                     </form>
                     <div className="col-sm-12" id="confirmTravelButton">
-                        <button type="button" className="btn btn-success btn-lg" onClick={() => {this.handleTravelSearch();this.showTheResult()}}>Get your result</button>
+                        <button type="button" className="btn btn-success btn-lg" onClick={() => {this.handleTravelSearch()}}>Get your result</button>
                     </div>
                 </div>
             </div>
 
             {this.state.showResult?
-             <TravelResults model={this.props.model} type={this.state.travelType} start={this.state.startPoint} end={this.state.endPoint}></TravelResults>
+             <TravelResults key={this.state.key} model={this.props.model} ></TravelResults>
             :null}
              </React.Fragment>
 
