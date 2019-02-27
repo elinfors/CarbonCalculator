@@ -5,18 +5,31 @@ import './SearchTravel.css';
 class SearchTravel extends Component {
     constructor(){
     super();
-    this.state = { 
-       travleType: "",
+    this.state = {
+       travelType: "",
        startPoint: "",
        endPoint: "",
+       showMe:false,
+       showResult: false
+
     }
     this.handleTravelStartPoint = this.handleTravelStartPoint.bind(this);
-    this.handleTravelEndPoint = this.handleTravelEndPoint.bind(this); 
+    this.handleTravelEndPoint = this.handleTravelEndPoint.bind(this);
 }
+
+
+
+showTheResult(){
+    this.setState({showResult: true});
+}
+
 
 handleTravelType(selectedTravelType) {
     this.setState({
-        travelType: selectedTravelType
+        travelType: selectedTravelType,
+        showMe: true
+        
+
     });
 }
 
@@ -35,6 +48,7 @@ handleTravelEndPoint(event){
 handleTravelSearch(){
     this.props.model.setUserTravel(this.state);
 }
+
 
 /*
 componentDidMount(){
@@ -64,12 +78,12 @@ componentDidMount(){
                     '<br> Lat: ' + suggestionResult.location.latitude +
                     '<br> Lon: ' + suggestionResult.location.longitude;
         }
-        
+
     }
     loadMapScenario();
 }*/
 
-    render() { 
+    render() {
         return (
       <React.Fragment>
             <TopBar></TopBar>
@@ -85,23 +99,17 @@ componentDidMount(){
                 <div className="d-flex justify-content-center h-100">
                     <div className="col-sm-12" id="vehicleSymbolContainer">
                         <div className="col-sm-2" id="chooseVehicleBox">
-                            <button onClick={() => this.handleTravelType("smallCar")} id="smallCarButton" type="button" className="btn btn-danger btn-circle btn-xl m-4">                            
+                            <button onClick={() => this.handleTravelType("smallCar")} id="smallCarButton" type="button" className="btn btn-danger btn-circle btn-xl m-4">
                                 <i className="fas fa-car-side"></i>
                             </button>
-                            
+
                             <h5 className="badge badge-pill badge-light">Small car</h5>
                         </div>
                         <div className="col-sm-2" id="chooseVehicleBox">
                             <button onClick={() => this.handleTravelType("mediumCar")} id="mediumCarButton" type="button" className="btn btn-primary btn-circle btn-xl m-4">
                                 <i className="fas fa-shuttle-van"></i>
                             </button>
-                            <form className="form-group">
-                                <select className="custom-select" id="inlineFormCustomSelect">
-                                    <option selected="1">1</option>
-                                    <option value="2">2</option>
-                                    <option value="3">3</option>
-                                </select>
-                            </form>
+
                             <h5 className="badge badge-pill badge-light">Medium car</h5>
                         </div>
                         <div className="col-sm-2" id="chooseVehicleBox">
@@ -118,16 +126,28 @@ componentDidMount(){
                         </div>
                         <div className="col-sm-2" id="chooseVehicleBox">
                             <button onClick={() => this.handleTravelType("train")} id="trainButton" type="button" className="btn btn-info btn-circle btn-xl m-4">
-                                <i className="fas fa-subway"></i>                       
+                                <i className="fas fa-subway"></i>
                             </button>
                             <h5 className="badge badge-pill badge-light">Train</h5>
                         </div>
                         <div className="col-sm-2" id="chooseVehicleBox">
                             <button onClick={() => this.handleTravelType("ship")} id="shipButton" type="button" className="btn btn-info btn-circle btn-xl m-4">
-                                <i className="fas fa-ship"></i>               
+                                <i className="fas fa-ship"></i>
                             </button>
                             <h5 className="badge badge-pill badge-light">Ship</h5>
                         </div>
+                        {this.state.showMe?
+                            <div className="col-sm-6" id="chooseNumberOfPeopleBox">
+                            <span className="badge badge-dark" id="formText">Number of people:</span>
+                            <form className="form-group" id="form-group">
+                                <select className="custom-select" id="inlineFormCustomSelect">
+                                    <option selected="1">1</option>
+                                    <option value="2">2</option>
+                                    <option value="3">3</option>
+                                </select>
+                            </form>
+                            </div>
+                            :null}
                     </div>
                 </div>
             </div>
@@ -155,15 +175,16 @@ componentDidMount(){
                         </div>
                     </form>
                     <div className="col-sm-12" id="confirmTravelButton">
-                        <button type="button" className="btn btn-success btn-lg" onClick={() => this.handleTravelSearch()}>Get your result</button>
-                    </div>   
-                </div> 
+                        <button type="button" className="btn btn-success btn-lg" onClick={() => {this.handleTravelSearch();this.showTheResult()}}>Get your result</button>
+                    </div>
+                </div>
             </div>
-            
-             <TravelResults model={this.props.model} type={this.state.travelType} start={this.state.startPoint} end={this.state.endPoint}/>  
+            {this.state.showResult?
+             <TravelResults model={this.props.model}/>
+             :null}
     </React.Fragment>
-        
+
           );
     }
-} 
+}
 export default SearchTravel;

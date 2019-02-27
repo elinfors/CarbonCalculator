@@ -4,7 +4,10 @@ import './TravelResults.css';
 class TravelResults extends Component {
     constructor(){
     super();
-    this.state = {  
+    this.state = {
+      
+      
+      
     }
     }
 
@@ -36,6 +39,7 @@ class TravelResults extends Component {
           console.log(this.props.model.allResults);
         //console.log(this.props.model.list.map(data =>(data.resourceSets[0].resources[0].travelDistance)));
     }
+   
 
     componentDidMount(){
         //this.update()
@@ -48,11 +52,29 @@ class TravelResults extends Component {
         //for (travel in this.props.model.getAllResults()){
         //    console.log(travel);
         //} 
-        let carbonEmission = this.props.model.getCarbonEmission();
+        //let classes = "badge m-2 badge-";
+        //classes += (this.props.model.getCarbonEmission() > 0.004) ? "danger" : "success";
+        //let travelList = this.state.travel;
+        //let carbonEmission = this.props.model.getCarbonEmission();
         return (
             <React.Fragment>
-            <h2>Distance: {travelList} km</h2>
-            <h2>Carbon emission: {carbonEmission} TON CO2/person</h2>
+            <div id="chooseRideContainer" className="container h-100">
+                <div className="d-flex justify-content-center h-100">
+                    <div className="col-sm-12" id="chooseRideText">
+                    <span><i id="infoSymbolThreeBig" className="fas fa-check-circle m-2"></i></span>
+                    <span id="chooseTextBig">Your result</span>
+                    </div>
+                </div>
+            </div>
+            <div className="container h-100">
+              <div className="col-sm-12" id="getResultContainer">
+                <h2>Distance: {travelList} km</h2>
+                <div className="d-flex justify-content-center h-100">
+                    <span id="carbonResult"className={classes}>Carbon emission: {carbonEmission} TON CO2/person</span>
+                </div>
+              </div>
+            </div>
+            
             </React.Fragment>
            
           );
