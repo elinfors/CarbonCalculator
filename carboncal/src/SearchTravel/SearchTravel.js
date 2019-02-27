@@ -116,7 +116,7 @@ componentDidMount() {
                             <span className="badge badge-dark" id="formText">Number of people:</span>
                             <form className="form-group" id="form-group">
                                 <select className="custom-select" id="inlineFormCustomSelect">
-                                    <option selected="1">1</option>
+                                    <option default="1">1</option>
                                     <option value="2">2</option>
                                     <option value="3">3</option>
                                 </select>
@@ -155,9 +155,10 @@ componentDidMount() {
                     </div>
                 </div>
             </div>
-
+            {this.state.showResult?
              <TravelResults model={this.props.model} type={this.state.travelType} start={this.state.startPoint} end={this.state.endPoint}/>
-    </React.Fragment>
+                :null}
+             </React.Fragment>
 
           );
     }

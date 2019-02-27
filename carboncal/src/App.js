@@ -7,6 +7,7 @@ import './App.css';
 
 import LoginPage from "./LoginPage/LoginPage";
 import SearchTravel from './SearchTravel/SearchTravel';
+import UserTravels from './UserTravels/UserTravels';
 
 class App extends Component {
   render() {
@@ -19,6 +20,11 @@ class App extends Component {
       <Route 
       path = "/SearchTravel"
       render = {() => <SearchTravel model = {modelInstance}/>}
+      />
+
+      <Route 
+      path = "/UserTravels"
+      render ={() => <UserTravels model = {this.props.model}/>}
       />
 
         
