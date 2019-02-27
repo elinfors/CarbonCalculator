@@ -2,52 +2,58 @@ import React, { Component } from 'react';
 import './TravelResults.css';
 
 class TravelResults extends Component {
-    constructor(){
-    super();
+    constructor(props){
+    super(props);
     this.state = {
-      
+      status: "LOADING",
     }
     }
 
-    createOtbject(){
-        let object = {
-            distance: this.state.distance,
-            type: this.props.type,
-            start: this.props.start,
-            end: this.props.end,
-            emission: this.props.model.getCarbonEmission()
-        }
-        return object;
-    }
-
-    update = () => {
-        //console.log("travelResults" + this.props.model.getUserTravel());
-        this.props.model.getUserTravel()
-          .then(distance => {
-            this.setState({
-              distance: distance.resourceSets[0].resources[0].travelDistance,
-            });
-            this.props.model.allResults.push(this.createOtbject());
-          })
-          .catch(() => {
-            this.setState({
-              status: "ERROR"
-            });
-          })  
-          console.log(this.props.model.allResults);
-        //console.log(this.props.model.list.map(data =>(data.resourceSets[0].resources[0].travelDistance)));
+    update(){
+      this.setState({
+        allResults: this.props.model.allResults,
+       })
     }
    
-
     componentDidMount(){
-        //this.update()
-        this.props.model.addObserver(this);
+      this.props.model.addObserver(this);
+      this.setState({
+        allResults: this.props.model.allResults,
+        status: "LOADED"
+       })
     }
 
     render() { 
         let travelList = null;
-        //console.log();
-        //for (travel in this.props.model.allResults){
+        switch (this.state.status){
+            case "LOADING":
+                travelList = <em> Loading... </em>;
+                break;
+            case "LOADED":
+                travelList =  this.state.allResults.map((travel,index) =>(
+                    <div key={travel.id+index} className = "col-sm-4">
+                      <div key={"point" + travel.id} id="start_end_text"className = "col-sm-12">
+                      {travel.startPoint}<i className="fas fa-arrow-right"></i>{travel.endPoint}
+                      </div>
+                      <div  className="col-sm-12 block">
+                      <div  className="round round-lg">
+                      <div>
+                          <div key={"emission_text"+travel.id} id="emission_text">{travel.emission}</div>
+                          <br/>
+                          <div>CO2/person</div>
+                      </div>
+                      </div>
+                      </div>
+                      <div className="col-sm-12">
+                          <button type="button" className="btn btn-success btn-lg">Add to my travels</button>
+                    </div> 
+                   </div>
+                ))
+                break;
+            default:
+            travelList = <b>Failed to load data, please try again</b>;
+        
+        }
         //   
         //} 
         //let classes = "badge m-2 badge-";
@@ -56,7 +62,7 @@ class TravelResults extends Component {
         //let carbonEmission = this.props.model.getCarbonEmission();
         return (
             <React.Fragment>
-            <div id="chooseRideContainer" className="container h-100">
+            <div key={"frame"} id="chooseRideContainer" className="container h-100">
                 <div className="d-flex justify-content-center h-100">
                     <div className="col-sm-12" id="chooseRideText">
                     <span><i id="infoSymbolThreeBig" className="fas fa-check-circle m-2"></i></span>
@@ -64,11 +70,10 @@ class TravelResults extends Component {
                     </div>
                 </div>
             </div>
-            <div className="container h-100">
+            <div key={"travelList"} className="container h-100">
               <div className="col-sm-12" id="getResultContainer">
-                <h2>Distance: {travelList} km</h2>
                 <div className="d-flex justify-content-center h-100">
-                    <span id="carbonResult">Carbon emission: TON CO2/person</span>
+                   {travelList}
                 </div>
               </div>
             </div>
@@ -78,6 +83,8 @@ class TravelResults extends Component {
           );
     }
 }
+//<h2>Distance: {travelList} km</h2>
+// <span id="carbonResult">Carbon emission: TON CO2/person</span>
  
 export default TravelResults;
 
