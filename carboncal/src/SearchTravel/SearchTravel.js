@@ -6,7 +6,7 @@ class SearchTravel extends Component {
     constructor(){
     super();
     this.state = {
-       travleType: "",
+       travelType: "",
        startPoint: "",
        endPoint: "",
        showMe:false,
@@ -17,9 +17,7 @@ class SearchTravel extends Component {
     this.handleTravelEndPoint = this.handleTravelEndPoint.bind(this);
 }
 
-selectPeople(){
-    this.setState({showMe: !this.state.showMe})
-}
+
 
 showTheResult(){
     this.setState({showResult: true});
@@ -28,7 +26,10 @@ showTheResult(){
 
 handleTravelType(selectedTravelType) {
     this.setState({
-        travelType: selectedTravelType
+        travelType: selectedTravelType,
+        showMe: true
+        
+
     });
 }
 
@@ -48,7 +49,7 @@ handleTravelSearch(){
     this.props.model.setUserTravel(this.state);
 }
 
-=======
+
 /*
 componentDidMount(){
     const script = document.createElement("script");
@@ -105,7 +106,7 @@ componentDidMount(){
                             <h5 className="badge badge-pill badge-light">Small car</h5>
                         </div>
                         <div className="col-sm-2" id="chooseVehicleBox">
-                            <button onClick={() => {this.handleTravelType("mediumCar");this.selectPeople()}} id="mediumCarButton" type="button" className="btn btn-primary btn-circle btn-xl m-4">
+                            <button onClick={() => this.handleTravelType("mediumCar")} id="mediumCarButton" type="button" className="btn btn-primary btn-circle btn-xl m-4">
                                 <i className="fas fa-shuttle-van"></i>
                             </button>
 
@@ -136,13 +137,16 @@ componentDidMount(){
                             <h5 className="badge badge-pill badge-light">Ship</h5>
                         </div>
                         {this.state.showMe?
-                            <form className="form-group">
+                            <div className="col-sm-6" id="chooseNumberOfPeopleBox">
+                            <span className="badge badge-dark" id="formText">Number of people:</span>
+                            <form className="form-group" id="form-group">
                                 <select className="custom-select" id="inlineFormCustomSelect">
                                     <option selected="1">1</option>
                                     <option value="2">2</option>
                                     <option value="3">3</option>
                                 </select>
                             </form>
+                            </div>
                             :null}
                     </div>
                 </div>
@@ -175,14 +179,9 @@ componentDidMount(){
                     </div>
                 </div>
             </div>
-<<<<<<< HEAD
             {this.state.showResult?
              <TravelResults model={this.props.model}/>
              :null}
-=======
-
-             <TravelResults model={this.props.model} type={this.state.travelType} start={this.state.startPoint} end={this.state.endPoint}/>
->>>>>>> 37af0555fd117fe2e25c7a04ca6e18357367631d
     </React.Fragment>
 
           );
