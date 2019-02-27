@@ -9,10 +9,22 @@ class SearchTravel extends Component {
        travleType: "",
        startPoint: "",
        endPoint: "",
+       showMe:false,
+       showResult: false
+      
     }
     this.handleTravelStartPoint = this.handleTravelStartPoint.bind(this);
     this.handleTravelEndPoint = this.handleTravelEndPoint.bind(this); 
 }
+
+selectPeople(){
+    this.setState({showMe: !this.state.showMe})
+}
+
+showTheResult(){
+    this.setState({showResult: true});
+}
+
 
 handleTravelType(selectedTravelType) {
     this.setState({
@@ -35,6 +47,43 @@ handleTravelEndPoint(event){
 handleTravelSearch(){
     this.props.model.setUserTravel(this.state);
 }
+
+<<<<<<< HEAD
+
+=======
+/*
+componentDidMount(){
+    const script = document.createElement("script");
+
+        script.src = "https://www.bing.com/api/maps/mapcontrol?key=AlJeTIGD1dCPM4-OE_z9xDQohB4ll2vpaaEYv72_48tSOt--Jy_oY5UaFftaiXKp&callback=loadMapScenario";
+        script.async = true;
+
+        document.instance.appendChild(script);
+
+    function loadMapScenario() {
+        Microsoft.Maps.loadModule('Microsoft.Maps.AutoSuggest', {
+            callback: onLoad,
+            errorCallback: onError
+        });
+    function onLoad() {
+            var options = { maxResults: 5 };
+            var manager = new Microsoft.Maps.AutosuggestManager(options);
+            manager.attachAutosuggest('#locationFrom', '#searchForms', selectedSuggestion);
+        }
+    function onError(message) {
+            document.getElementById('printoutPanel').innerHTML = message;
+        }
+    function selectedSuggestion(suggestionResult) {
+            document.getElementById('printoutPanel').innerHTML =
+                'Suggestion: ' + suggestionResult.formattedSuggestion +
+                    '<br> Lat: ' + suggestionResult.location.latitude +
+                    '<br> Lon: ' + suggestionResult.location.longitude;
+        }
+        
+    }
+    loadMapScenario();
+}*/
+>>>>>>> 37af0555fd117fe2e25c7a04ca6e18357367631d
 
     render() { 
         return (
@@ -59,16 +108,10 @@ handleTravelSearch(){
                             <h5 className="badge badge-pill badge-light">Small car</h5>
                         </div>
                         <div className="col-sm-2" id="chooseVehicleBox">
-                            <button onClick={() => this.handleTravelType("mediumCar")} id="mediumCarButton" type="button" className="btn btn-primary btn-circle btn-xl m-4">
+                            <button onClick={() => {this.handleTravelType("mediumCar");this.selectPeople()}} id="mediumCarButton" type="button" className="btn btn-primary btn-circle btn-xl m-4">
                                 <i className="fas fa-shuttle-van"></i>
                             </button>
-                            <form className="form-group">
-                                <select className="custom-select" id="inlineFormCustomSelect">
-                                    <option selected="1">1</option>
-                                    <option value="2">2</option>
-                                    <option value="3">3</option>
-                                </select>
-                            </form>
+                            
                             <h5 className="badge badge-pill badge-light">Medium car</h5>
                         </div>
                         <div className="col-sm-2" id="chooseVehicleBox">
@@ -95,6 +138,15 @@ handleTravelSearch(){
                             </button>
                             <h5 className="badge badge-pill badge-light">Ship</h5>
                         </div>
+                        {this.state.showMe?
+                            <form className="form-group">
+                                <select className="custom-select" id="inlineFormCustomSelect">
+                                    <option selected="1">1</option>
+                                    <option value="2">2</option>
+                                    <option value="3">3</option>
+                                </select>
+                            </form>
+                            :null}
                     </div>
                 </div>
             </div>
@@ -113,24 +165,30 @@ handleTravelSearch(){
                         <form className="form">
                             <div className="col-sm-12" id="searchForms">
                                 <span id="smallBadge" className="badge badge-secondary">From</span>
-                                <input id="locationFrom" className="form-control form-control-lg" type="text" placeholder="your start position..." onChange={this.handleTravelStartPoint}></input>
+                                <div id='printoutPanel'></div>
+                                <input id="locationFrom" className="form-control form-control-lg" type="text" placeholder="Your start position..." onChange={this.handleTravelStartPoint}></input>
                             </div>
                         <div className="col-sm-12" id="searchForms">
                             <span id="smallBadge" className="badge badge-secondary">To</span>
-                            <input id="locationTo" className="form-control form-control-lg" type="text" placeholder="your destination..." onChange={this.handleTravelEndPoint}></input>
+                            <input id="locationTo" className="form-control form-control-lg" type="text" placeholder="Your destination..." onChange={this.handleTravelEndPoint}></input>
                         </div>
                     </form>
                     <div className="col-sm-12" id="confirmTravelButton">
-                        <button type="button" className="btn btn-success btn-lg" onClick={() => this.handleTravelSearch()}>Get your result</button>
+                        <button type="button" className="btn btn-success btn-lg" onClick={() => {this.handleTravelSearch();this.showTheResult()}}>Get your result</button>
                     </div>   
                 </div> 
             </div>
-            
+<<<<<<< HEAD
+            {this.state.showResult?
              <TravelResults model={this.props.model}/>  
+             :null}
+=======
+            
+             <TravelResults model={this.props.model} type={this.state.travelType} start={this.state.startPoint} end={this.state.endPoint}/>  
+>>>>>>> 37af0555fd117fe2e25c7a04ca6e18357367631d
     </React.Fragment>
         
           );
     }
-}
- 
+} 
 export default SearchTravel;

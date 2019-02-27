@@ -11,7 +11,6 @@ class TopBar extends Component {
                 <div className="container h-100">
                     <nav id="navBar" className="navbar navbar navbar-dark justify-content-between">
                         <a className="navbar-brand">Home</a>
-                        <button className="btn btn-outline-success my-2 my-sm-0" type="submit">Your list</button>
                         
                         <div className="btn-group">
                             <button type="button" className="btn btn-success dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">

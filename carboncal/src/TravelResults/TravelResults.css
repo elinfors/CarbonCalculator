@@ -2,3 +2,17 @@ h2 {
     text-align:center;
     color:white;
 }
+
+#infoSymbolThreeBig{
+    color:#28a745;
+    font-size:35px;
+}
+#getResultContainer{
+background-color:#a7a7a7;
+margin-bottom:20px;
+}
+#carbonResult{
+    font-size:30px;
+    padding:20px;
+}
+

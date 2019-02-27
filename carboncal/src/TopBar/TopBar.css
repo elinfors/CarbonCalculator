@@ -3,8 +3,10 @@
 }
 #homePageText{
     margin-top:20px;
+    padding:20px;
     text-align:center;
     color:white;
+    background-color:darkslategray;
 }
 #navBar{
     background-color:black;
