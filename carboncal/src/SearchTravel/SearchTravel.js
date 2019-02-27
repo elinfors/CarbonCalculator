@@ -36,6 +36,39 @@ handleTravelSearch(){
     this.props.model.setUserTravel(this.state);
 }
 
+/*
+componentDidMount(){
+    const script = document.createElement("script");
+
+        script.src = "https://www.bing.com/api/maps/mapcontrol?key=AlJeTIGD1dCPM4-OE_z9xDQohB4ll2vpaaEYv72_48tSOt--Jy_oY5UaFftaiXKp&callback=loadMapScenario";
+        script.async = true;
+
+        document.instance.appendChild(script);
+
+    function loadMapScenario() {
+        Microsoft.Maps.loadModule('Microsoft.Maps.AutoSuggest', {
+            callback: onLoad,
+            errorCallback: onError
+        });
+    function onLoad() {
+            var options = { maxResults: 5 };
+            var manager = new Microsoft.Maps.AutosuggestManager(options);
+            manager.attachAutosuggest('#locationFrom', '#searchForms', selectedSuggestion);
+        }
+    function onError(message) {
+            document.getElementById('printoutPanel').innerHTML = message;
+        }
+    function selectedSuggestion(suggestionResult) {
+            document.getElementById('printoutPanel').innerHTML =
+                'Suggestion: ' + suggestionResult.formattedSuggestion +
+                    '<br> Lat: ' + suggestionResult.location.latitude +
+                    '<br> Lon: ' + suggestionResult.location.longitude;
+        }
+        
+    }
+    loadMapScenario();
+}*/
+
     render() { 
         return (
       <React.Fragment>
@@ -113,11 +146,12 @@ handleTravelSearch(){
                         <form className="form">
                             <div className="col-sm-12" id="searchForms">
                                 <span id="smallBadge" className="badge badge-secondary">From</span>
-                                <input id="locationFrom" className="form-control form-control-lg" type="text" placeholder="your start position..." onChange={this.handleTravelStartPoint}></input>
+                                <div id='printoutPanel'></div>
+                                <input id="locationFrom" className="form-control form-control-lg" type="text" placeholder="Your start position..." onChange={this.handleTravelStartPoint}></input>
                             </div>
                         <div className="col-sm-12" id="searchForms">
                             <span id="smallBadge" className="badge badge-secondary">To</span>
-                            <input id="locationTo" className="form-control form-control-lg" type="text" placeholder="your destination..." onChange={this.handleTravelEndPoint}></input>
+                            <input id="locationTo" className="form-control form-control-lg" type="text" placeholder="Your destination..." onChange={this.handleTravelEndPoint}></input>
                         </div>
                     </form>
                     <div className="col-sm-12" id="confirmTravelButton">
@@ -131,6 +165,5 @@ handleTravelSearch(){
         
           );
     }
-}
- 
+} 
 export default SearchTravel;
