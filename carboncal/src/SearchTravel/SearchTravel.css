@@ -84,6 +84,15 @@
     font-size:20px;
     margin-top:10px;
 }
+.btn.btn-primary.btn-circle.btn-xl.m-4:focus{
+
+    -webkit-box-shadow: 0px 0px 23px 9px rgba(0,123,255,1);
+    -moz-box-shadow: 0px 0px 23px 9px rgba(0,123,255,1);
+    box-shadow: 0px 0px 23px 9px rgba(0,123,255,1);
+    
+    
+}
+
 
 #remindUser{
     text-align:center;
