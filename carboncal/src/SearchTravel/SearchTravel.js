@@ -10,7 +10,9 @@ class SearchTravel extends Component {
        startPoint: "",
        endPoint: "",
        showMe:false,
-       showResult: false
+       showResult: false,
+    
+
 
     }
     this.handleTravelStartPoint = this.handleTravelStartPoint.bind(this);
