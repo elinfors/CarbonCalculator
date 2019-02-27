@@ -10,7 +10,6 @@ class TravelModel extends ObservableModel {
 
     constructor(){
     super();
-    this.numberOfTravelers = 1;
     this.savedTravels = []; //fylls med objekt från API:t
     this.allResults = [];
     }
