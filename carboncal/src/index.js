@@ -4,8 +4,6 @@ import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
 import "bootstrap/dist/css/bootstrap.css";
-import SearchTravel from './SearchTravel/SearchTravel';
-import LoginPage from './LoginPage/LoginPage';
 import {BrowserRouter} from 'react-router-dom';
 
 ReactDOM.render(

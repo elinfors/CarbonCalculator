@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import CountUp from 'react-countup';
 import './TravelResults.css';
 
 class TravelResults extends Component {
@@ -37,11 +38,9 @@ class TravelResults extends Component {
                       </div>
                       <div  className="col-sm-12 block">
                       <div  className="round round-lg">
-                      <div>
-                          <div key={"emission_text"+travel.id} id="emission_text">{travel.emission}</div>
-                          <br/>
-                          <div>CO2/person</div>
-                      </div>
+                          <div key={"emission_text"+travel.id} id="emission_text">
+                          <CountUp end={travel.emission*1000} duration={5}/> KG CO2
+                          </div>
                       </div>
                       </div>
                       <div className="col-sm-12">
