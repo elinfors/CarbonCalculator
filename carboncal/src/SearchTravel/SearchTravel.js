@@ -25,12 +25,14 @@ showTheResult(){
 
 
 handleTravelType(selectedTravelType) {
-    this.setState({
+    selectedTravelType === "smallCar"|| selectedTravelType === "mediumCar" || selectedTravelType === "largeCar" ? this.setState({
         travelType: selectedTravelType,
         showMe: true
-        
-
-    });
+    }) : this.setState({
+        travelType: selectedTravelType,
+        showMe: false
+    }) ;
+    
 }
 
 handleTravelStartPoint(event){
