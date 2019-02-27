@@ -14,7 +14,7 @@ class TravelModel extends ObservableModel {
     this.savedTravels = []; //fylls med objekt från API:t
     this.routeResult = "";
     this.carbonEmission = 0;
-    this.list = [];
+    this.allResults = [];
     }
 
     setUserTravel(userTravelObject){
@@ -115,7 +115,7 @@ class TravelModel extends ObservableModel {
 
       getAllResults(){
         return this.allResults;
-        console.log("getAllResults");
+        //console.log("getAllResults");
       }
 
 }
