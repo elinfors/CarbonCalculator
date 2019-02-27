@@ -48,39 +48,6 @@ handleTravelSearch(){
     this.props.model.setUserTravel(this.state);
 }
 
-=======
-/*
-componentDidMount(){
-    const script = document.createElement("script");
-
-        script.src = "https://www.bing.com/api/maps/mapcontrol?key=AlJeTIGD1dCPM4-OE_z9xDQohB4ll2vpaaEYv72_48tSOt--Jy_oY5UaFftaiXKp&callback=loadMapScenario";
-        script.async = true;
-
-        document.instance.appendChild(script);
-
-    function loadMapScenario() {
-        Microsoft.Maps.loadModule('Microsoft.Maps.AutoSuggest', {
-            callback: onLoad,
-            errorCallback: onError
-        });
-    function onLoad() {
-            var options = { maxResults: 5 };
-            var manager = new Microsoft.Maps.AutosuggestManager(options);
-            manager.attachAutosuggest('#locationFrom', '#searchForms', selectedSuggestion);
-        }
-    function onError(message) {
-            document.getElementById('printoutPanel').innerHTML = message;
-        }
-    function selectedSuggestion(suggestionResult) {
-            document.getElementById('printoutPanel').innerHTML =
-                'Suggestion: ' + suggestionResult.formattedSuggestion +
-                    '<br> Lat: ' + suggestionResult.location.latitude +
-                    '<br> Lon: ' + suggestionResult.location.longitude;
-        }
-
-    }
-    loadMapScenario();
-}*/
 
     render() {
         return (
@@ -175,14 +142,8 @@ componentDidMount(){
                     </div>
                 </div>
             </div>
-<<<<<<< HEAD
-            {this.state.showResult?
-             <TravelResults model={this.props.model}/>
-             :null}
-=======
 
              <TravelResults model={this.props.model} type={this.state.travelType} start={this.state.startPoint} end={this.state.endPoint}/>
->>>>>>> 37af0555fd117fe2e25c7a04ca6e18357367631d
     </React.Fragment>
 
           );

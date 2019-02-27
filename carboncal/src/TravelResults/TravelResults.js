@@ -6,8 +6,6 @@ class TravelResults extends Component {
     super();
     this.state = {
       
-      
-      
     }
     }
 
@@ -64,7 +62,7 @@ class TravelResults extends Component {
               <div className="col-sm-12" id="getResultContainer">
                 <h2>Distance: {travelList} km</h2>
                 <div className="d-flex justify-content-center h-100">
-                    <span id="carbonResult"className={classes}>Carbon emission: {carbonEmission} TON CO2/person</span>
+                    <span id="carbonResult" className={classes}>Carbon emission: {carbonEmission} TON CO2/person</span>
                 </div>
               </div>
             </div>
