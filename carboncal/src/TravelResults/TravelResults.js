@@ -11,29 +11,30 @@ class TravelResults extends Component {
 
     createOtbject(){
         let object = {
-            travel: this.state.travel,
+            distance: this.state.distance,
             type: this.props.type,
             start: this.props.start,
-            end: this.props.end
+            end: this.props.end,
+            emission: this.props.model.getCarbonEmission()
         }
         return object;
     }
 
-    update = () => { 
-        console.log("travelResults" + this.props.model.getUserTravel());
+    update = () => {
+        //console.log("travelResults" + this.props.model.getUserTravel());
         this.props.model.getUserTravel()
-          .then(travel => {
+          .then(distance => {
             this.setState({
-              travel: travel.resourceSets[0].resources[0].travelDistance,
+              distance: distance.resourceSets[0].resources[0].travelDistance,
             });
-            this.props.model.list.push(this.createOtbject());
+            this.props.model.allResults.push(this.createOtbject());
           })
           .catch(() => {
             this.setState({
               status: "ERROR"
             });
           })  
-          console.log(this.props.model.list);
+          console.log(this.props.model.allResults);
         //console.log(this.props.model.list.map(data =>(data.resourceSets[0].resources[0].travelDistance)));
     }
    
@@ -44,10 +45,15 @@ class TravelResults extends Component {
     }
 
     render() { 
-        let classes = "badge m-2 badge-";
-        classes += (this.props.model.getCarbonEmission() > 0.004) ? "danger" : "success";
-        let travelList = this.state.travel;
-        let carbonEmission = this.props.model.getCarbonEmission();
+        let travelList = null;
+        //console.log();
+        //for (travel in this.props.model.allResults){
+        //   
+        //} 
+        //let classes = "badge m-2 badge-";
+        //classes += (this.props.model.getCarbonEmission() > 0.004) ? "danger" : "success";
+        //let travelList = this.state.travel;
+        //let carbonEmission = this.props.model.getCarbonEmission();
         return (
             <React.Fragment>
             <div id="chooseRideContainer" className="container h-100">
