@@ -50,12 +50,12 @@ class TopBar extends Component {
                 </div>
             </div>
             
-            <div className="container h-100">
+            {/*<div className="container h-100">
                 <div id="homePageText" className="d-flex justify-content-center h-100">
                     <h2 className="align-items-center">The #1 CarbonCalculator for your travels!<br/><h1>Enjoy!</h1></h2>
                  
                 </div>
-            </div>
+        </div>*/}
             
             
       </React.Fragment>
