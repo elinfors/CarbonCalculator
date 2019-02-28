@@ -32,7 +32,7 @@ class TravelResults extends Component {
                 break;
             case "LOADED":
                 travelList =  this.state.allResults.map((travel,index) =>(
-                    <div key={travel.id+index} className = "col-sm-4">
+                    <div key={travel.id+index} className = "col-sm-4" id="travelItemResult">
                       <div key={"point" + travel.id} id="start_end_text"className = "col-sm-12">
                       {travel.startPoint}<i className="fas fa-arrow-right"></i>{travel.endPoint}
                       </div>
@@ -78,9 +78,8 @@ class TravelResults extends Component {
             </div>
             <div key={"travelList"} className="container h-100">
               <div className="col-sm-12" id="getResultContainer">
-                <div className="d-flex justify-content-center h-100">
                    {travelList}
-                </div>
+                
               </div>
             </div>
             
