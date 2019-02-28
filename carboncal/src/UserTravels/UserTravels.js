@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import TopBar from '../TopBar/TopBar';
 import './UserTravels.css';
 
-
 class UserList extends Component {
     state = {  }
     render() { 

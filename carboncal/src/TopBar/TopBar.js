@@ -19,12 +19,12 @@ class TopBar extends Component {
                             Action
                             </button>
                             <div className="dropdown-menu">
-                                <a className="dropdown-item" href="#">My account</a>
+                                <a className="dropdown-item" href="#">My Account</a>
                                 <Link to="/UserTravels">
-                                    <a className="dropdown-item" href="#">My list</a>
+                                    <a className="dropdown-item" href="#">My List</a>
                                 </Link>
                                 <div className="dropdown-divider"></div>
-                                <button className="dropdown-item" id="logOutButton" href="#">logout</button>
+                                <button className="dropdown-item" id="logOutButton" href="#">Log Out</button>
                             </div>
                         </div>
 
@@ -50,12 +50,12 @@ class TopBar extends Component {
                 </div>
             </div>
             
-            <div className="container h-100">
+            {/*<div className="container h-100">
                 <div id="homePageText" className="d-flex justify-content-center h-100">
                     <h2 className="align-items-center">The #1 CarbonCalculator for your travels!<br/><h1>Enjoy!</h1></h2>
                  
                 </div>
-            </div>
+        </div>*/}
             
             
       </React.Fragment>

@@ -48,23 +48,25 @@ class TravelResults extends Component {
                 break;
             case "LOADED":
                 travelList =  this.state.allResults.map((travel,index) =>(
-                    <div key={travel.id+index} className = "col-sm-4">
+                    <div key={travel.id+index} className = "col-sm-4" id="travelItemResult">
                       <div key={"point" + travel.id} id="start_end_text"className = "col-sm-12">
-                      {travel.startPoint}<i className="fas fa-arrow-right"></i>{travel.endPoint}
+                      {travel.startPoint}<br/>
+                      <i className="fas fa-arrow-right"></i><br/>
+                      <span className="badge badge-pill badge-secondary">{travel.endPoint}</span>
                       </div>
                       <div  className="col-sm-12 block">
                       <div  className="round round-lg">
                           <div key={"emission_text"+travel.id} id="emission_text">
                           <CountUp end={travel.emission*1000} duration={5}/> KG CO2
                           </div>
+                      </div><br/>
+                      <div className="col-sm-12">
+                        <span><i className={travel.image} id="travelIcon"></i></span>
+                        <span>Distance:</span>   
+                          <div className="badge badge-warning m-2 p-3" id="travelDistanceButton">
+                            <span id="distanceResult">{travel.distance}</span>
+                          </div>
                       </div>
-                      <div  className="round round-lg m-2">
-                          <CountUp end={travel.distance} duration={5}/> KM
-                          </div>
-                      <div className="btn btn-danger btn-circle btn-xl m-4">
-                            <i className={travel.image}></i>
-                          </div>
-                      <h5 className="badge badge-pill badge-light">{travel.text}</h5>
                       </div>
                       <div className="col-sm-12">
                         
@@ -95,9 +97,8 @@ class TravelResults extends Component {
             </div>
             <div key={"travelList"} className="container h-100">
               <div className="col-sm-12" id="getResultContainer">
-                <div className="d-flex justify-content-center h-100">
                    {travelList}
-                </div>
+                
               </div>
             </div>
             

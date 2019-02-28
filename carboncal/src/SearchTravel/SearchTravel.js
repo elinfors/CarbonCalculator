@@ -12,14 +12,16 @@ class SearchTravel extends Component {
        endPoint: "",
        numberOfTravelers: 1,
        showMe:false,
-       showResult: false
+       showResult: false,
+       zoomButton: false,
     }
 }
 
-
 handleTravelType(travelType) {
     let selectedTravelType = travelType.value;
+    travelTypesInstance.state.types.map(types =>(document.getElementById(types.value+"Button").style.zoom = "1.0"))
     document.getElementById('remindUser').style.visibility = "hidden";
+    document.getElementById(travelType.value+"Button").style.zoom = "1.2";
     selectedTravelType === "smallCar"|| selectedTravelType === "mediumCar" || selectedTravelType === "largeCar" ? this.setState({
         travelType: selectedTravelType,
         showMe: true,
@@ -45,6 +47,7 @@ handleTravelEndPoint = (event) => {
         endPoint: event.target.value,
     });
 }
+
 handleNumberOfTravelers = (event) => {
     this.setState({
         numberOfTravelers: event.target.value,
@@ -61,13 +64,14 @@ handleTravelSearch(){
     this.props.model.setUserTravel(this.state);
     this.setState({
         showResult: true,
+        showMe: false,
     });
 }
     render() {
         let travelTypes = null;
         travelTypes = travelTypesInstance.state.types.map(types =>(
             <div key={types.id} className="col-sm-2" id="chooseVehicleBox">
-                <button onClick={() => this.handleTravelType(types)} id={types.value + "Button"} type="button" className="btn btn-danger btn-circle btn-xl m-4">
+                <button onClick={() => this.handleTravelType(types)} id={types.value + "Button"} type="button" className="btn btn-danger btn-circle btn-xl m-4" style={{backgroundColor: types.color, borderColor: types.color}} id="type_button">
                 <i className={types.image}></i>
                 </button>
                 <h5 className="badge badge-pill badge-light">{types.text}</h5>
