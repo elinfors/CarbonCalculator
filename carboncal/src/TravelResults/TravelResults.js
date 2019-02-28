@@ -2,11 +2,13 @@ import React, { Component } from 'react';
 import CountUp from 'react-countup';
 import './TravelResults.css';
 
+
 class TravelResults extends Component {
     constructor(props){
     super(props);
     this.state = {
       status: "LOADING",
+      id:"",
     }
     }
 
@@ -22,6 +24,20 @@ class TravelResults extends Component {
         allResults: this.props.model.allResults,
         status: "LOADED"
        })
+    }
+
+    saveUserTravel(id) {
+ 
+      let allResults = this.props.model.allResults;
+      for (var i in allResults){
+          if (allResults[i].id === (id)){
+            this.props.model.saveTravel(allResults[i]);
+          }
+      }
+      
+
+
+      
     }
 
     render() { 
@@ -51,7 +67,8 @@ class TravelResults extends Component {
                       <h5 className="badge badge-pill badge-light">{travel.text}</h5>
                       </div>
                       <div className="col-sm-12">
-                          <button type="button" className="btn btn-success btn-lg">Add to my travels</button>
+                        
+                          <button type="button" onClick = {()=> this.saveUserTravel(travel.id)} className="btn btn-success btn-lg">Add to my travels</button>
                     </div> 
                    </div>
                 ))

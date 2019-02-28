@@ -12,7 +12,7 @@ class CarbonCalculator{
     }
     calculateCarbonEmission(distance,travelType,numberOfTravelers){ 
     console.log(numberOfTravelers);
-    return numberOfTravelers*(Math.floor(distance * this.state[travelType]* 100000) / 100000);
+    return (Math.floor(distance * this.state[travelType]* 100000) / 100000)/numberOfTravelers;
     };
 }
 const calcInstance = new CarbonCalculator();

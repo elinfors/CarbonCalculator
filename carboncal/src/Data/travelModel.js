@@ -12,10 +12,11 @@ class TravelModel extends ObservableModel {
     super();
     this.savedTravels = []; //fylls med objekt från API:t
     this.allResults = [];
+    this.numberOfTravelers = 1;
     }
 
     setUserTravel(userTravelObject){
-        console.log(userTravelObject.startPoint);
+        console.log(userTravelObject);
         this.getRoute(userTravelObject.startPoint,userTravelObject.endPoint).then(data => {
           let travelData = data.resourceSets[0].resources[0];
           userTravelObject["distance"] = travelData.travelDistance;
@@ -56,6 +57,7 @@ class TravelModel extends ObservableModel {
     saveTravel(travel){
         this.savedTravels.push(travel);
         this.notifyObservers();
+        console.log(this.savedTravels);
       }
 
     removeSavedTravel(travel){
