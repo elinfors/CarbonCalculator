@@ -16,7 +16,6 @@ class SearchTravel extends Component {
     }
 }
 
-
 handleTravelType(travelType) {
     let selectedTravelType = travelType.value;
     document.getElementById('remindUser').style.visibility = "hidden";
@@ -45,6 +44,7 @@ handleTravelEndPoint = (event) => {
         endPoint: event.target.value,
     });
 }
+
 handleNumberOfTravelers = (event) => {
     this.setState({
         numberOfTravelers: event.target.value,
