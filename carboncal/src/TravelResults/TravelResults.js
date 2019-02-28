@@ -42,6 +42,13 @@ class TravelResults extends Component {
                           <CountUp end={travel.emission*1000} duration={5}/> KG CO2
                           </div>
                       </div>
+                      <div  className="round round-lg m-2">
+                          <CountUp end={travel.distance} duration={5}/> KM
+                          </div>
+                      <div className="btn btn-danger btn-circle btn-xl m-4">
+                            <i className={travel.image}></i>
+                          </div>
+                      <h5 className="badge badge-pill badge-light">{travel.text}</h5>
                       </div>
                       <div className="col-sm-12">
                           <button type="button" className="btn btn-success btn-lg">Add to my travels</button>

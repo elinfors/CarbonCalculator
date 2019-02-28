@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import TopBar from '../TopBar/TopBar';
 import TravelResults from '../TravelResults/TravelResults'
+import travelTypesInstance from './TravelTypes'
 import './SearchTravel.css';
 class SearchTravel extends Component {
     constructor(){
@@ -16,15 +17,20 @@ class SearchTravel extends Component {
 }
 
 
-handleTravelType(selectedTravelType) {
+handleTravelType(travelType) {
+    let selectedTravelType = travelType.value;
     document.getElementById('remindUser').style.visibility = "hidden";
     selectedTravelType === "smallCar"|| selectedTravelType === "mediumCar" || selectedTravelType === "largeCar" ? this.setState({
         travelType: selectedTravelType,
         showMe: true,
+        image: travelType.image,
+        text: travelType.text,
     }) : this.setState({
         travelType: selectedTravelType,
         numberOfTravelers: 1,
         showMe: false,
+        image: travelType.image,
+        text: travelType.text
     }) ;   
 }
 
@@ -58,6 +64,15 @@ handleTravelSearch(){
     });
 }
     render() {
+        let travelTypes = null;
+        travelTypes = travelTypesInstance.state.types.map(types =>(
+            <div key={types.id} className="col-sm-2" id="chooseVehicleBox">
+                <button onClick={() => this.handleTravelType(types)} id={types.value + "Button"} type="button" className="btn btn-danger btn-circle btn-xl m-4">
+                <i className={types.image}></i>
+                </button>
+                <h5 className="badge badge-pill badge-light">{types.text}</h5>
+            </div>
+            ));
         return (
       <React.Fragment>
         
@@ -73,44 +88,7 @@ handleTravelSearch(){
             <div className="container h-100">
                 <div className="d-flex justify-content-center h-100">
                     <div className="col-sm-12" id="vehicleSymbolContainer">
-                        <div className="col-sm-2" id="chooseVehicleBox">
-                            <button onClick={() => this.handleTravelType("smallCar")} id="smallCarButton" type="button" className="btn btn-danger btn-circle btn-xl m-4">
-                                <i className="fas fa-car-side"></i>
-                            </button>
-
-                            <h5 className="badge badge-pill badge-light">Small car</h5>
-                        </div>
-                        <div className="col-sm-2" id="chooseVehicleBox">
-                            <button onClick={() => this.handleTravelType("mediumCar")} id="mediumCarButton" type="button" className="btn btn-primary btn-circle btn-xl m-4">
-                                <i className="fas fa-shuttle-van"></i>
-                            </button>
-
-                            <h5 className="badge badge-pill badge-light">Medium car</h5>
-                        </div>
-                        <div className="col-sm-2" id="chooseVehicleBox">
-                            <button onClick={() => this.handleTravelType("largeCar")} id="largeCarButton" type="button" className="btn btn-success btn-circle btn-xl m-4">
-                                <i className="fas fa-truck-moving"></i>
-                            </button>
-                            <h5 className="badge badge-pill badge-light">Large car</h5>
-                        </div>
-                        <div className="col-sm-2" id="chooseVehicleBox">
-                            <button onClick={() => this.handleTravelType("plane")} id="planeButton" type="button" className="btn btn-info btn-circle btn-xl m-4">
-                                <i className="fas fa-plane"></i>
-                            </button>
-                            <h5 className="badge badge-pill badge-light">Plane</h5>
-                        </div>
-                        <div className="col-sm-2" id="chooseVehicleBox">
-                            <button onClick={() => this.handleTravelType("train")} id="trainButton" type="button" className="btn btn-info btn-circle btn-xl m-4">
-                                <i className="fas fa-subway"></i>
-                            </button>
-                            <h5 className="badge badge-pill badge-light">Train</h5>
-                        </div>
-                        <div className="col-sm-2" id="chooseVehicleBox">
-                            <button onClick={() => this.handleTravelType("ship")} id="shipButton" type="button" className="btn btn-info btn-circle btn-xl m-4">
-                                <i className="fas fa-ship"></i>
-                            </button>
-                            <h5 className="badge badge-pill badge-light">Ship</h5>
-                        </div>
+                        {travelTypes}
                         {this.state.showMe?
                             <div className="col-sm-6" id="chooseNumberOfPeopleBox">
                             <span className="badge badge-dark" id="formText">Number of people:</span>
