@@ -34,10 +34,6 @@ class TravelResults extends Component {
             this.props.model.saveTravel(allResults[i]);
           }
       }
-      
-
-
-      
     }
 
     render() { 
@@ -50,12 +46,13 @@ class TravelResults extends Component {
                 travelList =  this.state.allResults.map((travel,index) =>(
                     <div key={travel.id+index} className = "col-sm-4" id="travelItemResult">
                       <div key={"point" + travel.id} id="start_end_text"className = "col-sm-12">
-                      {travel.startPoint}<br/>
+                      <span className="badge badge-pill badge-secondary">{travel.startPoint}</span>
+                      <br/>
                       <i className="fas fa-arrow-right"></i><br/>
                       <span className="badge badge-pill badge-secondary">{travel.endPoint}</span>
                       </div>
-                      <div  className="col-sm-12 block">
-                      <div  className="round round-lg">
+                      <div className="col-sm-12 block">
+                      <div className="round round-lg">
                           <div key={"emission_text"+travel.id} id="emission_text">
                           <CountUp end={travel.emission*1000} duration={5}/> KG CO2
                           </div>

@@ -13,22 +13,20 @@ class SearchTravel extends Component {
        numberOfTravelers: 1,
        showMe:false,
        showResult: false,
-       zoomButton: false,
     }
 }
 
 handleTravelType(travelType) {
-    let selectedTravelType = travelType.value;
-    travelTypesInstance.state.types.map(types =>(document.getElementById(types.value+"Button").style.zoom = "1.0"))
-    document.getElementById('remindUser').style.visibility = "hidden";
+    travelTypesInstance.state.types.map(types =>(document.getElementById(types.value+"Button").style.zoom = "1"));
     document.getElementById(travelType.value+"Button").style.zoom = "1.2";
-    selectedTravelType === "smallCar"|| selectedTravelType === "mediumCar" || selectedTravelType === "largeCar" ? this.setState({
-        travelType: selectedTravelType,
+    document.getElementById('remindUser').style.visibility = "hidden";
+    travelType.value === "smallCar"|| travelType.value === "mediumCar" || travelType.value === "largeCar" ? this.setState({
+        travelType: travelType.value,
         showMe: true,
         image: travelType.image,
         text: travelType.text,
     }) : this.setState({
-        travelType: selectedTravelType,
+        travelType: travelType.value,
         numberOfTravelers: 1,
         showMe: false,
         image: travelType.image,
@@ -71,7 +69,7 @@ handleTravelSearch(){
         let travelTypes = null;
         travelTypes = travelTypesInstance.state.types.map(types =>(
             <div key={types.id} className="col-sm-2" id="chooseVehicleBox">
-                <button onClick={() => this.handleTravelType(types)} id={types.value + "Button"} type="button" className="btn btn-danger btn-circle btn-xl m-4" style={{backgroundColor: types.color, borderColor: types.color}} id="type_button">
+                <button onClick={() => this.handleTravelType(types)} id={types.value + "Button"} type="button" className="btn btn-danger btn-circle btn-xl m-4" style={{backgroundColor: types.color, borderColor: types.color}}>
                 <i className={types.image}></i>
                 </button>
                 <h5 className="badge badge-pill badge-light">{types.text}</h5>
