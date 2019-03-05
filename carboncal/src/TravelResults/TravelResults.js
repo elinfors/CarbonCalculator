@@ -4,6 +4,7 @@ import './TravelResults.css';
 import PieChart from 'react-minimal-pie-chart';
 import scrollToComponent from 'react-scroll-to-component';
 import RoundChart from './RoundChart';
+import SkyLight from 'react-skylight';
 
 
 
@@ -45,6 +46,20 @@ class TravelResults extends Component {
 
 
     render() {
+      
+      //style för addtolist popup
+      
+      var myBigGreenDialog = {
+        backgroundColor: '#17a2b8',
+        color: '#ffffff',
+        width: '50%',
+        height: '10%',
+        left: '50%',
+        minHeight: '50px',
+        marginTop: '-300px',
+       
+      };
+
         let travelList = null;
         switch (this.state.status){
             case "LOADING":
@@ -54,23 +69,22 @@ class TravelResults extends Component {
                 travelList =  this.state.allResults.map((travel,index) =>(
                     <div key={travel.id+index} className = "col-sm-3" id="travelItemResult">
 
-                      
-                       <i onClick={()=>this.props.model.removeResult(travel)} className="far fa-times-circle"></i>
+                      <div className="row justify-content-end" id="deleteButtonRow">
+                        <i onClick={()=>this.props.model.removeResult(travel)} className="far fa-times-circle"></i>
+                      </div>
                       
                       <span key={"emission_text"+travel.id} id="emission_text">
                           <CountUp end={travel.emission*1000} duration={5}/> KG CO2
                       </span>
-                      <div key={"point" + travel.id} id="start_end_text">
                       
-                     
-                      <span className="badge badge-pill badge-secondary">{travel.startPoint}</span>
-                      <br/>
-                      <i className="fas fa-arrow-right"></i><br/>
-                      <span className="badge badge-pill badge-secondary">{travel.endPoint}</span>
+                      <div className="col-sm-12 justify-content-center" key={"point" + travel.id} id="start_end_text">
+                        <span className="badge badge-pill badge-info">{travel.startPoint}</span>
+                        <br/>
+                        <i className="fas fa-arrow-right m-2"></i>
+                        <br/>
+                        <span className="badge badge-pill badge-info">{travel.endPoint}</span>
                       </div>
-                      <div className="col-sm-12 block">
-                        
-                      </div>
+                      
                       <PieChart 
                         data={[
                           { title: '', value: 2000-((travel.emission)*1000), color:'#f7c5c5'},
@@ -92,7 +106,9 @@ class TravelResults extends Component {
                       </div>
                       </div>
                       <div className="col-sm-12">
-                          <button type="button" onClick = {()=> this.saveUserTravel(travel.travelID)} ref={(section) => { this.scrollTo = section; }} className="btn btn-success btn-lg">Add to my travels</button>
+                          <button type="button" onClick = {()=> {this.simpleDialog.show();this.saveUserTravel(travel.travelID)}} ref={(section) => { this.scrollTo = section; }} className="btn btn-success btn-lg">Add to my travels</button>
+                          <SkyLight dialogStyles={myBigGreenDialog} hideOnOverlayClicked ref={ref => this.simpleDialog = ref} title="Added to list">
+                          </SkyLight>
                     </div>
                    </div>
                 ))
