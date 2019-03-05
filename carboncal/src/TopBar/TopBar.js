@@ -13,7 +13,7 @@ class TopBar extends Component {
                 <div className="container h-100">
                     <nav id="navBar" className="navbar navbar navbar-dark justify-content-between">
                     <Link to="/searchTravel">
-                        <a className="navbar-brand">Home</a>
+                        <span className="navbar-brand">Home</span>
 
                         </Link>
                         
@@ -24,7 +24,7 @@ class TopBar extends Component {
                             <div className="dropdown-menu">
                                 <a className="dropdown-item" href="#">My Account</a>
                                 <Link to="/UserTravels">
-                                    <a className="dropdown-item" href="#">My List</a>
+                                    <span className="dropdown-item" href="#">My List</span>
                                 </Link>
                                 <div className="dropdown-divider"></div>
                                 <button className="dropdown-item" id="logOutButton" href="#">Log Out</button>
