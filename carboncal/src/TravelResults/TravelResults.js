@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import CountUp from 'react-countup';
 import './TravelResults.css';
 import PieChart from 'react-minimal-pie-chart';
-import Legend from 'react-minimal-pie-chart';
+import scrollToComponent from 'react-scroll-to-component';
 
 
 class TravelResults extends Component {
@@ -18,9 +18,11 @@ class TravelResults extends Component {
       this.setState({
         allResults: this.props.model.allResults,
        })
+       scrollToComponent(this.scrollTo, { offset: 100, align: 'bottom', duration: 200, ease:'inExpo'})
     }
 
     componentDidMount(){
+      scrollToComponent(this.scrollTo, { offset: 100, align: 'bottom', duration: 200, ease:'inExpo'})
       this.props.model.addObserver(this);
       this.setState({
         allResults: this.props.model.allResults,
@@ -68,7 +70,6 @@ class TravelResults extends Component {
                       </div>
                       <PieChart
                         data={[
-                          
                           { title: 'One', value: 2000-((travel.emission)*1000), color:'#f7c5c5'},
                           { title: 'Two', value: (travel.emission)*1000 , color: '#e80003' } 
                         ]}
@@ -84,7 +85,7 @@ class TravelResults extends Component {
                       </div>
                       </div>
                       <div className="col-sm-12">
-                          <button type="button" onClick = {()=> this.saveUserTravel(travel.travelID)} className="btn btn-success btn-lg">Add to my travels</button>
+                          <button type="button" onClick = {()=> this.saveUserTravel(travel.travelID)} ref={(section) => { this.scrollTo = section; }} className="btn btn-success btn-lg">Add to my travels</button>
                     </div>
                    </div>
                 ))
@@ -111,8 +112,8 @@ class TravelResults extends Component {
             </div>
             <div key={"travelList"} className="container h-100">
               <div className="col-sm-12" id="getResultContainer">
-                   {travelList}
-
+                   {travelList }
+                   
               </div>
             </div>
 
