@@ -74,6 +74,17 @@ class TravelModel extends ObservableModel {
         return this.savedTravels;
       }
 
+    getTotalSavedEmission(){
+      let total = 0;
+      let travels = this.savedTravels;
+
+      for (var i in travels){
+        total += travels[i].emission;
+      }
+      return total;
+    }
+
+
     removeResult(travel){
           let results = this.allResults;
           for (var i in results){
