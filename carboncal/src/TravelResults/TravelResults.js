@@ -17,7 +17,7 @@ class TravelResults extends Component {
         allResults: this.props.model.allResults,
        })
     }
-   
+
     componentDidMount(){
       this.props.model.addObserver(this);
       this.setState({
@@ -27,7 +27,7 @@ class TravelResults extends Component {
     }
 
     saveUserTravel(id) {
- 
+
       let allResults = this.props.model.allResults;
       for (var i in allResults){
           if (allResults[i].id === (id)){
@@ -35,9 +35,9 @@ class TravelResults extends Component {
           }
       }
     }
-   
 
-    render() { 
+
+    render() {
         let travelList = null;
         switch (this.state.status){
             case "LOADING":
@@ -60,26 +60,24 @@ class TravelResults extends Component {
                           </div>
                       </div><br/>
                       <div className="col-sm-12">
-                        <span><i className={travel.image} id="travelIcon"></i></span>
-                        <span>Distance:</span>   
+                        <span><i className={travel.image} id="travelIcon"style={{backgroundColor: travel.color, borderColor: travel.color}}></i></span>
                           <div className="badge badge-warning m-2 p-3" id="travelDistanceButton">
-                            <span id="distanceResult">{travel.distance} KM</span>
+                            <span id="distanceResult">{travel.distance} km</span>
                           </div>
                       </div>
                       </div>
                       <div className="col-sm-12">
-                        
                           <button type="button" onClick = {()=> this.saveUserTravel(travel.id)} className="btn btn-success btn-lg">Add to my travels</button>
-                    </div> 
+                    </div>
                    </div>
                 ))
                 break;
             default:
             travelList = <b>Failed to load data, please try again</b>;
-        
+
         }
-        //   
-        //} 
+        //
+        //}
         //let classes = "badge m-2 badge-";
         //classes += (this.props.model.getCarbonEmission() > 0.004) ? "danger" : "success";
         //let travelList = this.state.travel;
@@ -97,18 +95,16 @@ class TravelResults extends Component {
             <div key={"travelList"} className="container h-100">
               <div className="col-sm-12" id="getResultContainer">
                    {travelList}
-                
+
               </div>
             </div>
-            
+
             </React.Fragment>
-           
+
           );
     }
 }
 //<h2>Distance: {travelList} km</h2>
 // <span id="carbonResult">Carbon emission: TON CO2/person</span>
- 
+
 export default TravelResults;
-
-
