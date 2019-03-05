@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 
 
 class TopBar extends Component {
-    state = {props}
+    state = {}
     render() { 
         return (
         <React.Fragment>
@@ -15,7 +15,7 @@ class TopBar extends Component {
                     {/*<Link to="/searchTravel">
                         <span className="navbar-brand">Home</span>
                         </Link>*/}
-                        <button type="button" className="btn btn-success" onClick={() => this.props.history.goBack()}></button>
+                        <button type="button" className="btn btn-success" onClick={() => this.props.history.goBack()}>Home</button>
                         <div className="btn-group">
                             <button type="button" className="btn btn-success dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             Action

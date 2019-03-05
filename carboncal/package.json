@@ -12,7 +12,8 @@
     "react-drag-sortable": "^1.0.6",
     "react-minimal-pie-chart": "^3.5.0",
     "react-router-dom": "^4.3.1",
-    "react-scripts": "2.1.5"
+    "react-scripts": "2.1.5",
+    "react-scroll-to-component": "^1.0.2"
   },
   "scripts": {
     "start": "react-scripts start",

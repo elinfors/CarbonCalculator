@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<body>  
+<div id='myMap' style='width: 100vw;'></div>
+<script type='text/javascript'>
+    
+function loadMapScenario() {
+Microsoft.Maps.loadModule("Microsoft.Maps.AutoSuggest", {
+callback: onLoad,
+errorCallback: logError,
+credentials: 'Ap12Gwv9esg5iXgfAh5Ehlbf36MZ-O8051Sl66Zm6glGwq7PSaaKgGPpcOUEGICy'
+});
+
+function onLoad() {
+var options = { maxResults: 5 };
+initAutosuggestControl(options, "locationFrom", "searchForms");
+initAutosuggestControl(options, "locationTo", "searchForm");
+}
+
+
+function initAutosuggestControl(
+options,
+suggestionBoxId,
+suggestionContainerId
+) {
+var manager = new Microsoft.Maps.AutosuggestManager(options);
+manager.attachAutosuggest(
+"#" + suggestionBoxId,
+"#" + suggestionContainerId,
+selectedSuggestion
+);
+
+function selectedSuggestion(suggestionResult) {
+
+document.getElementById(suggestionBoxId).value =
+  suggestionResult.formattedSuggestion;
+  console.log(document.getElementById(suggestionBoxId).value);
+  console.log(suggestionResult.formattedSuggestion);
+}
+
+}
+    function logError(message) {
+    document.getElementById('printoutPanelFrom').innerHTML = message;
+}
+
+}          
+  </script>
+  <script type='text/javascript' src='https://www.bing.com/api/maps/mapcontrol?key=YourBingMapsKey&callback=loadMapScenario' async defer></script>
+  </body>
+  </html>
