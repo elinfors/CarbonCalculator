@@ -70,8 +70,8 @@ class TravelResults extends Component {
                       </div>
                       <PieChart
                         data={[
-                          { title: 'One', value: 2000-((travel.emission)*1000), color:'#f7c5c5'},
-                          { title: 'Two', value: (travel.emission)*1000 , color: '#e80003' } 
+                          { title: '', value: 2000-((travel.emission)*1000), color:'#f7c5c5'},
+                          { title: (100*(travel.emission/2)).toFixed(2)+' % of recommended emissions per person per year', value: (travel.emission)*1000 , color: '#e80003' } 
                         ]}
                         x={100} y={100} radius={40} lineWidth={20} totalValue={2000} lengthAngle={-360}
                         />
