@@ -52,11 +52,15 @@ class TravelResults extends Component {
             case "LOADED":
                 travelList =  this.state.allResults.map((travel,index) =>(
                     <div key={travel.id+index} className = "col-sm-3" id="travelItemResult">
-                      <div className="row">
-                       <i onClick={()=>this.props.model.removeResult(travel)} className="far fa-times-circle"></i>
-                      </div>
-                      <div key={"point" + travel.id} id="start_end_text">
 
+                      
+                       <i onClick={()=>this.props.model.removeResult(travel)} className="far fa-times-circle"></i>
+                      
+                      <span key={"emission_text"+travel.id} id="emission_text">
+                          <CountUp end={travel.emission*1000} duration={5}/> KG CO2
+                      </span>
+                      <div key={"point" + travel.id} id="start_end_text">
+                      
                      
                       <span className="badge badge-pill badge-secondary">{travel.startPoint}</span>
                       <br/>
@@ -64,16 +68,15 @@ class TravelResults extends Component {
                       <span className="badge badge-pill badge-secondary">{travel.endPoint}</span>
                       </div>
                       <div className="col-sm-12 block">
-                        <div key={"emission_text"+travel.id} id="emission_text">
-                          <CountUp end={travel.emission*1000} duration={5}/> KG CO2
-                        </div>
+                        
                       </div>
-                      <PieChart
+                      <PieChart 
                         data={[
-                          { title: 'One', value: 2000-((travel.emission)*1000), color:'#f7c5c5'},
-                          { title: 'Two', value: (travel.emission)*1000 , color: '#e80003' } 
+                          { title: '', value: 2000-((travel.emission)*1000), color:'#f7c5c5'},
+                          { title: (100*(travel.emission/2)).toFixed(2)+' % of recommended emissions per person per year', value: (travel.emission)*1000 , color: '#e80003' } 
                         ]}
                         x={100} y={100} radius={40} lineWidth={20} totalValue={2000} lengthAngle={-360}
+                        
                         />
                         <RoundChart data={travel.emission}/>
                       <div className="col-sm-12 block">
