@@ -80,7 +80,7 @@ handleTravelSearch(){
         return (
       <React.Fragment>
         
-            <TopBar></TopBar>
+            <TopBar savedTravel={this.props.model.savedTravels}/>
             <div id="chooseRideContainer" className="container h-100">
                 <div className="d-flex justify-content-center h-100">
                     <div className="col-sm-12" id="chooseRideText">
