@@ -7,32 +7,39 @@ class RoundChart extends Component {
 
     this.state = {
       options: {
-        labels: ['KG CO2/person','Over Recommended'],
+        labels: ['FN:s CO2 budget/year','This trips will exceed FN:s daily budget with:'],
         radialBar: {
           dataLabels: {
             name: {
-              fontSize: '30px',
+              fontSize: '20px',
             },
             value: {
-              fontSize: '16px',
+              fontSize: '15px',
             },
             total: {
               show: true,
               label: 'Total',
               formatter: function (w) {
                 // By default this function returns the average of all series. The below is just an example to show the use of custom formatter function
-                return 2000
+                return 100
               }
             }
           }
         }
       },
-      series: 
-        this.props.data > 2 ? [1,Math.round((2000-((this.props.data)*1000))/100)]:
-        [Math.round((2000-((this.props.data)*1000))/100)],
-      
+      series: [],
+     
     }
   }
+  componentDidMount(){
+    console.log(this.props.data)
+    let rest = Math.abs(2-this.props.data);
+    this.props.data > 2 ? 
+    this.setState({series: [100,Math.round((rest/2)*100)]}):
+    this.setState({series: [Math.round((this.props.data/2)*100)]})
+  }
+
+    
     render(){
         return(
             <ReactApexChart options={this.state.options} series={this.state.series} type="radialBar" height="350"/>

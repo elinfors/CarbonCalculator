@@ -6,6 +6,7 @@ import scrollToComponent from 'react-scroll-to-component';
 import RoundChart from './RoundChart';
 
 
+
 class TravelResults extends Component {
     constructor(props){
     super(props);
@@ -79,8 +80,9 @@ class TravelResults extends Component {
                         
                         />
                         <RoundChart data={travel.emission}/>
+                        
                       <div className="col-sm-12 block">
- 
+
                       <div className="col-sm-12">
                         <span><i className={travel.image} id="travelIcon"style={{backgroundColor: travel.color, borderColor: travel.color}}></i></span>
                         <br/>
@@ -105,6 +107,13 @@ class TravelResults extends Component {
         //classes += (this.props.model.getCarbonEmission() > 0.004) ? "danger" : "success";
         //let travelList = this.state.travel;
         //let carbonEmission = this.props.model.getCarbonEmission();
+        //import { AnimateOnChange } from '@nearform/react-animation';
+        /*{<AnimateOnChange
+          animationIn="bounceIn"
+          animationOut="bounceOut"
+          durationOut={800}>
+      <i class="fas fa-dice-d6"></i>
+       </AnimateOnChange>}*/
         return (
             <React.Fragment>
             <div key={"frame"} id="chooseRideContainer" className="container h-100">
@@ -117,7 +126,7 @@ class TravelResults extends Component {
             </div>
             <div key={"travelList"} className="container h-100">
               <div className="col-sm-12" id="getResultContainer">
-                   {travelList }
+                   {travelList}
                    
               </div>
             </div>
