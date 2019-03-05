@@ -9,8 +9,6 @@
     "react-bingmaps": "^3.6.1",
     "react-countup": "^4.1.1",
     "react-dom": "^16.8.3",
-    "react-drag-and-drop": "^3.0.0",
-    "react-drag-sortable": "^1.0.6",
     "react-minimal-pie-chart": "^3.5.0",
     "react-router-dom": "^4.3.1",
     "react-scripts": "2.1.5"

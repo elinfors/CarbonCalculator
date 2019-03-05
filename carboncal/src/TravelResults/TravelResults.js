@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import CountUp from 'react-countup';
 import './TravelResults.css';
+import PieChart from 'react-minimal-pie-chart';
+import Legend from 'react-minimal-pie-chart';
 
 
 class TravelResults extends Component {
@@ -45,20 +47,32 @@ class TravelResults extends Component {
                 break;
             case "LOADED":
                 travelList =  this.state.allResults.map((travel,index) =>(
-                    <div key={travel.id+index} className = "col-sm-4" id="travelItemResult">
+                    <div key={travel.id+index} className = "col-sm-3" id="travelItemResult">
+                      <div className="row">
+                       <i onClick={()=>this.props.model.removeResult(travel)} className="far fa-times-circle"></i>
+                      </div>
                       <div key={"point" + travel.id} id="start_end_text">
-                      <i onClick={()=>this.props.model.removeResult(travel)} className="far fa-times-circle"></i>
+
+                     
                       <span className="badge badge-pill badge-secondary">{travel.startPoint}</span>
                       <br/>
                       <i className="fas fa-arrow-right"></i><br/>
                       <span className="badge badge-pill badge-secondary">{travel.endPoint}</span>
                       </div>
                       <div className="col-sm-12 block">
-                      <div className="round round-lg">
-                          <div key={"emission_text"+travel.id} id="emission_text">
+                        <div key={"emission_text"+travel.id} id="emission_text">
                           <CountUp end={travel.emission*1000} duration={5}/> KG CO2
-                          </div>
-                      </div><br/>
+                        </div>
+                      </div>
+                      <PieChart
+                        data={[
+                          { title: 'One', value: 2000-((travel.emission)*1000), color:'#ffffff'},
+                          { title: 'Two', value: (travel.emission)*1000 , color: '#E38627' } 
+                        ]}
+                        x={100} y={100} radius={20} lineWidth={20} totalValue={2000}
+                        />
+                      <div className="col-sm-12 block">
+ 
                       <div className="col-sm-12">
                         <span><i className={travel.image} id="travelIcon"style={{backgroundColor: travel.color, borderColor: travel.color}}></i></span>
                           <div className="badge badge-warning m-2 p-3" id="travelDistanceButton">
