@@ -24,7 +24,7 @@ class App extends Component {
 
       <Route 
       path = "/UserTravels"
-      render ={() => <UserTravels model = {this.props.model}/>}
+      render ={() => <UserTravels model = {modelInstance}/>}
       />
 
         

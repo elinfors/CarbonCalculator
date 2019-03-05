@@ -18,7 +18,7 @@ class SearchTravel extends Component {
 
 handleTravelType(travelType) {
     travelTypesInstance.state.types.map(types =>(document.getElementById(types.value+"Button").style.zoom = "1"));
-    document.getElementById(travelType.value+"Button").style.zoom = "1.2";
+    document.getElementById(travelType.value+"Button").style.zoom = "1.1";
     document.getElementById('remindUser').style.visibility = "hidden";
     travelType.value === "smallCar"|| travelType.value === "mediumCar" || travelType.value === "largeCar" ? this.setState({
         travelType: travelType.value,
