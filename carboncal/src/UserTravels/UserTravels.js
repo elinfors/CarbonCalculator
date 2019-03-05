@@ -4,11 +4,29 @@ import './UserTravels.css';
 import DragSortableList from 'react-drag-sortable'
 
 class UserList extends Component {
-    state = {  }
+    constructor(props){
+        super(props);
+        this.state = {
+            savedTravels: this.props.model.savedTravels,
+        }
+        }
+
+    update(){
+        this.setState({
+          savedTravels: this.props.model.savedTravels,
+         })
+      }
+  
+      componentDidMount(){
+        this.props.model.addObserver(this);
+        this.setState({
+          savedTravels: this.props.model.savedTravels,
+         })
+      }
     
     render() { 
         let userTravelList = null;
-        userTravelList = this.props.model.getSavedTravels().map((travel,index) =>(
+        userTravelList = this.state.savedTravels.map((travel,index) =>(
             {content: <div id={travel.id + "savedTravels"} className="container h-100">
                     <div id="itemBlock"className="d-block p-2 text-white">
                         <div className="badge badge-pill badge-dark">
@@ -18,6 +36,7 @@ class UserList extends Component {
                         </div>
                         <span id="carbonListItems" className="round round-lg">{travel.emission}</span>
                         <span className={travel.image}></span>
+                        <i onClick={()=> this.props.model.removeSavedTravel(travel)} class="far fa-times-circle"></i>
                      
                     </div>
             </div>
