@@ -1,13 +1,15 @@
 import React, { Component } from 'react';
 import TopBar from '../TopBar/TopBar';
 import './UserTravels.css';
+import DragSortableList from 'react-drag-sortable'
 
 class UserList extends Component {
     state = {  }
+    
     render() { 
         let userTravelList = null;
         userTravelList = this.props.model.getSavedTravels().map((travel,index) =>(
-            <div id={travel.id + "savedTravels"} className="container h-100">
+            {content: <div id={travel.id + "savedTravels"} className="container h-100">
                     <div id="itemBlock"className="d-block p-2 text-white">
                         <div className="badge badge-pill badge-dark">
                             <span id="destinationResult" className="badge badge-primary badge m-3">{travel.startPoint}</span>
@@ -19,14 +21,33 @@ class UserList extends Component {
                      
                     </div>
             </div>
+        }
+        
+     
+          
+                   
+               
+            
         ));
+     
+        var placeholder = (
+            <div className="placeholderContent">PLACEHOLDER</div>
+        );
+        var onSort = function(sortedList, dropEvent) {
+            console.log("sortedList", sortedList, dropEvent);
+         }
+       
+        
+        
         return (
             <React.Fragment>
-                <TopBar></TopBar>    
-                {userTravelList}
+            <TopBar/>
+            <DragSortableList items={userTravelList} placeholder={placeholder} onSort={onSort} dropBackTransitionDuration={0.3} type="vertical"/>
             </React.Fragment>
           );
+          
     }
+   
 }
  
 export default UserList;
