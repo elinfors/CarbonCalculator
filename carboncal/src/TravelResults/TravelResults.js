@@ -3,6 +3,7 @@ import CountUp from 'react-countup';
 import './TravelResults.css';
 import PieChart from 'react-minimal-pie-chart';
 import scrollToComponent from 'react-scroll-to-component';
+import RoundChart from './RoundChart';
 
 
 class TravelResults extends Component {
@@ -74,12 +75,14 @@ class TravelResults extends Component {
                         ]}
                         x={100} y={100} radius={40} lineWidth={20} totalValue={2000} lengthAngle={-360}
                         />
+                        <RoundChart data={travel.emission}/>
                       <div className="col-sm-12 block">
  
                       <div className="col-sm-12">
                         <span><i className={travel.image} id="travelIcon"style={{backgroundColor: travel.color, borderColor: travel.color}}></i></span>
+                        <br/>
                           <div className="badge badge-warning m-2 p-3" id="travelDistanceButton">
-                            <span id="distanceResult">{travel.distance} km</span>
+                            <span id="distanceResult"><CountUp end={travel.distance} duration={5}/>  KM</span>
                           </div>
                       </div>
                       </div>
