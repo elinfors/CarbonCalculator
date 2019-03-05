@@ -12,7 +12,10 @@ class TopBar extends Component {
             <div id="headerWrapper">
                 <div className="container h-100">
                     <nav id="navBar" className="navbar navbar navbar-dark justify-content-between">
+                    <Link to="/searchTravel">
                         <a className="navbar-brand">Home</a>
+
+                        </Link>
                         
                         <div className="btn-group">
                             <button type="button" className="btn btn-success dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
