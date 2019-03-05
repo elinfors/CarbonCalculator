@@ -61,7 +61,7 @@ class TravelResults extends Component {
                         <span><i className={travel.image} id="travelIcon"></i></span>
                         <span>Distance:</span>   
                           <div className="badge badge-warning m-2 p-3" id="travelDistanceButton">
-                            <span id="distanceResult">{travel.distance}</span>
+                            <span id="distanceResult">{travel.distance} KM</span>
                           </div>
                       </div>
                       </div>
