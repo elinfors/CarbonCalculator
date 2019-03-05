@@ -7,7 +7,7 @@ class UserList extends Component {
     render() { 
         let userTravelList = null;
         userTravelList = this.props.model.getSavedTravels().map((travel,index) =>(
-            <div id="userListContainer" className="container h-100">
+            <div id={travel.id + "savedTravels"} className="container h-100">
                     <div id="itemBlock"className="d-block p-2 text-white">
                         <div className="badge badge-pill badge-dark">
                             <span id="destinationResult" className="badge badge-primary badge m-3">{travel.startPoint}</span>
@@ -15,6 +15,7 @@ class UserList extends Component {
                             <span id="destinationResult" className="badge badge-primary badge m-3">{travel.endPoint}</span>
                         </div>
                         <span id="carbonListItems" className="round round-lg">{travel.emission}</span>
+                        <span className={travel.image}></span>
                      
                     </div>
             </div>

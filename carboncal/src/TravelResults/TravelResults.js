@@ -66,7 +66,6 @@ class TravelResults extends Component {
                       </div>
                       </div>
                       <div className="col-sm-12">
-                        
                           <button type="button" onClick = {()=> this.saveUserTravel(travel.id)} className="btn btn-success btn-lg">Add to my travels</button>
                     </div> 
                    </div>
