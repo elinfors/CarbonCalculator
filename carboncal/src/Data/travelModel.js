@@ -72,7 +72,7 @@ class TravelModel extends ObservableModel {
 
     getSavedTravels(){
         return this.savedTravels;
-      }
+    }
 
     getTotalSavedEmission(){
       let total = 0;
