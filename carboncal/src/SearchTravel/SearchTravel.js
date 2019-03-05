@@ -16,6 +16,19 @@ class SearchTravel extends Component {
     }
 }
 
+update(){
+    this.setState({
+      savedTravels: this.props.model.savedTravels,
+     })
+  }
+
+  componentDidMount(){
+    this.props.model.addObserver(this);
+    this.setState({
+      savedTravels: this.props.model.savedTravels,
+     })
+  }
+
 handleTravelType(travelType) {
     travelTypesInstance.state.types.map(types =>(document.getElementById(types.value+"Button").style.zoom = "1"));
     document.getElementById(travelType.value+"Button").style.zoom = "1.1";
@@ -80,7 +93,7 @@ handleTravelSearch(){
         return (
       <React.Fragment>
         
-            <TopBar savedTravel={this.props.model.savedTravels}/>
+            <TopBar currentSavedTravels={this.props.model.savedTravels.length}/>
             <div id="chooseRideContainer" className="container h-100">
                 <div className="d-flex justify-content-center h-100">
                     <div className="col-sm-12" id="chooseRideText">

@@ -5,9 +5,15 @@ import { Link } from 'react-router-dom';
 
 
 class TopBar extends Component {
-   constructor(){
-       super();
-       }
+    constructor(){
+        super();
+        this.state = {
+        }
+        }
+
+    
+
+       
    
     render() { 
         return (
@@ -20,6 +26,7 @@ class TopBar extends Component {
                     <Link to="/UserTravels">
                         <button className="btn btn-info justify-content-center">
                             <i class="fas fa-th-list mr-2"></i>My list
+                            <span className="badge badge-secondary">{this.props.currentSavedTravels}</span>
                         </button>
                     </Link>
                     <div className="btn-group">
