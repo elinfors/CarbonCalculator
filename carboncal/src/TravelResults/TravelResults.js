@@ -32,11 +32,13 @@ class TravelResults extends Component {
 
       let allResults = this.props.model.allResults;
       for (var i in allResults){
-          if (allResults[i].id === (id)){
+          if (allResults[i].travelID === (id)){
             this.props.model.saveTravel(allResults[i]);
           }
       }
     }
+
+
 
 
     render() {
@@ -66,10 +68,11 @@ class TravelResults extends Component {
                       </div>
                       <PieChart
                         data={[
-                          { title: 'One', value: 2000-((travel.emission)*1000), color:'#ffffff'},
-                          { title: 'Two', value: (travel.emission)*1000 , color: '#E38627' } 
+                          
+                          { title: 'One', value: 2000-((travel.emission)*1000), color:'#f7c5c5'},
+                          { title: 'Two', value: (travel.emission)*1000 , color: '#e80003' } 
                         ]}
-                        x={100} y={100} radius={20} lineWidth={20} totalValue={2000}
+                        x={100} y={100} radius={40} lineWidth={20} totalValue={2000} lengthAngle={-360}
                         />
                       <div className="col-sm-12 block">
  
@@ -81,7 +84,7 @@ class TravelResults extends Component {
                       </div>
                       </div>
                       <div className="col-sm-12">
-                          <button type="button" onClick = {()=> this.saveUserTravel(travel.id)} className="btn btn-success btn-lg">Add to my travels</button>
+                          <button type="button" onClick = {()=> this.saveUserTravel(travel.travelID)} className="btn btn-success btn-lg">Add to my travels</button>
                     </div>
                    </div>
                 ))
