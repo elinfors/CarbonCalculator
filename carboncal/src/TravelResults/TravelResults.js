@@ -39,6 +39,8 @@ class TravelResults extends Component {
     }
 
 
+
+
     render() {
         let travelList = null;
         switch (this.state.status){
@@ -66,10 +68,11 @@ class TravelResults extends Component {
                       </div>
                       <PieChart
                         data={[
-                          { title: 'One', value: 2000-((travel.emission)*1000), color:'#ffffff'},
-                          { title: 'Two', value: (travel.emission)*1000 , color: '#E38627' } 
+                          
+                          { title: 'One', value: 2000-((travel.emission)*1000), color:'#f7c5c5'},
+                          { title: 'Two', value: (travel.emission)*1000 , color: '#e80003' } 
                         ]}
-                        x={100} y={100} radius={20} lineWidth={20} totalValue={2000}
+                        x={100} y={100} radius={40} lineWidth={20} totalValue={2000} lengthAngle={-360}
                         />
                       <div className="col-sm-12 block">
  
