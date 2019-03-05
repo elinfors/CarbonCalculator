@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import { Component } from 'react';
 class TravelTypes extends Component {
     constructor(){
     super();
@@ -12,7 +12,7 @@ class TravelTypes extends Component {
             color:"#EF9494"
         },
         {
-            id: "smallCarButton",
+            id: "mediumCarButton",
             image: "fas fa-shuttle-van",
             value: "mediumCar",
             text: "Medium Car",
@@ -53,16 +53,3 @@ class TravelTypes extends Component {
 }
 const travelTypesInstance = new TravelTypes();
 export default travelTypesInstance;
-
-
-{/*
-<button type="button" class="btn btn-primary">Primary</button>
-<button type="button" class="btn btn-secondary">Secondary</button>
-<button type="button" class="btn btn-success">Success</button>
-<button type="button" class="btn btn-danger">Danger</button>
-<button type="button" class="btn btn-warning">Warning</button>
-<button type="button" class="btn btn-info">Info</button>
-<button type="button" class="btn btn-light">Light</button>
-<button type="button" class="btn btn-dark">Dark</button>
-
-*/}

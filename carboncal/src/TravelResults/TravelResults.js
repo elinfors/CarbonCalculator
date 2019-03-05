@@ -22,7 +22,6 @@ class TravelResults extends Component {
     }
 
     componentDidMount(){
-      scrollToComponent(this.scrollTo, { offset: 100, align: 'bottom', duration: 200, ease:'inExpo'})
       this.props.model.addObserver(this);
       this.setState({
         allResults: this.props.model.allResults,

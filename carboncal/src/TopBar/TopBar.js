@@ -5,24 +5,23 @@ import { Link } from 'react-router-dom';
 
 
 class TopBar extends Component {
-    state = {  }
+    state = {}
     render() { 
         return (
         <React.Fragment>
             <div id="headerWrapper">
                 <div className="container h-100">
                     <nav id="navBar" className="navbar navbar navbar-dark justify-content-between">
-                    <Link to="/searchTravel">
+                    {/*<Link to="/searchTravel">
                         <span className="navbar-brand">Home</span>
-
-                        </Link>
-                        
+                        </Link>*/}
+                        <button type="button" className="btn btn-success" onClick={() => this.props.history.goBack()}>Home</button>
                         <div className="btn-group">
                             <button type="button" className="btn btn-success dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             Action
                             </button>
                             <div className="dropdown-menu">
-                                <a className="dropdown-item" href="#">My Account</a>
+                                <span className="dropdown-item" href="#">My Account</span>
                                 <Link to="/UserTravels">
                                     <span className="dropdown-item" href="#">My List</span>
                                 </Link>

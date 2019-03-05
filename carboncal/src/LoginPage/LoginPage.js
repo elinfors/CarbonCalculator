@@ -15,11 +15,11 @@ class LoginPage extends Component {
                             </div>
                                 <div className="col-sm-12" id="loginBox">
                                     <div className="form-group">
-                                        <label for="inputEmail">Email</label>
+                                        <label htmlFor="inputEmail">Email</label>
                                         <input type="email" className="form-control" id="inputEmail" placeholder="Email"></input>
                                     </div>
                                     <div className="form-group">
-                                        <label for="inputPassword">Password</label>
+                                        <label htmlFor="inputPassword">Password</label>
                                         <input type="password" className="form-control" id="inputPassword" placeholder="Password"></input>
                                     </div>
                                 </div>
