@@ -52,11 +52,15 @@ class TravelResults extends Component {
             case "LOADED":
                 travelList =  this.state.allResults.map((travel,index) =>(
                     <div key={travel.id+index} className = "col-sm-3" id="travelItemResult">
-                      <div className="row">
-                       <i onClick={()=>this.props.model.removeResult(travel)} className="far fa-times-circle"></i>
-                      </div>
-                      <div key={"point" + travel.id} id="start_end_text">
 
+                      
+                       <i onClick={()=>this.props.model.removeResult(travel)} className="far fa-times-circle"></i>
+                      
+                      <span key={"emission_text"+travel.id} id="emission_text">
+                          <CountUp end={travel.emission*1000} duration={5}/> KG CO2
+                      </span>
+                      <div key={"point" + travel.id} id="start_end_text">
+                      
                      
                       <span className="badge badge-pill badge-secondary">{travel.startPoint}</span>
                       <br/>
@@ -64,26 +68,24 @@ class TravelResults extends Component {
                       <span className="badge badge-pill badge-secondary">{travel.endPoint}</span>
                       </div>
                       <div className="col-sm-12 block">
-                        <div key={"emission_text"+travel.id} id="emission_text">
-                          <CountUp end={travel.emission*1000} duration={5}/> KG CO2
-                        </div>
+                        
                       </div>
-                      <PieChart
+                      <PieChart 
                         data={[
                           { title: 'One', value: 2000-((travel.emission)*1000), color:'#f7c5c5'},
                           { title: 'Two', value: (travel.emission)*1000 , color: '#e80003' } 
                         ]}
                         x={100} y={100} radius={40} lineWidth={20} totalValue={2000} lengthAngle={-360}
+                        
                         />
-                      <div className="col-sm-12 block">
  
-                      <div className="col-sm-12">
-                        <span><i className={travel.image} id="travelIcon"style={{backgroundColor: travel.color, borderColor: travel.color}}></i></span>
-                          <div className="badge badge-warning m-2 p-3" id="travelDistanceButton">
-                            <span id="distanceResult">{travel.distance} km</span>
-                          </div>
-                      </div>
-                      </div>
+                        <div className="col-sm-12">
+                          <span className={travel.image} id="travelIcon"style={{backgroundColor: travel.color, borderColor: travel.color}}></span>
+                        </div>
+                        <div className="col-sm-12">
+                          <span className="badge badge-warning m-2 p-3" id="distanceResult">{travel.distance} km</span>
+                        </div>
+                      
                       <div className="col-sm-12">
                           <button type="button" onClick = {()=> this.saveUserTravel(travel.travelID)} ref={(section) => { this.scrollTo = section; }} className="btn btn-success btn-lg">Add to my travels</button>
                     </div>
