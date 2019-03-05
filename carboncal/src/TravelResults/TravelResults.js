@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import CountUp from 'react-countup';
 import './TravelResults.css';
 import PieChart from 'react-minimal-pie-chart';
-import Legend from 'react-minimal-pie-chart';
+//import Legend from 'react-minimal-pie-chart';
 
 
 class TravelResults extends Component {

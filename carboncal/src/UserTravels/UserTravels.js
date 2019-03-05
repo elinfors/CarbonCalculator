@@ -36,7 +36,7 @@ class UserList extends Component {
                         </div>
                         <span id="carbonListItems" className="round round-lg">{travel.emission}</span>
                         <span className={travel.image}></span>
-                        <i onClick={()=> this.props.model.removeSavedTravel(travel)} class="far fa-times-circle"></i>
+                        <i onClick={()=> this.props.model.removeSavedTravel(travel)} className="far fa-times-circle"></i>
                      
                     </div>
             </div>

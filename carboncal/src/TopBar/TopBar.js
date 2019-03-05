@@ -5,26 +5,25 @@ import { Link } from 'react-router-dom';
 
 
 class TopBar extends Component {
-    state = {  }
+    state = {props}
     render() { 
         return (
         <React.Fragment>
             <div id="headerWrapper">
                 <div className="container h-100">
                     <nav id="navBar" className="navbar navbar navbar-dark justify-content-between">
-                    <Link to="/searchTravel">
-                        <a className="navbar-brand">Home</a>
-
-                        </Link>
-                        
+                    {/*<Link to="/searchTravel">
+                        <span className="navbar-brand">Home</span>
+                        </Link>*/}
+                        <button type="button" className="btn btn-success" onClick={() => this.props.history.goBack()}></button>
                         <div className="btn-group">
                             <button type="button" className="btn btn-success dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             Action
                             </button>
                             <div className="dropdown-menu">
-                                <a className="dropdown-item" href="#">My Account</a>
+                                <span className="dropdown-item" href="#">My Account</span>
                                 <Link to="/UserTravels">
-                                    <a className="dropdown-item" href="#">My List</a>
+                                    <span className="dropdown-item" href="#">My List</span>
                                 </Link>
                                 <div className="dropdown-divider"></div>
                                 <button className="dropdown-item" id="logOutButton" href="#">Log Out</button>
