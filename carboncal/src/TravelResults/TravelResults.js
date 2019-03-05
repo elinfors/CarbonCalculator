@@ -32,7 +32,7 @@ class TravelResults extends Component {
 
       let allResults = this.props.model.allResults;
       for (var i in allResults){
-          if (allResults[i].id === (id)){
+          if (allResults[i].travelID === (id)){
             this.props.model.saveTravel(allResults[i]);
           }
       }
@@ -84,7 +84,7 @@ class TravelResults extends Component {
                       </div>
                       </div>
                       <div className="col-sm-12">
-                          <button type="button" onClick = {()=> this.saveUserTravel(travel.id)} className="btn btn-success btn-lg">Add to my travels</button>
+                          <button type="button" onClick = {()=> this.saveUserTravel(travel.travelID)} className="btn btn-success btn-lg">Add to my travels</button>
                     </div>
                    </div>
                 ))
