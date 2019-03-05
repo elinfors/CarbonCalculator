@@ -25,12 +25,14 @@ handleTravelType(travelType) {
         showMe: true,
         image: travelType.image,
         text: travelType.text,
+        color: travelType.color
     }) : this.setState({
         travelType: travelType.value,
         numberOfTravelers: 1,
         showMe: false,
         image: travelType.image,
-        text: travelType.text
+        text: travelType.text,
+        color: travelType.color
     }) ;   
 }
 

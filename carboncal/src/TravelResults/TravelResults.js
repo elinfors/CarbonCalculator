@@ -44,7 +44,7 @@ class TravelResults extends Component {
                 break;
             case "LOADED":
                 travelList =  this.state.allResults.map((travel,index) =>(
-                    <div key={travel.id+index} className = "col-sm-4" id="travelItemResult">
+                    <div key={travel.id+index} className = "col-sm-3" id="travelItemResult">
                       <div key={"point" + travel.id} id="start_end_text"className = "col-sm-12">
                       <span className="badge badge-pill badge-secondary">{travel.startPoint}</span>
                       <br/>
@@ -58,10 +58,9 @@ class TravelResults extends Component {
                           </div>
                       </div><br/>
                       <div className="col-sm-12">
-                        <span><i className={travel.image} id="travelIcon"></i></span>
-                        <span>Distance:</span>   
+                        <span><i className={travel.image} id="travelIcon"style={{backgroundColor: travel.color, borderColor: travel.color}}></i></span>  
                           <div className="badge badge-warning m-2 p-3" id="travelDistanceButton">
-                            <span id="distanceResult">{travel.distance}</span>
+                            <span id="distanceResult">{travel.distance} km</span>
                           </div>
                       </div>
                       </div>
