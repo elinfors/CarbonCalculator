@@ -35,6 +35,7 @@ class TravelResults extends Component {
           }
       }
     }
+   
 
     render() { 
         let travelList = null;
@@ -45,7 +46,8 @@ class TravelResults extends Component {
             case "LOADED":
                 travelList =  this.state.allResults.map((travel,index) =>(
                     <div key={travel.id+index} className = "col-sm-4" id="travelItemResult">
-                      <div key={"point" + travel.id} id="start_end_text"className = "col-sm-12">
+                      <div key={"point" + travel.id} id="start_end_text">
+                      <i onClick={()=>this.props.model.removeResult(travel)} className="far fa-times-circle"></i>
                       <span className="badge badge-pill badge-secondary">{travel.startPoint}</span>
                       <br/>
                       <i className="fas fa-arrow-right"></i><br/>

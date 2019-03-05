@@ -76,3 +76,12 @@ text-align:center;
     display:inline-block;
 
 }
+
+.fa-times-circle{
+    font-size:30px;
+    float:right;
+    margin-top:10px;
+    right:50px;
+    color:black;
+    cursor:pointer;
+}
