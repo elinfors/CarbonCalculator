@@ -46,7 +46,7 @@ handleTravelType(travelType) {
         image: travelType.image,
         text: travelType.text,
         color: travelType.color
-    }) ;   
+    }) ;
 }
 
 handleTravelStartPoint = (event) => {
@@ -92,7 +92,7 @@ handleTravelSearch(){
             ));
         return (
       <React.Fragment>
-        
+
             <TopBar currentSavedTravels={this.props.model.savedTravels.length}/>
             <div id="chooseRideContainer" className="container h-100">
                 <div className="d-flex justify-content-center h-100">

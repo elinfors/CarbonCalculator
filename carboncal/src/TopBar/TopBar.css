@@ -1,9 +1,10 @@
-#headerWrapper{
-    background-color:black;
-}
+
 
 #navBar{
     background-color:black;
+    -webkit-box-shadow: 0px 2px 18px -1px rgba(0,0,0,0.75);
+-moz-box-shadow: 0px 2px 18px -1px rgba(0,0,0,0.75);
+box-shadow: 0px 2px 18px -1px rgba(0,0,0,0.75);
 }
 #infoTextContainer{
     background-color: #1b1b1b;
@@ -34,5 +35,12 @@ box-shadow: 0px 5px 16px -3px rgba(0,0,0,0.75);
 
 #infoText{
     font-size:25px;
+}
+
+#topBarCounter{
+    background:grey;
+    font-weight:600;
+    padding:2px 3px 2px 3px;
+    border-radius:25%;
 }
 
