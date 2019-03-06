@@ -21,7 +21,7 @@ class TravelResults extends Component {
       this.setState({
         allResults: this.props.model.allResults,
        })
-       scrollToComponent(this.scrollTo, { offset: 100, align: 'bottom', duration: 200, ease:'inExpo'})
+       scrollToComponent(this.scrollTo, { offset: 0, align: 'middle', duration: 200, ease:'inExpo'})
     }
 
     componentDidMount(){
@@ -73,9 +73,7 @@ class TravelResults extends Component {
                         <i onClick={()=>this.props.model.removeResult(travel)} className="far fa-times-circle"></i>
                       </div>
                       
-                      <span key={"emission_text"+travel.id} id="emission_text">
-                          <CountUp end={travel.emission*1000} duration={5}/> KG CO2
-                      </span>
+                      
                       
                       <div className="col-sm-12 justify-content-center" key={"point" + travel.id} id="start_end_text">
                         <span className="badge badge-pill badge-info">{travel.startPoint}</span>
@@ -84,22 +82,18 @@ class TravelResults extends Component {
                         <br/>
                         <span className="badge badge-pill badge-info">{travel.endPoint}</span>
                       </div>
+                      <div className="badge badge-warning m-2 p-3" id="emission_text">
+                        <span ><CountUp end={travel.emission*1000} duration={5}/> KG CO2</span>
+                      </div>
                       
-                      <PieChart 
-                        data={[
-                          { title: '', value: 2000-((travel.emission)*1000), color:'#f7c5c5'},
-                          { title: (100*(travel.emission/2)).toFixed(2)+' % of recommended emissions per person per year', value: (travel.emission)*1000 , color: '#e80003' } 
-                        ]}
-                        x={100} y={100} radius={40} lineWidth={20} totalValue={2000} lengthAngle={-360}
-                        
-                        />
                         <RoundChart data={travel.emission}/>
                         
                       <div className="col-sm-12 block">
-
+                      
                       <div className="col-sm-12">
                         <span><i className={travel.image} id="travelIcon"style={{backgroundColor: travel.color, borderColor: travel.color}}></i></span>
                         <br/>
+           
                           <div className="badge badge-warning m-2 p-3" id="travelDistanceButton">
                             <span id="distanceResult"><CountUp end={travel.distance} duration={5}/>  KM</span>
                           </div>
@@ -129,7 +123,16 @@ class TravelResults extends Component {
           animationOut="bounceOut"
           durationOut={800}>
       <i class="fas fa-dice-d6"></i>
-       </AnimateOnChange>}*/
+       </AnimateOnChange>}
+       <PieChart 
+                        data={[
+                          { title: '', value: 2000-((travel.emission)*1000), color:'#f7c5c5'},
+                          { title: (100*(travel.emission/2)).toFixed(2)+' % of recommended emissions per person per year', value: (travel.emission)*1000 , color: '#e80003' } 
+                        ]}
+                        x={100} y={100} radius={40} lineWidth={20} totalValue={2000} lengthAngle={-360}
+                        
+                        />
+       */
         return (
             <React.Fragment>
             <div key={"frame"} id="chooseRideContainer" className="container h-100">
