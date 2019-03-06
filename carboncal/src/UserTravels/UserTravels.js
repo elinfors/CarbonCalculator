@@ -60,7 +60,7 @@ class UserList extends Component {
         
         return (
             <React.Fragment>
-            <TopBar/>
+            <TopBar currentSavedTravels={this.props.model.savedTravels.length}></TopBar>
             <DragSortableList items={userTravelList} placeholder={placeholder} onSort={onSort} dropBackTransitionDuration={0.3} type="vertical"/>
             </React.Fragment>
           );

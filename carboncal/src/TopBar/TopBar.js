@@ -5,9 +5,15 @@ import { Link } from 'react-router-dom';
 
 
 class TopBar extends Component {
-   constructor(){
-       super();
-       }
+    constructor(){
+        super();
+        this.state = {
+        }
+        }
+
+    
+
+       
    
     render() { 
         return (
@@ -19,8 +25,11 @@ class TopBar extends Component {
                     </Link>
                     <Link to="/UserTravels">
                         <button className="btn btn-info justify-content-center">
-                            <i class="fas fa-th-list mr-2"></i>My list
+                            <i class="fas fa-th-list mr-2"></i>My list<span id="topBarCounter" className="ml-2">{this.props.currentSavedTravels}</span>
+
                         </button>
+                        
+
                     </Link>
                     <div className="btn-group">
                         <button type="button" className="btn btn-success dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">

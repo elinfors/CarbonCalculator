@@ -52,9 +52,9 @@ class TravelResults extends Component {
       var myBigGreenDialog = {
         backgroundColor: '#17a2b8',
         color: '#ffffff',
-        width: '50%',
+        width: '60%',
         height: '10%',
-        left: '50%',
+        left: '45%',
         minHeight: '50px',
         marginTop: '-300px',
        
