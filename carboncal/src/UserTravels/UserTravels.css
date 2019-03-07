@@ -105,12 +105,13 @@
     margin-right: 16px;
 }
 .customClass{
-	height: 96%;
+    height: 70%;
+    width: 20%;
 }
-.map-two{
-	border: 1px solid black;
-	width: 47%;
-	height: 500px;
-	padding: 10px;
-	margin: 5px;
+#mapTwo{   
+	width: 100%;
+    height: 300px;
+}
+#mapConatiner{
+    text-align:center;
 }
