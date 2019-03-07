@@ -2,7 +2,9 @@ import React, { Component } from 'react';
 import TopBar from '../TopBar/TopBar';
 import TravelResults from '../TravelResults/TravelResults'
 import travelTypesInstance from './TravelTypes'
+import Autocomplete from 'react-google-autocomplete';
 import './SearchTravel.css';
+
 class SearchTravel extends Component {
     constructor(){
     super();
@@ -49,15 +51,16 @@ handleTravelType(travelType) {
     }) ;
 }
 
-handleTravelStartPoint = (event) => {
+handleTravelStartPoint = (places) => {
+    console.log(places.address_components[0].long_name)
     this.setState({
-        startPoint: event.target.value,
+        startPoint: places.address_components[0].long_name,
     });
 }
 
-handleTravelEndPoint = (event) => {
+handleTravelEndPoint = (places) => {
     this.setState({
-        endPoint: event.target.value,
+        endPoint: places.address_components[0].long_name,
     });
 }
 
@@ -136,13 +139,13 @@ handleTravelSearch(){
                         <form className="form">
                             <div className="col-sm-12" id="searchForms">
                                 <span id="smallBadge" className="badge badge-secondary">From</span>
-                                <div id='printoutPanelFrom'></div>
-                                <input id="locationFrom" className="form-control form-control-lg" autoComplete="off" type="text" placeholder="Your start position..." onClick={this.handleTravelStartPoint}></input>
+                                {/*<input id="locationFrom" className="form-control form-control-lg" autoComplete="off" type="text" placeholder="Your start position..." onChange={this.handleTravelStartPoint}></input>*/}
+                                <Autocomplete style={{width:"100%",marginTop:"10px"}}  onPlaceSelected={(place) => {this.handleTravelStartPoint(place);}}types={['(regions)']}/>
                             </div>
-                        <div className="col-sm-12" id="searchForm">
-                            <div id='printoutPanelTo'></div>
+                            <div className="col-sm-12" id="searchForm">
                             <span id="smallBadge" className="badge badge-secondary">To</span>
-                            <input id="locationTo" className="form-control form-control-lg" autoComplete="off" type="text" placeholder="Your destination..." onClick={this.handleTravelEndPoint}></input>
+                            {/*<input id="locationTo" className="form-control form-control-lg" autoComplete="off" type="text" placeholder="Your destination..." onChange={this.handleTravelEndPoint}></input>*/}
+                            <Autocomplete style={{width:"100%",marginTop:"10px"}}  onPlaceSelected={(place) => {this.handleTravelEndPoint(place);}}types={['(regions)']}/>
                         </div>
                     </form>
                     <div className="col-sm-12" id="confirmTravelButton">
@@ -152,8 +155,9 @@ handleTravelSearch(){
                     <div className="p-3 mb-2 bg-danger text-white" id="remindUser"></div>
                     </div>
                 </div>
+                
             </div>
-
+            
             {this.state.showResult?
              <TravelResults key={this.state.key} model={this.props.model} ></TravelResults>
             :null}

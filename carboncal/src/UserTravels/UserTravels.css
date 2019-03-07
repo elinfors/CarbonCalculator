@@ -2,7 +2,6 @@
     font-size:20px;
     margin:0px 30px 0px 30px;
 }
-
 .fa-arrow-right{
     font-size:20px;
     float: left;
@@ -99,4 +98,14 @@
 #delete_button{
     height: 0;
     margin-right: 16px;
+}
+.customClass{
+	height: 96%;
+}
+.map-two{
+	border: 1px solid black;
+	width: 47%;
+	height: 500px;
+	padding: 10px;
+	margin: 5px;
 }

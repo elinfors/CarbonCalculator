@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import TopBar from '../TopBar/TopBar';
 import './UserTravels.css';
 import DragSortableList from 'react-drag-sortable'
+import { ReactBingmaps } from 'react-bingmaps';
 
 class UserList extends Component {
     constructor(props){
@@ -44,6 +45,20 @@ class UserList extends Component {
                         </div>
                         </div>
                    
+                        <div className = "map-two">
+                        <ReactBingmaps
+                          id = "two" 
+                          className = "customClass"
+                          bingmapKey = "AlJeTIGD1dCPM4-OE_z9xDQohB4ll2vpaaEYv72_48tSOt--Jy_oY5UaFftaiXKp"
+                          center = {[13.0827, 80.2707,57.046329,
+                            12.29274]}
+                          mapTypeId = {"canvasDark"}
+                        > 
+                        </ReactBingmaps>
+                        </div>
+                     
+                    
+                    
             </div>
         }
         
