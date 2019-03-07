@@ -1,9 +1,7 @@
 import React, { Component } from 'react';
 import CountUp from 'react-countup';
 import './TravelResults.css';
-import PieChart from 'react-minimal-pie-chart';
 import scrollToComponent from 'react-scroll-to-component';
-import RoundChart from './RoundChart';
 import SkyLight from 'react-skylight';
 
 
@@ -86,7 +84,7 @@ class TravelResults extends Component {
                         <span ><CountUp end={travel.emission*1000} duration={5}/> KG CO2</span>
                       </div>
                       
-                        <RoundChart data={travel.emission}/>
+                    
                         
                       <div className="col-sm-12 block">
                         <span class="badge badge-pill badge-secondary">
