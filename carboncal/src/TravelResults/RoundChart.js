@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import ReactApexChart from 'react-apexcharts';
+
 class RoundChart extends Component {
       
   constructor(props) {
@@ -42,7 +43,7 @@ class RoundChart extends Component {
     
     render(){
         return(
-            <ReactApexChart options={this.state.options} series={this.state.series} type="radialBar" height="350"/>
+            <ReactApexChart options={this.state.options} series={this.state.series} type="radialBar" height="200"/>
         )
     }
 }

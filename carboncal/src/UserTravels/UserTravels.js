@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import TopBar from '../TopBar/TopBar';
 import './UserTravels.css';
 import DragSortableList from 'react-drag-sortable'
+import { ReactBingmaps } from 'react-bingmaps';
 
 class UserList extends Component {
     constructor(props){
@@ -37,8 +38,20 @@ class UserList extends Component {
                         <span id="carbonListItems" className="round round-lg">{travel.emission}</span>
                         <span className={travel.image}></span>
                         <i onClick={()=> this.props.model.removeSavedTravel(travel)} className="far fa-times-circle"></i>
+                        <div className = "map-two">
+                        <ReactBingmaps
+                          id = "two" 
+                          className = "customClass"
+                          bingmapKey = "AlJeTIGD1dCPM4-OE_z9xDQohB4ll2vpaaEYv72_48tSOt--Jy_oY5UaFftaiXKp"
+                          center = {[13.0827, 80.2707,57.046329,
+                            12.29274]}
+                          mapTypeId = {"canvasDark"}
+                        > 
+                        </ReactBingmaps>
+                        </div>
                      
                     </div>
+                    
             </div>
         }
         
@@ -62,6 +75,8 @@ class UserList extends Component {
             <React.Fragment>
             <TopBar currentSavedTravels={this.props.model.savedTravels.length}></TopBar>
             <DragSortableList items={userTravelList} placeholder={placeholder} onSort={onSort} dropBackTransitionDuration={0.3} type="vertical"/>
+            
+           
             </React.Fragment>
           );
           

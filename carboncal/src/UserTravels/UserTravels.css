@@ -3,7 +3,7 @@
     margin:0px 30px 0px 30px;
 }
 #itemBlock{
-    background-color:#a7a7a7;
+    background-color:white;
 }
 .fa-arrow-right{
     font-size:20px;
@@ -75,4 +75,15 @@
  
 .placeholder {
   opacity: 0.5;
+}
+
+.customClass{
+	height: 96%;
+}
+.map-two{
+	border: 1px solid black;
+	width: 47%;
+	height: 500px;
+	padding: 10px;
+	margin: 5px;
 }
