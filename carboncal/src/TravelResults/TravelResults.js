@@ -42,11 +42,20 @@ class TravelResults extends Component {
       }
     }
 
+    handleColor(emission){ //Changes the Piechart color depending on emission
+      if(emission > 2 ){
+        return "#000000"
+      }
+      else{
+        return  "#f7c5c5"
+      }
+    }
 
+   
 
 
     render() {
-      
+      //console.log(typeof this.handleColor(3));
       //style för addtolist popup
       
       var myBigGreenDialog = {
@@ -87,6 +96,16 @@ class TravelResults extends Component {
                       </div>
                       
                         <RoundChart data={travel.emission}/>
+                         
+                          
+                        <PieChart 
+                        data={[
+                          { title: '', value: 2000-((travel.emission)*1000), color: this.handleColor(travel.emission)},
+                          { title: (100*(travel.emission/2)).toFixed(2)+' % of recommended emissions per person per year', value: (travel.emission)*1000 , color: this.handleColor(travel.emission) } 
+                        ]}
+                        x={100} y={100} radius={40} lineWidth={20} totalValue={2000} lengthAngle={-360}
+                        
+                        />
                         
                       <div className="col-sm-12 block">
                         <span class="badge badge-pill badge-secondary">
@@ -119,14 +138,7 @@ class TravelResults extends Component {
           durationOut={800}>
       <i class="fas fa-dice-d6"></i>
        </AnimateOnChange>}
-       <PieChart 
-                        data={[
-                          { title: '', value: 2000-((travel.emission)*1000), color:'#f7c5c5'},
-                          { title: (100*(travel.emission/2)).toFixed(2)+' % of recommended emissions per person per year', value: (travel.emission)*1000 , color: '#e80003' } 
-                        ]}
-                        x={100} y={100} radius={40} lineWidth={20} totalValue={2000} lengthAngle={-360}
-                        
-                        />
+       
        */
         return (
             <React.Fragment>

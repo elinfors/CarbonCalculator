@@ -9,7 +9,13 @@ class UserList extends Component {
         super(props);
         this.state = {
             savedTravels: this.props.model.savedTravels,
-        }
+            directions: {
+                wayPoints:[{address : ""},{address : ""}]},
+                requestOptions: {maxRoutes:2,
+                routeMode:"driving"},
+            showResult:false
+            } 
+            
         }
 
     update(){
@@ -18,14 +24,32 @@ class UserList extends Component {
          })
       }
   
-      componentDidMount(){
+    componentDidMount(){
+        console.log(this.state.directions)
         this.props.model.addObserver(this);
         this.setState({
           savedTravels: this.props.model.savedTravels,
          })
       }
+
+    handleMap(travel){
+        this.state.showResult === false ?
+        this.setState({
+            directions: {
+                wayPoints:[{address : travel.startPoint},{address : travel.endPoint}]
+            },
+            showResult:true
+           }):
+        this.setState({
+            showResult:false
+           })  
+    }
+      
+    
+      
     
     render() { 
+       
         let userTravelList = null;
         userTravelList = this.state.savedTravels.map((travel,index) =>(
             {content: <div id={travel.id + "savedTravels"} className="container h-100">
@@ -38,19 +62,26 @@ class UserList extends Component {
                         <span id="carbonListItems" className="round round-lg">{travel.emission}</span>
                         <span className={travel.image}></span>
                         <i onClick={()=> this.props.model.removeSavedTravel(travel)} className="far fa-times-circle"></i>
-                        <div className = "map-two">
-                        <ReactBingmaps
-                          id = "two" 
-                          className = "customClass"
-                          bingmapKey = "AlJeTIGD1dCPM4-OE_z9xDQohB4ll2vpaaEYv72_48tSOt--Jy_oY5UaFftaiXKp"
-                          center = {[13.0827, 80.2707,57.046329,
-                            12.29274]}
-                          mapTypeId = {"canvasDark"}
-                        > 
-                        </ReactBingmaps>
-                        </div>
+                        <button className="btn btn-info justify-content-center" onClick={() => this.handleMap(travel)}>
+                        <i class="fas fa-th-list mr-2">Show Map</i>
+                         </button>
                      
                     </div>
+                    {this.state.showResult?
+                        <div id="mapContainer"className="col-sm-12" >
+                        <div id="mapTwo">
+                                <ReactBingmaps
+                                className = "customClass"
+                                bingmapKey = "AlJeTIGD1dCPM4-OE_z9xDQohB4ll2vpaaEYv72_48tSOt--Jy_oY5UaFftaiXKp"
+                                center = {[13.0827, 80.2707]}
+                                directions =  {this.state.directions}
+                                requestOptions = {this.state.requestOptions}
+                                 > 
+                                 </ReactBingmaps>
+                        </div>
+                        </div>
+                        :null}
+                   
                     
             </div>
         }
@@ -72,11 +103,10 @@ class UserList extends Component {
         
         
         return (
+            
             <React.Fragment>
             <TopBar currentSavedTravels={this.props.model.savedTravels.length}></TopBar>
-            <DragSortableList items={userTravelList} placeholder={placeholder} onSort={onSort} dropBackTransitionDuration={0.3} type="vertical"/>
-            
-           
+            <DragSortableList items={userTravelList} placeholder={placeholder} onSort={onSort} dropBackTransitionDuration={0.3} type="vertical"/>       
             </React.Fragment>
           );
           
