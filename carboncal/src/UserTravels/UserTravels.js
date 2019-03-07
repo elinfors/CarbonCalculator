@@ -66,7 +66,7 @@ class UserList extends Component {
                             <span id="destinationResult" className="m-3">{travel.endPoint}</span>
                             
                         <span id="carbonListItems" className="round round-lg">{travel.emission}</span>
-                        <span className={travel.image}></span>
+                       
                         <i onClick={()=> this.props.model.removeSavedTravel(travel)} className="far fa-times-circle"></i>
                         <button className="btn btn-info justify-content-center" onClick={() => this.handleMap(travel)}>
                         <i class="fas fa-th-list mr-2">Show Map</i>
@@ -90,6 +90,7 @@ class UserList extends Component {
                    
                     
             </div>
+            </div>
         }
         
      
@@ -103,7 +104,7 @@ class UserList extends Component {
             <div className="placeholderContent">PLACEHOLDER</div>
         );
         var onSort = function(sortedList, dropEvent) {
-            console.log("sortedList", sortedList, dropEvent);
+            console.log("sortedList", sortedList, dropEvent)
          }
        
         

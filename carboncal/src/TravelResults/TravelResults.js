@@ -3,6 +3,8 @@ import CountUp from 'react-countup';
 import './TravelResults.css';
 import scrollToComponent from 'react-scroll-to-component';
 import SkyLight from 'react-skylight';
+import PieChart from 'react-minimal-pie-chart';
+import RoundChart from './RoundChart';
 
 
 
