@@ -1,9 +1,7 @@
 import React, { Component } from 'react';
 import CountUp from 'react-countup';
 import './TravelResults.css';
-import PieChart from 'react-minimal-pie-chart';
 import scrollToComponent from 'react-scroll-to-component';
-import RoundChart from './RoundChart';
 import SkyLight from 'react-skylight';
 
 

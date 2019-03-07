@@ -1,20 +1,23 @@
 #carbonListItems{
-    font-size:30px;
+    font-size:20px;
     margin:0px 30px 0px 30px;
 }
-
 .fa-arrow-right{
     font-size:20px;
+    float: left;
+    line-height: 4.3;
 }
 #destinationResult{
-    font-size:20px;
+    font-size:40px;
+    font-weight: 400;
    padding:10px;
    margin:60px;
+   float: left;
 
 }
 
 #userListContainer{
-    text-align:center;
+
     margin-top:20px;
 }
 
@@ -25,6 +28,7 @@
     color:white;
     padding:10px;
     border-radius:50%;
+    float: right;
 }
 
 .round {
@@ -55,12 +59,12 @@
 }
 
 .round.round-lg {
-    height: 200px;
-    width: 200px;
-    line-height: 200px;
+    height: 100px;
+    width: 100px;
+    line-height: 100px;
     -moz-border-radius: 20px;
     border-radius: 50%;
-    font-size: 1.5em;
+    font-size: 1em;
 }
 
 .draggable {
@@ -75,6 +79,31 @@
   opacity: 0.5;
 }
 
+#full_badge{
+    color: #FFF;
+    width:100%;
+}
+
+#travelIconInUserTravel{
+    font-size: 25px;
+    float: left;
+    margin-left: 25px;
+    border-radius: 50px;
+    color: white;
+    font-weight: bold;
+    font-size:20px;
+    
+
+}
+
+#item_block_container{
+    background-color: #eaeaea;
+}
+
+#delete_button{
+    height: 0;
+    margin-right: 16px;
+}
 .customClass{
     height: 70%;
     width: 20%;

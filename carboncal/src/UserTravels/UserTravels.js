@@ -53,12 +53,18 @@ class UserList extends Component {
         let userTravelList = null;
         userTravelList = this.state.savedTravels.map((travel,index) =>(
             {content: <div id={travel.id + "savedTravels"} className="container h-100">
-                    <div id="itemBlock"className="d-block p-2 text-white">
-                        <div className="badge badge-pill badge-dark">
-                            <span id="destinationResult" className="badge badge-primary badge m-3">{travel.startPoint}</span>
-                            <i className="fas fa-arrow-right m-2"></i>
-                            <span id="destinationResult" className="badge badge-primary badge m-3">{travel.endPoint}</span>
+                    
+                        <div id="full_badge"className="badge badge-dark">
+                        <div className="row justify-content-end">
+                        <i id="delete_button"onClick={()=> this.props.model.removeSavedTravel(travel)} className="far fa-times-circle"></i>
                         </div>
+                        <div className="row">
+                        <span><i className={travel.image} id="travelIconInUserTravel"style={{backgroundColor: travel.color, borderColor: travel.color, width: "70px", height:"70px", lineHeight: "3.5"}}></i></span>
+                            
+                            <span id="destinationResult" className="m-3">{travel.startPoint}</span>
+                            <i className="fas fa-arrow-right m-2"></i>
+                            <span id="destinationResult" className="m-3">{travel.endPoint}</span>
+                            
                         <span id="carbonListItems" className="round round-lg">{travel.emission}</span>
                         <span className={travel.image}></span>
                         <i onClick={()=> this.props.model.removeSavedTravel(travel)} className="far fa-times-circle"></i>
@@ -106,7 +112,11 @@ class UserList extends Component {
             
             <React.Fragment>
             <TopBar currentSavedTravels={this.props.model.savedTravels.length}></TopBar>
-            <DragSortableList items={userTravelList} placeholder={placeholder} onSort={onSort} dropBackTransitionDuration={0.3} type="vertical"/>       
+            <div id="item_block_container" className="container h-100">
+            <div className="d-block p-2 text-white">
+            <DragSortableList items={userTravelList} placeholder={placeholder} onSort={onSort} dropBackTransitionDuration={0.3} type="vertical"/>
+            </div>
+            </div>
             </React.Fragment>
           );
           
