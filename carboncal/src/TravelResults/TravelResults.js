@@ -75,12 +75,12 @@ class TravelResults extends Component {
                       
                       
                       
-                      <div className="col-sm-12 justify-content-center" key={"point" + travel.id} id="start_end_text">
-                        <span className="badge badge-pill badge-info">{travel.startPoint}</span>
+                      <div className="col-sm-12 justify-content-center mt-2" key={"point" + travel.id} id="start_end_text">
+                        <span className="badge badge-pill badge-dark">{travel.startPoint}</span>
                         <br/>
                         <i className="fas fa-arrow-right m-2"></i>
                         <br/>
-                        <span className="badge badge-pill badge-info">{travel.endPoint}</span>
+                        <span className="badge badge-pill badge-dark">{travel.endPoint}</span>
                       </div>
                       <div className="badge badge-warning m-2 p-3" id="emission_text">
                         <span ><CountUp end={travel.emission*1000} duration={5}/> KG CO2</span>
@@ -89,15 +89,10 @@ class TravelResults extends Component {
                         <RoundChart data={travel.emission}/>
                         
                       <div className="col-sm-12 block">
-                      
-                      <div className="col-sm-12">
-                        <span><i className={travel.image} id="travelIcon"style={{backgroundColor: travel.color, borderColor: travel.color}}></i></span>
-                        <br/>
-           
-                          <div className="badge badge-warning m-2 p-3" id="travelDistanceButton">
-                            <span id="distanceResult"><CountUp end={travel.distance} duration={5}/>  KM</span>
-                          </div>
-                      </div>
+                        <span class="badge badge-pill badge-secondary">
+                          <span className="mr-2"><i className={travel.image} id="travelIcon"style={{backgroundColor: travel.color, borderColor: travel.color}}></i></span>
+                          <span className="mr-2"id="distanceResult"><CountUp end={travel.distance} duration={5}/>  KM</span>
+                        </span>
                       </div>
                       <div className="col-sm-12">
                           <button type="button" onClick = {()=> {this.simpleDialog.show();this.saveUserTravel(travel.travelID)}} ref={(section) => { this.scrollTo = section; }} className="btn btn-success btn-lg">Add to my travels</button>
