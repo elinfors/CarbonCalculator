@@ -76,3 +76,14 @@
 .placeholder {
   opacity: 0.5;
 }
+
+.customClass{
+	height: 96%;
+}
+.map-two{
+	border: 1px solid black;
+	width: 47%;
+	height: 500px;
+	padding: 10px;
+	margin: 5px;
+}

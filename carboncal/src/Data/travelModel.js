@@ -2,6 +2,7 @@
 import ObservableModel from "./ObservableModel"
 import carbonCalculator from "./carbonCalculator"
 const BASE_URL = "http://dev.virtualearth.net/REST/V1/Routes/driving?"
+//const BASE_URL = "https://maps.googleapis.com/maps/api/distancematrix/json?units=imperial&"
 const httpOptions = {
   headers: { "X-Mashape-Key": "AlJeTIGD1dCPM4-OE_z9xDQohB4ll2vpaaEYv72_48tSOt--Jy_oY5UaFftaiXKp"}
 }
@@ -22,6 +23,8 @@ class TravelModel extends ObservableModel {
           userTravelObject["distance"] = travelData.travelDistance;
           userTravelObject["travelID"] = Math.random().toString(36).substr(2, 9);
           userTravelObject["key"] = travelData.id;
+          userTravelObject["longitud"] = travelData.id;
+          userTravelObject["latitud"] = travelData.id;
           userTravelObject["emission"] = carbonCalculator.calculateCarbonEmission(travelData.travelDistance,userTravelObject.travelType,userTravelObject.numberOfTravelers);
           this.allResults.push(userTravelObject);
           console.log(userTravelObject);
@@ -31,6 +34,7 @@ class TravelModel extends ObservableModel {
 
     getRoute(startPosition,endPosition) {
         const url = `${BASE_URL}wp.0=`+ startPosition + `&wp.1=` + endPosition + `&optmz=distance&key=AlJeTIGD1dCPM4-OE_z9xDQohB4ll2vpaaEYv72_48tSOt--Jy_oY5UaFftaiXKp`;
+        //const url = `${BASE_URL}origins=`+ startPosition + `&destinations=`+ endPosition + `&key=AIzaSyA8eRwbJyrmHHGkHdBaRi6_tJmRUmAf7Vk`
         console.log(url);
         console.log("Testar URL");
         return fetch(url).then(this.processResponse);
