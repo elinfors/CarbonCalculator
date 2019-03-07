@@ -62,7 +62,7 @@ class UserList extends Component {
                         <span><i className={travel.image} id="travelIconInUserTravel"style={{backgroundColor: travel.color, borderColor: travel.color, width: "70px", height:"70px", lineHeight: "3.5"}}></i></span>
                             
                             <span id="destinationResult" className="m-3">{travel.startPoint}</span>
-                            <i className="fas fa-arrow-right m-2"></i>
+                            <i id="rightArrow" className="fas fa-arrow-right m-2"></i>
                             <span id="destinationResult" className="m-3">{travel.endPoint}</span>
                             
                         <span id="carbonListItems" className="round round-lg">{travel.emission}</span>
