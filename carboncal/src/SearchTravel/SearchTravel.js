@@ -137,12 +137,12 @@ handleTravelSearch(){
                             <div className="col-sm-12" id="searchForms">
                                 <span id="smallBadge" className="badge badge-secondary">From</span>
                                 <div id='printoutPanelFrom'></div>
-                                <input id="locationFrom" className="form-control form-control-lg" autoComplete="off" type="text" placeholder="Your start position..." onChange={this.handleTravelStartPoint}></input>
+                                <input id="locationFrom" className="form-control form-control-lg" autoComplete="off" type="text" placeholder="Your start position..." onClick={this.handleTravelStartPoint}></input>
                             </div>
                         <div className="col-sm-12" id="searchForm">
                             <div id='printoutPanelTo'></div>
                             <span id="smallBadge" className="badge badge-secondary">To</span>
-                            <input id="locationTo" className="form-control form-control-lg" autoComplete="off" type="text" placeholder="Your destination..." onChange={this.handleTravelEndPoint}></input>
+                            <input id="locationTo" className="form-control form-control-lg" autoComplete="off" type="text" placeholder="Your destination..." onClick={this.handleTravelEndPoint}></input>
                         </div>
                     </form>
                     <div className="col-sm-12" id="confirmTravelButton">
