@@ -146,7 +146,6 @@ class TravelResults extends Component {
             <div key={"travelList"} className="container h-100">
               <div className="col-sm-12" id="getResultContainer">
                    {travelList}
-                   
               </div>
             </div>
 
