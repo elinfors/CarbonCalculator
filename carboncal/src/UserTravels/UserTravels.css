@@ -84,10 +84,15 @@
     width:100%;
 }
 
-#travelIcon{
+#travelIconInUserTravel{
     font-size: 25px;
     float: left;
     margin-left: 25px;
+    border-radius: 50px;
+    color: white;
+    font-weight: bold;
+    font-size:20px;
+    
 
 }
 

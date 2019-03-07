@@ -35,7 +35,7 @@ class UserList extends Component {
                         <i id="delete_button"onClick={()=> this.props.model.removeSavedTravel(travel)} className="far fa-times-circle"></i>
                         </div>
                         <div className="row">
-                        <span><i className={travel.image} id="travelIcon"style={{backgroundColor: travel.color, borderColor: travel.color, width: "70px", height:"70px", lineHeight: "2.8"}}></i></span>
+                        <span><i className={travel.image} id="travelIconInUserTravel"style={{backgroundColor: travel.color, borderColor: travel.color, width: "70px", height:"70px", lineHeight: "3.5"}}></i></span>
                             
                             <span id="destinationResult" className="m-3">{travel.startPoint}</span>
                             <i className="fas fa-arrow-right m-2"></i>
@@ -44,7 +44,7 @@ class UserList extends Component {
                         <span id="carbonListItems" className="round round-lg">{travel.emission}</span>
                         </div>
                         </div>
-                   
+        
                         <div className = "map-two">
                         <ReactBingmaps
                           id = "two" 
