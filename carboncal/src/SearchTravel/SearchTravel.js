@@ -32,9 +32,8 @@ componentDidMount(){
      })
   }
 
-handleTravelType(event,travelType) {
-   // this.state.showZoom === travelType.value?
-   // event.target.style.zoom = 1.1 : event.target.style.zoom = 1
+handleTravelType(travelType) {
+   travelTypesInstance.state.types.map(types => (types.value === travelType.value? types.zoom = 1.1 : types.zoom = 1))
     document.getElementById('remindUser').style.visibility = "hidden";
     travelType.value === "smallCar"|| travelType.value === "mediumCar" || travelType.value === "largeCar" ? this.setState({
         travelType: travelType.value,
@@ -91,7 +90,7 @@ handleTravelSearch(){
         let travelTypes = null;
         travelTypes = travelTypesInstance.state.types.map(types =>(
             <div key={types.id} className="col-sm-2" id="chooseVehicleBox"> 
-                <button onClick={(e) => this.handleTravelType(e,types)} id={types.value + "Button"} type="button" className="btn btn-danger btn-circle btn-xl m-4" style={{backgroundColor: types.color, borderColor: types.color}}>
+                <button onClick={() => this.handleTravelType(types)} id={types.value + "Button"} type="button" className="btn btn-danger btn-circle btn-xl m-4" style={{backgroundColor: types.color, borderColor: types.color, zoom:types.zoom}}>
                 <i className={types.image}></i>
                 </button>
                 <h5 className="badge badge-pill badge-light">{types.text}</h5>
