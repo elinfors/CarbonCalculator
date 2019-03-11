@@ -84,22 +84,13 @@ class TravelResults extends Component {
                       
                       <div className="col-sm-12 justify-content-center mt-2" key={"point" + travel.id} id="start_end_text">
                         <span className="badge badge-pill badge-dark">{travel.startPoint}</span>
-                        <br/>
                         <i className="fas fa-arrow-right m-2"></i>
-                        <br/>
                         <span className="badge badge-pill badge-dark">{travel.endPoint}</span>
                       </div>
                       <div className="badge badge-warning m-2 p-3" id="emission_text">
                         <span ><CountUp end={travel.emission*1000} duration={5}/> KG CO2</span>
                       </div>      
-                        <PieChart 
-                        data={[
-                          { title: '', value: 2000-((travel.emission)*1000), color: this.handleColor(travel.emission)},
-                          { title: (100*(travel.emission/2)).toFixed(2)+' % of recommended emissions per person per year', value: (travel.emission)*1000 , color: this.handleColor(travel.emission) } 
-                        ]}
-                        x={100} y={100} radius={40} lineWidth={20} totalValue={2000} lengthAngle={-360}
                         
-                        />
                         
                       <div className="col-sm-12 block">
                         <span class="badge badge-pill badge-secondary">
@@ -132,6 +123,13 @@ class TravelResults extends Component {
           durationOut={800}>
       <i class="fas fa-dice-d6"></i>
        </AnimateOnChange>}
+       <PieChart 
+                        data={[
+                          { title: '', value: 2000-((travel.emission)*1000), color: this.handleColor(travel.emission)},
+                          { title: (100*(travel.emission/2)).toFixed(2)+' % of recommended emissions per person per year', value: (travel.emission)*1000 , color: this.handleColor(travel.emission) } 
+                        ]}
+                        x={100} y={100} radius={40} lineWidth={20} totalValue={2000} lengthAngle={-360}
+                        />
        
        */
         return (
