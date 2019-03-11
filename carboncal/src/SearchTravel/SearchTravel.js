@@ -52,15 +52,16 @@ handleTravelType(travelType) {
 }
 
 handleTravelStartPoint = (places) => {
-    console.log(places.address_components[0].long_name)
+    console.log(places)
     this.setState({
-        startPoint: places.address_components[0].long_name,
+        startPoint: places.address_components[0].long_name + "," + places.address_components.slice(-1)[0].long_name,
     });
 }
 
 handleTravelEndPoint = (places) => {
+    console.log(places)
     this.setState({
-        endPoint: places.address_components[0].long_name,
+        endPoint: places.address_components[0].long_name + "," + places.address_components.slice(-1)[0].long_name,
     });
 }
 
@@ -145,7 +146,7 @@ handleTravelSearch(){
                             <div className="col-sm-12" id="searchForm">
                             <span id="smallBadge" className="badge badge-secondary">To</span>
                             {/*<input id="locationTo" className="form-control form-control-lg" autoComplete="off" type="text" placeholder="Your destination..." onChange={this.handleTravelEndPoint}></input>*/}
-                            <Autocomplete style={{width:"100%",marginTop:"10px"}}  onPlaceSelected={(place) => {this.handleTravelEndPoint(place);}}types={['(regions)']}/>
+                                <Autocomplete style={{width:"100%",marginTop:"10px"}}  onPlaceSelected={(place) => {this.handleTravelEndPoint(place);}}types={['(regions)']}/>
                         </div>
                     </form>
                     <div className="col-sm-12" id="confirmTravelButton">
