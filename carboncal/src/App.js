@@ -8,6 +8,7 @@ import './App.css';
 import LoginPage from "./LoginPage/LoginPage";
 import SearchTravel from './SearchTravel/SearchTravel';
 import UserTravels from './UserTravels/UserTravels';
+import CompareTravels from './CompareTravels/CompareTravels';
 
 class App extends Component {
   render() {
