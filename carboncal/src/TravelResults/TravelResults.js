@@ -73,7 +73,7 @@ class TravelResults extends Component {
     render() {
       //console.log(typeof this.handleColor(3));
       //style för addtolist popup
-      
+
       var myBigGreenDialog = {
         backgroundColor: '#17a2b8',
         color: '#ffffff',
@@ -82,7 +82,7 @@ class TravelResults extends Component {
         left: '45%',
         minHeight: '50px',
         marginTop: '-300px',
-       
+
       };
 
         let travelList = null;
@@ -94,31 +94,25 @@ class TravelResults extends Component {
                 travelList =  this.state.allResults.map((travel,index) =>(
                     <div key={travel.id+index} className = "col-sm-3" id="travelItemResult">
 
-                      <div className="row justify-content-end" id="deleteButtonRow">
-                        <i onClick={()=>this.props.model.removeResult(travel)} className="far fa-times-circle"></i>
+                     <div className="row d-flex" key={"point" + travel.id} id="start_end_text">
+                          <div className="ml-1 mt-2">
+                            <span id="startPoint"className="text-truncate p-1">{travel.startPoint}</span>
+                            <i className="fas fa-arrow-right p-1"></i>
+                            <span id="endPoint"className="text-truncate p-1">{travel.endPoint}</span>
+
+                          </div>
+                          <div>
+                            <i className="d-flex justify-content-end" onClick={()=>this.props.model.removeResult(travel)} className="far fa-times-circle"></i>
+                          </div>
+                     </div>
+
+                      <div className="badge badge-warning m-2 p-3" >
+                        <span id="emission_text" ><CountUp end={travel.emission*1000} duration={5}/></span><br/>
+                        <span id="co2Text">KG CO2/person</span>
+
                       </div>
-                      
-                      
-                      
-                      <div className="col-sm-12 justify-content-center mt-2" key={"point" + travel.id} id="start_end_text">
-                        <span className="badge badge-pill badge-dark">{travel.startPoint}</span>
-                        <br/>
-                        <i className="fas fa-arrow-right m-2"></i>
-                        <br/>
-                        <span className="badge badge-pill badge-dark">{travel.endPoint}</span>
-                      </div>
-                      <div className="badge badge-warning m-2 p-3" id="emission_text">
-                        <span ><CountUp end={travel.emission*1000} duration={5}/> KG CO2</span>
-                      </div>      
-                        <PieChart 
-                        data={[
-                          { title: '', value: 2000-((travel.emission)*1000), color: this.handleColor(travel.emission)},
-                          { title: (100*(travel.emission/2)).toFixed(2)+' % of recommended emissions per person per year', value: (travel.emission)*1000 , color: this.handleColor(travel.emission) } 
-                        ]}
-                        x={100} y={100} radius={40} lineWidth={20} totalValue={2000} lengthAngle={-360}
-                        
-                        />
-                        
+
+
                       <div className="col-sm-12 block">
                         <span class="badge badge-pill badge-secondary">
                           <span className="mr-2"><i className={travel.image} id="travelIcon"style={{backgroundColor: travel.color, borderColor: travel.color}}></i></span>
@@ -152,7 +146,14 @@ class TravelResults extends Component {
           durationOut={800}>
       <i class="fas fa-dice-d6"></i>
        </AnimateOnChange>}
-       
+       <PieChart
+                        data={[
+                          { title: '', value: 2000-((travel.emission)*1000), color: this.handleColor(travel.emission)},
+                          { title: (100*(travel.emission/2)).toFixed(2)+' % of recommended emissions per person per year', value: (travel.emission)*1000 , color: this.handleColor(travel.emission) }
+                        ]}
+                        x={100} y={100} radius={40} lineWidth={20} totalValue={2000} lengthAngle={-360}
+                        />
+
        */
         return (
             <React.Fragment>
@@ -168,7 +169,7 @@ class TravelResults extends Component {
             <div key={"travelList"} className="container h-100">
               <div className="col-sm-12" id="getResultContainer">
                    {travelList}
-                   
+
               </div>
             </div>
 

@@ -15,6 +15,7 @@ class SearchTravel extends Component {
        numberOfTravelers: 1,
        showMe:false,
        showResult: false,
+       showZoom: "",
     }
 }
 
@@ -24,43 +25,46 @@ update(){
      })
   }
 
-  componentDidMount(){
+componentDidMount(){
     this.props.model.addObserver(this);
     this.setState({
       savedTravels: this.props.model.savedTravels,
      })
   }
 
-handleTravelType(travelType) {
-    travelTypesInstance.state.types.map(types =>(document.getElementById(types.value+"Button").style.zoom = "1"));
-    document.getElementById(travelType.value+"Button").style.zoom = "1.1";
+handleTravelType(event,travelType) {
+   // this.state.showZoom === travelType.value?
+   // event.target.style.zoom = 1.1 : event.target.style.zoom = 1
     document.getElementById('remindUser').style.visibility = "hidden";
     travelType.value === "smallCar"|| travelType.value === "mediumCar" || travelType.value === "largeCar" ? this.setState({
         travelType: travelType.value,
         showMe: true,
         image: travelType.image,
         text: travelType.text,
-        color: travelType.color
+        color: travelType.color,
+        showZoom: travelType.value
     }) : this.setState({
         travelType: travelType.value,
         numberOfTravelers: 1,
         showMe: false,
         image: travelType.image,
         text: travelType.text,
-        color: travelType.color
-    }) ;
+        color: travelType.color,
+        showZoom: travelType.value
+    });
 }
 
 handleTravelStartPoint = (places) => {
-    console.log(places.address_components[0].long_name)
+    console.log(places)
     this.setState({
-        startPoint: places.address_components[0].long_name,
+        startPoint: places.address_components[0].long_name + "," + places.address_components.slice(-1)[0].long_name,
     });
 }
 
 handleTravelEndPoint = (places) => {
+    console.log(places)
     this.setState({
-        endPoint: places.address_components[0].long_name,
+        endPoint: places.address_components[0].long_name + "," + places.address_components.slice(-1)[0].long_name,
     });
 }
 
@@ -86,8 +90,8 @@ handleTravelSearch(){
     render() {
         let travelTypes = null;
         travelTypes = travelTypesInstance.state.types.map(types =>(
-            <div key={types.id} className="col-sm-2" id="chooseVehicleBox">
-                <button onClick={() => this.handleTravelType(types)} id={types.value + "Button"} type="button" className="btn btn-danger btn-circle btn-xl m-4" style={{backgroundColor: types.color, borderColor: types.color}}>
+            <div key={types.id} className="col-sm-2" id="chooseVehicleBox"> 
+                <button onClick={(e) => this.handleTravelType(e,types} id={types.value + "Button"} type="button" className="btn btn-danger btn-circle btn-xl m-4" style={{backgroundColor: types.color, borderColor: types.color}}>
                 <i className={types.image}></i>
                 </button>
                 <h5 className="badge badge-pill badge-light">{types.text}</h5>
@@ -140,7 +144,7 @@ handleTravelSearch(){
                             <div className="col-sm-12" id="searchForm">
                             <span id="smallBadge" className="badge badge-secondary">To</span>
                             {/*<input id="locationTo" className="form-control form-control-lg" autoComplete="off" type="text" placeholder="Your destination..." onChange={this.handleTravelEndPoint}></input>*/}
-                            <Autocomplete style={{width:"100%",marginTop:"10px"}}  onPlaceSelected={(place) => {this.handleTravelEndPoint(place);}}types={['(regions)']}/>
+                                <Autocomplete style={{width:"100%",marginTop:"10px"}}  onPlaceSelected={(place) => {this.handleTravelEndPoint(place);}}types={['(regions)']}/>
                         </div>
                     </form>
                     <div className="col-sm-12" id="confirmTravelButton">
