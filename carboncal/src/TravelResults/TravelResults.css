@@ -38,24 +38,27 @@ text-align:center;
 
 #emission_text{
     text-align:center;
-    font-size:20px;
+    font-size:80px;
     font-weight:700;
     color:white;
+   
 }
 
 #start_end_text{
     vertical-align: middle;
-    font-size: 18px;
-    
-    
+    font-size: 14px;
+    font-weight:600;
+    background-color:rgb(69, 144, 173);
+    color:white;
+    justify-content:space-between;  
 }
+
 
 #travelItemResult{
     line-height:1;
     display:inline-block;
-    background-color:#36576b;
+    background-color:lightgrey;
     margin:10px;
-    text-align:center;
     -webkit-box-shadow: 0px 0px 31px -5px rgba(0,0,0,0.75);
 -moz-box-shadow: 0px 0px 31px -5px rgba(0,0,0,0.75);
 box-shadow: 0px 0px 31px -5px rgba(0,0,0,0.75);
@@ -100,6 +103,6 @@ box-shadow: 0px 0px 31px -5px rgba(0,0,0,0.75);
     color:red;
 }
 
-#deleteButtonRow{
-    background-color:#1a3444;
+#co2Text{
+    font-size:12px;
 }

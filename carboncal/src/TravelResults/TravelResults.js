@@ -3,7 +3,6 @@ import CountUp from 'react-countup';
 import './TravelResults.css';
 import scrollToComponent from 'react-scroll-to-component';
 import SkyLight from 'react-skylight';
-import PieChart from 'react-minimal-pie-chart';
 
 
 class TravelResults extends Component {
@@ -75,31 +74,25 @@ class TravelResults extends Component {
             case "LOADED":
                 travelList =  this.state.allResults.map((travel,index) =>(
                     <div key={travel.id+index} className = "col-sm-3" id="travelItemResult">
+                     
+                     <div className="row d-flex" key={"point" + travel.id} id="start_end_text">
+                          <div className="ml-1 mt-2">
+                            <span id="startPoint"className="text-truncate p-1">{travel.startPoint}</span>
+                            <i className="fas fa-arrow-right p-1"></i>
+                            <span id="endPoint"className="text-truncate p-1">{travel.endPoint}</span>
 
-                      <div className="row justify-content-end" id="deleteButtonRow">
-                        <i onClick={()=>this.props.model.removeResult(travel)} className="far fa-times-circle"></i>
-                      </div>
+                          </div>
+                          <div>
+                            <i className="d-flex justify-content-end" onClick={()=>this.props.model.removeResult(travel)} className="far fa-times-circle"></i>
+                          </div>
+                     </div>
                       
-                      
-                      
-                      <div className="col-sm-12 justify-content-center mt-2" key={"point" + travel.id} id="start_end_text">
-                        <span className="badge badge-pill badge-dark">{travel.startPoint}</span>
-                        <br/>
-                        <i className="fas fa-arrow-right m-2"></i>
-                        <br/>
-                        <span className="badge badge-pill badge-dark">{travel.endPoint}</span>
-                      </div>
-                      <div className="badge badge-warning m-2 p-3" id="emission_text">
-                        <span ><CountUp end={travel.emission*1000} duration={5}/> KG CO2</span>
+                      <div className="badge badge-warning m-2 p-3" >
+                        <span id="emission_text" ><CountUp end={travel.emission*1000} duration={5}/></span><br/>
+                        <span id="co2Text">KG CO2/person</span>
+
                       </div>      
-                        <PieChart 
-                        data={[
-                          { title: '', value: 2000-((travel.emission)*1000), color: this.handleColor(travel.emission)},
-                          { title: (100*(travel.emission/2)).toFixed(2)+' % of recommended emissions per person per year', value: (travel.emission)*1000 , color: this.handleColor(travel.emission) } 
-                        ]}
-                        x={100} y={100} radius={40} lineWidth={20} totalValue={2000} lengthAngle={-360}
                         
-                        />
                         
                       <div className="col-sm-12 block">
                         <span class="badge badge-pill badge-secondary">
