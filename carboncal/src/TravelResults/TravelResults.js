@@ -4,8 +4,6 @@ import './TravelResults.css';
 import scrollToComponent from 'react-scroll-to-component';
 import SkyLight from 'react-skylight';
 import PieChart from 'react-minimal-pie-chart';
-import RoundChart from './RoundChart';
-
 
 
 class TravelResults extends Component {
@@ -93,11 +91,7 @@ class TravelResults extends Component {
                       </div>
                       <div className="badge badge-warning m-2 p-3" id="emission_text">
                         <span ><CountUp end={travel.emission*1000} duration={5}/> KG CO2</span>
-                      </div>
-                      
-                        <RoundChart data={travel.emission}/>
-                         
-                          
+                      </div>      
                         <PieChart 
                         data={[
                           { title: '', value: 2000-((travel.emission)*1000), color: this.handleColor(travel.emission)},
