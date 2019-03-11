@@ -3,6 +3,8 @@ import CountUp from 'react-countup';
 import './TravelResults.css';
 import scrollToComponent from 'react-scroll-to-component';
 import SkyLight from 'react-skylight';
+import PieChart from 'react-minimal-pie-chart';
+import CompareTravels from '../CompareTravels/CompareTravels';
 
 
 class TravelResults extends Component {
@@ -11,6 +13,7 @@ class TravelResults extends Component {
     this.state = {
       status: "LOADING",
       id:"",
+      showCompare: false,
     }
     }
 
@@ -39,6 +42,15 @@ class TravelResults extends Component {
       }
     }
 
+    saveTravelCompare(id){
+      let allResults = this.props.model.allResults;
+      for (var i in allResults){
+        if (allResults[i].travelID === (id)){
+          this.props.model.saveCompare(allResults[i]);
+        }
+      }
+    }
+
     handleColor(emission){ //Changes the Piechart color depending on emission
       if(emission > 2 ){
         return "#000000"
@@ -48,7 +60,14 @@ class TravelResults extends Component {
       }
     }
 
+    handleCompare(){
+      this.setState({
+        showCompare: true,
+    });
 
+    }
+
+   
 
 
     render() {
@@ -100,8 +119,10 @@ class TravelResults extends Component {
                           <span className="mr-2"id="distanceResult"><CountUp end={travel.distance} duration={5}/>  KM</span>
                         </span>
                       </div>
-                      <div className="col-sm-12">
+                      <div className="col-sm-12"> 
+                          <button type="button" onClick = {()=> {this.saveTravelCompare(travel.travelID)}} className="btn btn-success btn-lg">COMPARE</button>
                           <button type="button" onClick = {()=> {this.simpleDialog.show();this.saveUserTravel(travel.travelID)}} ref={(section) => { this.scrollTo = section; }} className="btn btn-success btn-lg">Add to my travels</button>
+                         
                           <SkyLight dialogStyles={myBigGreenDialog} hideOnOverlayClicked ref={ref => this.simpleDialog = ref} title="Added to list">
                           </SkyLight>
                     </div>
@@ -141,6 +162,7 @@ class TravelResults extends Component {
                     <div className="col-sm-12" id="chooseRideText">
                     <span><i id="infoSymbolThreeBig" className="fas fa-check-circle m-2"></i></span>
                     <span id="chooseTextBig">Your result</span>
+                    <button id="compare_button" onClick={() => {this.handleCompare()}}>COMPARE TRAVELS</button>
                     </div>
                 </div>
             </div>
@@ -150,6 +172,10 @@ class TravelResults extends Component {
 
               </div>
             </div>
+
+            {this.state.showCompare?
+             <CompareTravels key={this.state.key} model={this.props.model} ></CompareTravels>
+            :null}
 
             </React.Fragment>
 
