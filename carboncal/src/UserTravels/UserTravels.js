@@ -66,8 +66,6 @@ class UserList extends Component {
                             <span id="destinationResult" className="m-3">{travel.endPoint}</span>
                             
                         <span id="carbonListItems" className="round round-lg">{travel.emission}</span>
-                       
-                        <i onClick={()=> this.props.model.removeSavedTravel(travel)} className="far fa-times-circle"></i>
                         <button className="btn btn-info justify-content-center" onClick={() => this.handleMap(travel)}>
                         <i class="fas fa-th-list mr-2">Show Map</i>
                          </button>
