@@ -115,13 +115,8 @@ handleTravelSearch(){
                         {travelTypes}
                         {this.state.showMe?
                             <div className="col-sm-6" id="chooseNumberOfPeopleBox">
-                            <span className="badge badge-dark" id="formText">Number of people:</span>
                             <form className="form-group" id="form-group">
-                                <select className="custom-select" id="inlineFormCustomSelect" onChange={this.handleNumberOfTravelers}>
-                                    <option value="1">1</option>
-                                    <option value="2">2</option>
-                                    <option value="3">3</option>
-                                </select>
+                                <input className="form-control" id="inlineFormCustomSelect" placeholder="Type number of people in the car"onChange={this.handleNumberOfTravelers}></input>
                             </form>
                             </div>
                             :null}

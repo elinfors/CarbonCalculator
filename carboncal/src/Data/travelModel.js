@@ -13,6 +13,7 @@ class TravelModel extends ObservableModel {
     super();
     this.savedTravels = []; //fylls med objekt från API:t
     this.allResults = [];
+    this.compareTravels = [];
     this.numberOfTravelers = 1;
     }
 
@@ -62,7 +63,7 @@ class TravelModel extends ObservableModel {
     saveTravel(travel){
         this.savedTravels.push(travel);
         this.notifyObservers();
-        console.log(this.savedTravels);
+        //console.log(this.savedTravels);
       }
 
     removeSavedTravel(travel){
@@ -77,6 +78,26 @@ class TravelModel extends ObservableModel {
 
     getSavedTravels(){
         return this.savedTravels;
+    }
+
+    saveCompare(travel){
+      this.compareTravels.push(travel);
+      this.notifyObservers();
+      console.log(this.compareTravels);
+    }
+
+    removeComparedTravel(travel){
+      let allCompares = this.compareTravels;
+      for (var i in allCompares){
+          if (travel.id === allCompares[i].id){
+              allCompares.splice(i,1);
+          }
+      }
+      this.notifyObservers();
+    }
+
+    getComparedTravels(){
+      return this.compareTravels;
     }
 
     getTotalSavedEmission(){
