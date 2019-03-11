@@ -91,7 +91,7 @@ handleTravelSearch(){
         let travelTypes = null;
         travelTypes = travelTypesInstance.state.types.map(types =>(
             <div key={types.id} className="col-sm-2" id="chooseVehicleBox"> 
-                <button onClick={(e) => this.handleTravelType(e,types} id={types.value + "Button"} type="button" className="btn btn-danger btn-circle btn-xl m-4" style={{backgroundColor: types.color, borderColor: types.color}}>
+                <button onClick={(e) => this.handleTravelType(e,types)} id={types.value + "Button"} type="button" className="btn btn-danger btn-circle btn-xl m-4" style={{backgroundColor: types.color, borderColor: types.color}}>
                 <i className={types.image}></i>
                 </button>
                 <h5 className="badge badge-pill badge-light">{types.text}</h5>
