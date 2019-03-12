@@ -32,8 +32,9 @@ componentDidMount(){
      })
   }
 
-handleTravelType(travelType) {
-   travelTypesInstance.state.types.map(types => (types.value === travelType.value? types.zoom = 1.1 : types.zoom = 1))
+handleTravelType(event,travelType) {
+   // this.state.showZoom === travelType.value?
+   // event.target.style.zoom = 1.1 : event.target.style.zoom = 1
     document.getElementById('remindUser').style.visibility = "hidden";
     travelType.value === "smallCar"|| travelType.value === "mediumCar" || travelType.value === "largeCar" ? this.setState({
         travelType: travelType.value,
@@ -89,7 +90,7 @@ handleTravelSearch(){
     render() {
         let travelTypes = null;
         travelTypes = travelTypesInstance.state.types.map(types =>(
-            <div key={types.id} className="col-xs-2" id="chooseVehicleBox">
+            <div key={types.id} className="col-xs-2" id="chooseVehicleBox"> 
                 <button onClick={(e) => this.handleTravelType(e,types)} id={types.value + "Button"} type="button" className="btn btn-danger btn-circle btn-xl m-4" style={{backgroundColor: types.color, borderColor: types.color}}>
                 <i className={types.image}></i>
                 </button>
@@ -120,7 +121,7 @@ handleTravelSearch(){
                                 <input className="form-control" id="inlineFormCustomSelect" placeholder="Type number of people in the car"onChange={this.handleNumberOfTravelers}></input>
                             </form>
                         </div>
-                        :null}
+                        :null} 
                     </div>
                 </div>
             </div>
@@ -155,9 +156,9 @@ handleTravelSearch(){
                     <div className="p-3 mb-2 bg-danger text-white" id="remindUser"></div>
                     </div>
                 </div>
-
+                
             </div>
-
+            
             {this.state.showResult?
              <TravelResults key={this.state.key} model={this.props.model} ></TravelResults>
             :null}
