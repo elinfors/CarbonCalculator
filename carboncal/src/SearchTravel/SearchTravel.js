@@ -89,13 +89,15 @@ handleTravelSearch(){
     render() {
         let travelTypes = null;
         travelTypes = travelTypesInstance.state.types.map(types =>(
+<<<<<<< HEAD
             <div key={types.id} className="col-xs-2" id="chooseVehicleBox">
+=======
+            <div key={types.id} className="col-sm-2" id="chooseVehicleBox"> 
+>>>>>>> parent of 4e1dd17... searchtravel responsiv
                 <button onClick={(e) => this.handleTravelType(e,types)} id={types.value + "Button"} type="button" className="btn btn-danger btn-circle btn-xl m-4" style={{backgroundColor: types.color, borderColor: types.color}}>
                 <i className={types.image}></i>
                 </button>
-                <div className="col-sm-12">
-                    <h5 className="badge badge-pill badge-light">{types.text}</h5>
-                </div>
+                <h5 className="badge badge-pill badge-light">{types.text}</h5>
             </div>
             ));
         return (
@@ -115,12 +117,17 @@ handleTravelSearch(){
                     <div className="col-sm-12" id="vehicleSymbolContainer">
                         {travelTypes}
                         {this.state.showMe?
-                        <div className="col-sm-6" id="chooseNumberOfPeopleBox">
+                            <div className="col-sm-6" id="chooseNumberOfPeopleBox">
                             <form className="form-group" id="form-group">
                                 <input className="form-control" id="inlineFormCustomSelect" placeholder="Type number of people in the car"onChange={this.handleNumberOfTravelers}></input>
                             </form>
+<<<<<<< HEAD
                         </div>
                         :null}
+=======
+                            </div>
+                            :null}
+>>>>>>> parent of 4e1dd17... searchtravel responsiv
                     </div>
                 </div>
             </div>
