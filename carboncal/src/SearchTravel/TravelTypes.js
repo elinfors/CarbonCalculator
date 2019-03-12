@@ -9,7 +9,7 @@ class TravelTypes extends Component {
             image: "fas fa-car-side",
             value: "smallCar",
             text: "Small Car",
-            color:"#EF9494",
+            color:"#EF9494"
         },
         {
             id: "mediumCarButton",
