@@ -98,3 +98,15 @@
     text-align:center;
     visibility:hidden;
 }
+
+@media only screen and (max-width: 500px) {
+    #chooseVehicleBox {
+      font-size:16px;
+    }
+  }
+
+  @media only screen and (min-width: 500px) {
+    #chooseVehicleBox {
+      padding:0px 20px 0px 20px;
+    }
+  }
