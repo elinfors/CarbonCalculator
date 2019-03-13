@@ -2,6 +2,11 @@
     margin-top:20px;
     
 }
+h6{
+    font-family: 'Exo 2', sans-serif;
+    color:white;
+}
+
 #chooseRideText{
     background-color:#1b1b1b;
     font-family: 'Exo 2', sans-serif;
@@ -78,7 +83,11 @@
 }
 
 #form-group{
-    padding:10px;
+    padding:5px;
+}
+
+#inlineFormCustomSelect{
+    text-align:center;
 }
 #formText{
     font-size:20px;
@@ -96,5 +105,9 @@
 
 #remindUser{
     text-align:center;
-    visibility:hidden;
+}
+
+#numberOfCarTravelers{
+    display:inline-block;
+    margin:10px;
 }

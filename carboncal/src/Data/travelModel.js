@@ -1,6 +1,7 @@
 
 import ObservableModel from "./ObservableModel"
 import carbonCalculator from "./carbonCalculator"
+import travelTypesInstance from './TravelTypes'
 const BASE_URL = "http://dev.virtualearth.net/REST/V1/Routes/driving?"
 //const BASE_URL = "https://maps.googleapis.com/maps/api/distancematrix/json?units=imperial&"
 const httpOptions = {
@@ -22,10 +23,10 @@ class TravelModel extends ObservableModel {
         this.getRoute(userTravelObject.startPoint,userTravelObject.endPoint).then(data => {
           let travelData = data.resourceSets[0].resources[0];
           userTravelObject["distance"] = travelData.travelDistance;
-          userTravelObject["travelID"] = Math.random().toString(36).substr(2, 9);
+          userTravelObject["travelID"] = Math.random().toString(36).substr(2, 9); //ändra?
           userTravelObject["key"] = travelData.id;
-          userTravelObject["longitud"] = travelData.id;
-          userTravelObject["latitud"] = travelData.id;
+          userTravelObject["longitud"] = travelData.bbox[0];
+          userTravelObject["latitud"] = travelData.bbox[1];
           userTravelObject["emission"] = carbonCalculator.calculateCarbonEmission(travelData.travelDistance,userTravelObject.travelType,userTravelObject.numberOfTravelers);
           this.allResults.push(userTravelObject);
           console.log(userTravelObject);
@@ -61,6 +62,9 @@ class TravelModel extends ObservableModel {
       }
 
     saveTravel(travel){
+        let date = new Date();
+        travel["date"] = date.getDate() + " " + date.getMonth() + " " + date.getFullYear();
+        console.log(travel["date"])
         this.savedTravels.push(travel);
         this.notifyObservers();
         //console.log(this.savedTravels);
@@ -81,14 +85,20 @@ class TravelModel extends ObservableModel {
     }
 
     saveCompare(travel){
-      this.compareTravels.push(travel);
+      let AllTravelTypeEmission = travelTypesInstance.state.types.map(types =>(
+          carbonCalculator.calculateCarbonEmission(travel.distance,types.value,travel.numberOfTravelers)
+      ))
+      travel["AllTravelTypeEmission"] = AllTravelTypeEmission;
+      travel["maxEmission"] = Math.max.apply(null, AllTravelTypeEmission);
+      travel["minEmission"] = Math.min.apply(null, AllTravelTypeEmission)
+      this.compareTravels.push(travel);      
       this.notifyObservers();
       console.log(this.compareTravels);
     }
 
     removeComparedTravel(travel){
       let allCompares = this.compareTravels;
-      for (var i in allCompares){
+      for (let i in allCompares){
           if (travel.id === allCompares[i].id){
               allCompares.splice(i,1);
           }
@@ -113,7 +123,7 @@ class TravelModel extends ObservableModel {
 
     removeResult(travel){
           let results = this.allResults;
-          for (var i in results){
+          for (let i in results){
               if (travel.id === results[i].id){
                   results.splice(i,1);
               }
