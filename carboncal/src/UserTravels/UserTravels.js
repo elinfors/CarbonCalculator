@@ -59,11 +59,12 @@ class UserList extends Component {
                         <i id="delete_button"onClick={()=> this.props.model.removeSavedTravel(travel)} className="far fa-times-circle"></i>
                         </div>
                         <div className="row">
+                        <span className="m-3">{travel.date}</span>
                         <span><i className={travel.image} id="travelIconInUserTravel"style={{backgroundColor: travel.color, borderColor: travel.color, width: "70px", height:"70px", lineHeight: "3.5"}}></i></span>
+                        <span id="destinationResult" className="m-3">{travel.startPoint}</span>
+                        <i id="rightArrow" className="fas fa-arrow-right m-2"></i>
+                        <span id="destinationResult" className="m-3">{travel.endPoint}</span>
                             
-                            <span id="destinationResult" className="m-3">{travel.startPoint}</span>
-                            <i id="rightArrow" className="fas fa-arrow-right m-2"></i>
-                            <span id="destinationResult" className="m-3">{travel.endPoint}</span>
                             
                         <span id="carbonListItems" className="round round-lg">{travel.emission}</span>
                         <button className="btn btn-info justify-content-center" onClick={() => this.handleMap(travel)}>
@@ -113,7 +114,8 @@ class UserList extends Component {
             <TopBar currentSavedTravels={this.props.model.savedTravels.length}></TopBar>
             <div id="item_block_container" className="container h-100">
             <div className="d-block p-2 text-white">
-            <DragSortableList items={userTravelList} placeholder={placeholder} onSort={onSort} dropBackTransitionDuration={0.3} type="vertical"/>
+            {userTravelList}
+            {/*<DragSortableList items= placeholder={placeholder} onSort={onSort} dropBackTransitionDuration={0.3} type="vertical"/>*/}
             </div>
             </div>
             </React.Fragment>
