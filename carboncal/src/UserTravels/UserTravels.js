@@ -66,7 +66,7 @@ class UserList extends Component {
         userTravelList = this.state.savedTravels.map((travel,index) =>(
            
                     <div id={travel.id + "savedTravels"}>
-                        <div id="full_badge">
+                        <div className="container" id="full_badge">
                             <div className="col-sm-12" id="itemListRow">
                                 <span className="m-2">{travel.date}</span>
                                 <span className="m-2">
@@ -77,8 +77,8 @@ class UserList extends Component {
                                 <span><i id="delete_button"onClick={()=> this.props.model.removeSavedTravel(travel)} className="m-2 far fa-times-circle"></i></span>
                             </div>
                             <div className="col-sm-12">
-                                <span><i className={travel.image} id="travelIconInUserTravel"style={{backgroundColor: travel.color, borderColor: travel.color, width: "70px", height:"70px", lineHeight: "3.5"}}></i></span>
-                                <span id="carbonListItems" className="round round-lg">{travel.emission}</span>
+                                <i className={travel.image} id="travelIconInUserTravel"style={{backgroundColor: travel.color, borderColor: travel.color, width: "50px", height:"50px", lineHeight: "3.5"}}></i>
+                                <span id="carbonListItems" className="round round-lg m-2">{Math.round(travel.emission*1000)}</span>
                                 <button className="btn btn-info justify-content-center" onClick={() => this.handleMap(travel)}>
                                     <i class="fas fa-th-list mr-2">Show Map</i>
                                 </button>
@@ -133,6 +133,7 @@ class UserList extends Component {
             <div className="col-sm-6">
                     <p>heej</p>
             </div>
+            
             </div>
             {/*<DragSortableList items= placeholder={placeholder} onSort={onSort} dropBackTransitionDuration={0.3} type="vertical"/>*/}
             </div>

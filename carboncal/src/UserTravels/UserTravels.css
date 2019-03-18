@@ -69,11 +69,11 @@
 #travelIconInUserTravel{
     font-size: 25px;
     float: left;
-    margin-left: 25px;
     border-radius: 50px;
     color: white;
     font-weight: bold;
-    font-size:20px;
+    line-height:20px;
+    
 }
 
 #item_block_container{
@@ -82,7 +82,7 @@
 
 #delete_button{
     margin-right: 16px;
-    font-size:12px;
+    font-size:18px;
 }
 .customClass{
     height: 70%;
