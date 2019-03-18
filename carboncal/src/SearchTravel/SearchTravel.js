@@ -32,9 +32,8 @@ componentDidMount(){
      })
   }
 
-handleTravelType(event,travelType) {
-   // this.state.showZoom === travelType.value?
-   // event.target.style.zoom = 1.1 : event.target.style.zoom = 1
+handleTravelType(travelType) {
+   travelTypesInstance.state.types.map(types => (types.value === travelType.value? types.zoom = 1.1 : types.zoom = 1))
     document.getElementById('remindUser').style.visibility = "hidden";
     travelType.value === "smallCar"|| travelType.value === "mediumCar" || travelType.value === "largeCar" ? this.setState({
         travelType: travelType.value,
@@ -148,14 +147,10 @@ handleTravelSearch(){
                         </div>
                     </form>
                     <div className="col-sm-12" id="confirmTravelButton">
-<<<<<<< HEAD
                         <button type="button" className="btn btn-success btn-lg" onClick={() => {this.state.travelType === "" ?this.remindUser():this.handleTravelSearch()}}>Get your result</button>
                     </div>
                     <div className="col-sm-12">
                     <div className="p-3 mb-2 bg-danger text-white" id="remindUser"></div>
-=======
-                        <button type="button" className="btn btn-success btn-lg" onClick={() => this.remindUser()}>Get your result</button>
->>>>>>> parent of b0d2653... Flygresor.se
                     </div>
                 </div>
                 
