@@ -72,6 +72,9 @@ class UserList extends Component {
                         <i id="rightArrow" className="fas fa-arrow-right m-2"></i>
                         <span id="destinationResult" className="m-3">{travel.endPoint}</span>
                             
+<<<<<<< HEAD
+>>>>>>> parent of b0d2653... Flygresor.se
+=======
 >>>>>>> parent of b0d2653... Flygresor.se
                             
                         <span id="carbonListItems" className="round round-lg">{travel.emission}</span>
