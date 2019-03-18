@@ -193,11 +193,7 @@ handleTravelSearch(){
                         </div>
                     </form>
                     <div className="col-sm-12" id="confirmTravelButton">
-<<<<<<< HEAD
                         <button type="button" className="btn btn-success btn-lg" onClick={() => this.remindUser()}>Get your result</button>
-=======
-                        <button type="button" className="btn btn-info btn-lg" onClick={() => this.remindUser()}>Get your result</button>
->>>>>>> parent of 57c9d71... Merge branch 'master' of https://gits-15.sys.kth.se/elinfors/CarbonCalculator
                     </div>
                 </div>
                 
