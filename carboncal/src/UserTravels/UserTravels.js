@@ -81,7 +81,7 @@ class UserList extends Component {
                             </div>
                             <div className="col-sm-12">
                                 <span><i className={travel.image} id="travelIconInUserTravel"style={{backgroundColor: travel.color, borderColor: travel.color, width: "70px", height:"70px", lineHeight: "3.5"}}></i></span>
-                                <span id="carbonListItems" className="round round-lg">{travel.emission}</span>
+                                <span id="carbonListItems" className="round round-lg">{(travel.emission*1000).toFixed()}</span>
                                 <button className="btn btn-info justify-content-center" onClick={() => this.handleMap(travel)}>
                                     <i class="fas fa-th-list mr-2">Show Map</i>
                                 </button>
@@ -135,7 +135,9 @@ class UserList extends Component {
             {/*<DragSortableList items= placeholder={placeholder} onSort={onSort} dropBackTransitionDuration={0.3} type="vertical"/>*/}
             </div>
             <div className="col-sm-6">
-            {this.state.totalEmission}
+            <h3>
+            {(this.state.totalEmission*1000).toFixed()}
+            </h3>
             </div>
             </div>
             </div>
