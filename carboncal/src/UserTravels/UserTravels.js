@@ -10,17 +10,15 @@ class UserList extends Component {
         this.state = {
             savedTravels: this.props.model.savedTravels,
             directions: {
-            wayPoints:[{address : ""},{address : ""}]},
-            requestOptions: {maxRoutes:2,
-            routeMode:"driving"},
-            showResult:false,
-            totalEmission: 0
+                wayPoints:[{address : ""},{address : ""}]},
+                requestOptions: {maxRoutes:2,
+                routeMode:"driving"},
+            showResult:false
             } 
             
         }
 
     update(){
-        
         this.setState({
           savedTravels: this.props.model.savedTravels,
          })
@@ -46,14 +44,6 @@ class UserList extends Component {
             showResult:false
            })  
     }
-
-    calculateTotalEmission(){
-        let totalEmission = 0;
-        this.state.savedTravels.map(travel =>(
-            totalEmission += travel.emission
-        ))
-        console.log(totalEmission);
-    }
       
     
       
@@ -64,16 +54,18 @@ class UserList extends Component {
         userTravelList = this.state.savedTravels.map((travel,index) =>(
             {content: <div id={travel.id + "savedTravels"} className="container h-100">
                     
-                        <div id="full_badge" className="badge badge-dark">
+                        <div id="full_badge"className="badge badge-dark">
                         <div className="row justify-content-end">
                         <i id="delete_button"onClick={()=> this.props.model.removeSavedTravel(travel)} className="far fa-times-circle"></i>
                         </div>
                         <div className="row">
                         <span className="m-3">{travel.date}</span>
+                        <span><i className={travel.image} id="travelIconInUserTravel"style={{backgroundColor: travel.color, borderColor: travel.color, width: "70px", height:"70px", lineHeight: "3.5"}}></i></span>
                         <span id="destinationResult" className="m-3">{travel.startPoint}</span>
                         <i id="rightArrow" className="fas fa-arrow-right m-2"></i>
                         <span id="destinationResult" className="m-3">{travel.endPoint}</span>
-                        <span><i className={travel.image} id="travelIconInUserTravel"style={{backgroundColor: travel.color, borderColor: travel.color, width: "70px", height:"70px", lineHeight: "3.5"}}></i></span>
+                            
+                            
                         <span id="carbonListItems" className="round round-lg">{travel.emission}</span>
                         <button className="btn btn-info justify-content-center" onClick={() => this.handleMap(travel)}>
                         <i class="fas fa-th-list mr-2">Show Map</i>
@@ -123,12 +115,10 @@ class UserList extends Component {
             <div id="item_block_container" className="container h-100">
             <div className="d-block p-2 text-white">
             {userTravelList}
-            {this.calculateTotalEmission()}
             {/*<DragSortableList items= placeholder={placeholder} onSort={onSort} dropBackTransitionDuration={0.3} type="vertical"/>*/}
             </div>
             </div>
             </React.Fragment>
-        
           );
           
     }
