@@ -155,6 +155,7 @@ handleTravelSearch(){
                     <div className="col-sm-12" id="confirmTravelButton">
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 >>>>>>> parent of 778e56c... Compare
                         <button type="button" className="btn btn-success btn-lg" onClick={() => {this.state.travelType === "" ?this.remindUser():this.handleTravelSearch()}}>Get your result</button>
@@ -167,6 +168,9 @@ handleTravelSearch(){
 >>>>>>> parent of b0d2653... Flygresor.se
 =======
 >>>>>>> parent of 778e56c... Compare
+=======
+                        <button type="button" className="btn btn-success btn-lg" onClick={() => this.remindUser()}>Get your result</button>
+>>>>>>> parent of b0d2653... Flygresor.se
                     </div>
                 </div>
                 
