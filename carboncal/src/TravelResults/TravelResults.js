@@ -77,8 +77,6 @@ class TravelResults extends Component {
 
     }
 
-   
-
 
     render() {
       //console.log(typeof this.handleColor(3));

@@ -82,12 +82,12 @@ handleNumberOfTravelers = (event) => {
 }
 
 remindUser(){
-    
+
     if (this.state.travelType === ""){
         this.setState({
             warning: "Enter your type of ride!",
-            showWarning: true 
-        })  
+            showWarning: true
+        })
     }
     else if(this.state.startPoint === ""){
         this.setState({
@@ -99,7 +99,7 @@ remindUser(){
         this.setState({
             warning: "Enter where your going!",
             showWarning: true
-        })  
+        })
     }
     else{
         this.handleTravelSearch()
@@ -115,11 +115,17 @@ handleTravelSearch(){
 }
     render() {
         let travelTypes = travelTypesInstance.state.types.map(types =>(
-            <div key={types.id} className="col-sm-2" id="chooseVehicleBox"> 
-                <button onClick={() => this.handleTravelType(types)} id={types.value + "Button"} type="button" className="btn btn-danger btn-circle btn-xl m-4" style={{backgroundColor: types.color, borderColor: types.color, zoom:types.zoom}}>
+            <div key={types.id} className="col-xs-2" id="chooseVehicleBox">
+                
+                <div className="col-sm-12">
+                    <button onClick={() => this.handleTravelType(types)} id={types.value + "Button"} type="button" className="btn btn-danger btn-circle btn-xl m-4" style={{backgroundColor: types.color, borderColor: types.color, zoom:types.zoom}}>
+                
                 <i className={types.image}></i>
                 </button>
-                <h5 className="badge badge-pill badge-light">{types.text}</h5>
+                </div>
+                <div className="col-sm-12">
+                    <h5 className="badge badge-pill badge-light">{types.text}</h5>
+                </div>
             </div>
             ));
             let carTravelersList = travelTypesInstance.state.types.map((types,index) =>(
@@ -134,13 +140,13 @@ handleTravelSearch(){
       <React.Fragment>
 
             <TopBar currentSavedTravels={this.props.model.savedTravels.length}/>
-            
+
             <div id="chooseRideContainer" className="container h-100">
                 <div className="d-flex justify-content-center h-100">
                     <div className="col-sm-12" id="chooseRideText">
                         <span><i id="infoSymbolOneBig" className="fas fa-check-circle m-2"></i></span>
                         <span id="chooseTextBig">Choose your ride</span>
-                        
+
                     </div>
                 </div>
             </div>
@@ -196,9 +202,9 @@ handleTravelSearch(){
                         <button type="button" className="btn btn-info btn-lg" onClick={() => this.remindUser()}>Get your result</button>
                     </div>
                 </div>
-                
+
             </div>
-            
+
             {this.state.showResult?
                 <TravelResults model={this.props.model}/>
             :null}
