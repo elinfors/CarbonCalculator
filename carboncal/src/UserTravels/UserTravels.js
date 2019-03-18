@@ -55,9 +55,6 @@ class UserList extends Component {
         ))
         console.log(totalEmission);
     }
-      
-    
-      
     
     render() { 
        
