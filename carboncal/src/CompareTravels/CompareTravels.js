@@ -1,13 +1,12 @@
 import React, { Component } from 'react';
 import scrollToComponent from 'react-scroll-to-component';
-import travelTypesInstance from '../Data/TravelTypes';
-import CountUp from 'react-countup';
 import './CompareTravels.css';
 
 class CompareTravels extends Component {
     constructor(props){
     super(props);
     this.state = {
+      status: "LOADING",
       id:"",
       compareTravels: this.props.model.compareTravels
     }
@@ -23,38 +22,58 @@ class CompareTravels extends Component {
     componentDidMount(){
         this.props.model.addObserver(this);
         this.setState({
-          compareTravels: this.props.model.compareTravels,
+          allResults: this.props.model.allResults,
+          status: "LOADED"
          })
       }
+  
 
+    saveUserTravel(id) {
+
+        let allResults = this.props.model.allResults;
+        for (var i in allResults){
+            if (allResults[i].travelID === (id)){
+              this.props.model.saveTravel(allResults[i]);
+            }
+        }
+      }
 
     render(){
         let travelList = null;
-                travelList =  <div key="compareTravelsResult" className="col-sm-12" id="compareTravelsResult">
-                  <table className="table table-dark">
-                  <thead>
-                    <tr>
-                      <th>Rides</th>
-                      {travelTypesInstance.state.types.map(travelType =>(
-                       <th style={{textAlign:"center", backgroundColor: travelType.color, borderColor: travelType.color}}><i className={travelType.image}> {travelType.text}</i></th>
-                      ))}
-                      <th><i className="fas fa-trash"></i></th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                  {this.state.compareTravels.map(travel => (
-                    <tr>
-                      <th> {travel.startPoint} <i id="rightArrow" className="fas fa-arrow-right m-2"></i> {travel.endPoint} (KG C02/person)</th>
-                      {travel.AllTravelTypeEmission.map(emission => ( 
-                      <td> {emission === travel.maxEmission ? <span className="text-danger">{<CountUp end={emission*1000} duration={3}/>}</span> : emission === travel.minEmission ? <span className="text-success"><CountUp end={emission*1000} duration={3}/></span> : <CountUp end={emission*1000} duration={3}/> }</td>))}
-                      <td><i onClick={()=>this.props.model.removeComparedTravel(travel)} className="fas fa-ban"></i></td>
-                    </tr>
-                     ))}
-                  </tbody>
-                </table>
-                </div>
-              
-               
+        switch (this.state.status){
+            case "LOADING":
+                travelList = <em> Loading... </em>;
+                break;
+            case "LOADED":
+                travelList =  this.state.compareTravels.map((travel,index) =>(
+                    <div key={travel.id+index} className = "col-sm-3" id="travelItemResult">
+                    <div className="col-sm-12 justify-content-center mt-2" key={"point" + travel.id} id="start_end_text">
+                        <span className="badge badge-pill badge-dark">{travel.startPoint}</span>
+                        <br/>
+                        <i className="fas fa-arrow-right m-2"></i>
+                        <br/>
+                        <span className="badge badge-pill badge-dark">{travel.endPoint}</span>
+                      </div>
+                      <div className="badge badge-warning m-2 p-3" id="emission_text">
+                        <span > {travel.emission*1000} kgCO2</span>
+                      </div>      
+                      <div className="col-sm-12 block">
+                        <span class="badge badge-pill badge-secondary">
+                          <span className="mr-2"><i className={travel.image} id="travelIcon"style={{backgroundColor: travel.color, borderColor: travel.color}}></i></span>
+                          <span className="mr-2"id="distanceResult">{travel.distance} km</span>
+                        </span>
+                      </div>
+                      <div className="col-sm-12"> 
+                          <button type="button" onClick = {()=> {this.simpleDialog.show();this.saveUserTravel(travel.travelID)}} ref={(section) => { this.scrollTo = section; }} className="btn btn-success btn-lg">Add to my travels</button>
+                    </div>
+                    </div>
+                ))
+            break;
+
+            default:
+                travelList = <b>Failed to load data, please try again</b>;
+                }
+
                 return(
                     <React.Fragment>
                         <span>{travelList}</span>

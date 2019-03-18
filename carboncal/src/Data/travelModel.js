@@ -1,7 +1,6 @@
 
 import ObservableModel from "./ObservableModel"
 import carbonCalculator from "./carbonCalculator"
-import travelTypesInstance from './TravelTypes'
 const BASE_URL = "http://dev.virtualearth.net/REST/V1/Routes/driving?"
 //const BASE_URL = "https://maps.googleapis.com/maps/api/distancematrix/json?units=imperial&"
 const httpOptions = {
@@ -23,10 +22,10 @@ class TravelModel extends ObservableModel {
         this.getRoute(userTravelObject.startPoint,userTravelObject.endPoint).then(data => {
           let travelData = data.resourceSets[0].resources[0];
           userTravelObject["distance"] = travelData.travelDistance;
-          userTravelObject["travelID"] = Math.random().toString(36).substr(2, 9); //ändra?
+          userTravelObject["travelID"] = Math.random().toString(36).substr(2, 9);
           userTravelObject["key"] = travelData.id;
-          userTravelObject["longitud"] = travelData.bbox[0];
-          userTravelObject["latitud"] = travelData.bbox[1];
+          userTravelObject["longitud"] = travelData.id;
+          userTravelObject["latitud"] = travelData.id;
           userTravelObject["emission"] = carbonCalculator.calculateCarbonEmission(travelData.travelDistance,userTravelObject.travelType,userTravelObject.numberOfTravelers);
           this.allResults.push(userTravelObject);
           console.log(userTravelObject);
