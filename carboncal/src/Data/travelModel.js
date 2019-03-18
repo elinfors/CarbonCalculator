@@ -1,4 +1,4 @@
-
+import travelTypesInstance from '../SearchTravel/TravelTypes'
 import ObservableModel from "./ObservableModel"
 import carbonCalculator from "./carbonCalculator"
 const BASE_URL = "http://dev.virtualearth.net/REST/V1/Routes/driving?"
