@@ -23,6 +23,7 @@ class UserList extends Component {
         
         this.setState({
           savedTravels: this.props.model.savedTravels,
+          totalEmission: this.calculateTotalEmission()
          })
       }
   
@@ -31,6 +32,7 @@ class UserList extends Component {
         this.props.model.addObserver(this);
         this.setState({
           savedTravels: this.props.model.savedTravels,
+          totalEmission: this.calculateTotalEmission(),
          })
       }
 
@@ -53,7 +55,8 @@ class UserList extends Component {
         this.state.savedTravels.map(travel =>(
             totalEmission += travel.emission
         ))
-        console.log(totalEmission);
+        return totalEmission;
+        //console.log(this.totalEmission);
     }
       
     
@@ -75,7 +78,7 @@ class UserList extends Component {
                         <i id="rightArrow" className="fas fa-arrow-right m-2"></i>
                         <span id="destinationResult" className="m-3">{travel.endPoint}</span>
                         <span><i className={travel.image} id="travelIconInUserTravel"style={{backgroundColor: travel.color, borderColor: travel.color, width: "70px", height:"70px", lineHeight: "3.5"}}></i></span>
-                        <span id="carbonListItems" className="round round-lg">{travel.emission}</span>
+                        <span id="carbonListItems" className="round round-lg">{Math.round(travel.emission*1000)}</span>
                         <button className="btn btn-info justify-content-center" onClick={() => this.handleMap(travel)}>
                         <i class="fas fa-th-list mr-2">Show Map</i>
                          </button>
@@ -122,8 +125,11 @@ class UserList extends Component {
             <div id="item_block_container" className="container h-100">
             <div className="d-block p-2 text-white">
             {userTravelList}
-            {this.calculateTotalEmission()}
+    
             {/*<DragSortableList items= placeholder={placeholder} onSort={onSort} dropBackTransitionDuration={0.3} type="vertical"/>*/}
+            </div>
+            <div className="col-md-12">
+            {this.state.totalEmission}
             </div>
             </div>
             </React.Fragment>
