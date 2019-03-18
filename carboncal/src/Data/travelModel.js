@@ -108,15 +108,11 @@ class TravelModel extends ObservableModel {
       for (let i in allCompares){
 <<<<<<< HEAD
 <<<<<<< HEAD
-<<<<<<< HEAD
           if (travel.id === allCompares[i].id && travel.travelType === allCompares[i].travelType ){
 =======
       for (var i in allCompares){
           if (travel.id === allCompares[i].id){
 >>>>>>> parent of 778e56c... Compare
-=======
-          if (travel.id === allCompares[i].id){
->>>>>>> parent of b0d2653... Flygresor.se
 =======
           if (travel.id === allCompares[i].id){
 >>>>>>> parent of b0d2653... Flygresor.se
@@ -150,15 +146,11 @@ class TravelModel extends ObservableModel {
           for (let i in results){
 <<<<<<< HEAD
 <<<<<<< HEAD
-<<<<<<< HEAD
               if (travel.id === results[i].id && travel.travelType === results[i].travelType){
 =======
           for (var i in results){
               if (travel.id === results[i].id){
 >>>>>>> parent of 778e56c... Compare
-=======
-              if (travel.id === results[i].id){
->>>>>>> parent of b0d2653... Flygresor.se
 =======
               if (travel.id === results[i].id){
 >>>>>>> parent of b0d2653... Flygresor.se
