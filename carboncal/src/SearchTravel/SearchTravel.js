@@ -32,9 +32,8 @@ componentDidMount(){
      })
   }
 
-handleTravelType(event,travelType) {
-   // this.state.showZoom === travelType.value?
-   // event.target.style.zoom = 1.1 : event.target.style.zoom = 1
+handleTravelType(travelType) {
+   travelTypesInstance.state.types.map(types => (types.value === travelType.value? types.zoom = 1.1 : types.zoom = 1))
     document.getElementById('remindUser').style.visibility = "hidden";
     travelType.value === "smallCar"|| travelType.value === "mediumCar" || travelType.value === "largeCar" ? this.setState({
         travelType: travelType.value,
