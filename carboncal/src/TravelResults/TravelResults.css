@@ -112,3 +112,26 @@ box-shadow: 0px 0px 31px -5px rgba(0,0,0,0.75);
     float:right;
     margin-top: 10px;
 }
+
+#progress-bar{
+    color: black;
+    background-color: #ffc300;
+    font-style: bold;
+    text-align: center;
+
+}
+
+.fa-plus-square{
+    font-size: 50px;
+    margin: 20px 20px 20px 20px;
+    
+}
+
+.fa-copy{
+    font-size: 50px;
+    margin: 20px 20px 20px 20px;
+}
+
+.fa-plus-square:hover,.fa-copy:hover{
+    color: #33393f;
+}
