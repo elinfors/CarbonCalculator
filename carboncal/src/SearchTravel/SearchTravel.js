@@ -193,7 +193,7 @@ handleTravelSearch(){
                         </div>
                     </form>
                     <div className="col-sm-12" id="confirmTravelButton">
-                        <button type="button" className="btn btn-success btn-lg" onClick={() => this.remindUser()}>Get your result</button>
+                        <button type="button" className="btn btn-info btn-lg" onClick={() => this.remindUser()}>Get your result</button>
                     </div>
                 </div>
                 

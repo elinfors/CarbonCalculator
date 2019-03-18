@@ -6,6 +6,8 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background-image: url("https://www.freeiconspng.com/uploads/white-clouds-png-15.png");
+  /*background-image: url("http://www.agongroup.mk/images/home/energy1.png")*/
 }
 .container{
   padding:0px !important;
