@@ -61,6 +61,7 @@ class TravelModel extends ObservableModel {
       }
 
     saveTravel(travel){
+<<<<<<< HEAD
         let date = new Date();
         let month, day = 0
         date.getDate() < 10 ? day = "0" + date.getDate(): day = date.getDate();
@@ -68,6 +69,8 @@ class TravelModel extends ObservableModel {
         travel["date"] = day + " " + month + " " + date.getFullYear();
 
         console.log(travel["date"])
+=======
+>>>>>>> parent of 778e56c... Compare
         this.savedTravels.push(travel);
         this.notifyObservers();
         //console.log(this.savedTravels);
@@ -88,6 +91,7 @@ class TravelModel extends ObservableModel {
     }
 
     saveCompare(travel){
+<<<<<<< HEAD
       let AllTravelTypeEmission = travelTypesInstance.state.types.map(types =>(
           carbonCalculator.calculateCarbonEmission(travel.distance,types.value,travel.numberOfTravelers)
       ))
@@ -95,14 +99,22 @@ class TravelModel extends ObservableModel {
       travel["maxEmission"] = Math.max.apply(null, AllTravelTypeEmission);
       travel["minEmission"] = Math.min.apply(null, AllTravelTypeEmission);
       this.compareTravels.push(travel);      
+=======
+      this.compareTravels.push(travel);
+>>>>>>> parent of 778e56c... Compare
       this.notifyObservers();
       console.log(this.compareTravels);
     }
 
     removeComparedTravel(travel){
       let allCompares = this.compareTravels;
+<<<<<<< HEAD
       for (let i in allCompares){
           if (travel.id === allCompares[i].id && travel.travelType === allCompares[i].travelType ){
+=======
+      for (var i in allCompares){
+          if (travel.id === allCompares[i].id){
+>>>>>>> parent of 778e56c... Compare
               allCompares.splice(i,1);
           }
       }
@@ -126,8 +138,13 @@ class TravelModel extends ObservableModel {
 
     removeResult(travel){
           let results = this.allResults;
+<<<<<<< HEAD
           for (let i in results){
               if (travel.id === results[i].id && travel.travelType === results[i].travelType){
+=======
+          for (var i in results){
+              if (travel.id === results[i].id){
+>>>>>>> parent of 778e56c... Compare
                   results.splice(i,1);
               }
           }
