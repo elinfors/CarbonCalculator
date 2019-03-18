@@ -63,7 +63,11 @@ class TravelModel extends ObservableModel {
     saveTravel(travel){
 <<<<<<< HEAD
         let date = new Date();
-        travel["date"] = date.getDate() + " " + date.getMonth() + " " + date.getFullYear();
+        let month, day = 0
+        date.getDate() < 10 ? day = "0" + date.getDate(): day = date.getDate();
+        date.getMonth() < 10 ? month = "0" + date.getMonth(): month = date.getMonth();
+        travel["date"] = day + " " + month + " " + date.getFullYear();
+
         console.log(travel["date"])
 =======
 >>>>>>> parent of 778e56c... Compare
@@ -75,7 +79,7 @@ class TravelModel extends ObservableModel {
     removeSavedTravel(travel){
           let list = this.savedTravels;
           for (var i in list){
-              if (travel.id === list[i].id){
+              if (travel.id === list[i].id && travel.travelType === list[i].travelType){
                   list.splice(i,1);
               }
           }
@@ -93,7 +97,7 @@ class TravelModel extends ObservableModel {
       ))
       travel["AllTravelTypeEmission"] = AllTravelTypeEmission;
       travel["maxEmission"] = Math.max.apply(null, AllTravelTypeEmission);
-      travel["minEmission"] = Math.min.apply(null, AllTravelTypeEmission)
+      travel["minEmission"] = Math.min.apply(null, AllTravelTypeEmission);
       this.compareTravels.push(travel);      
 =======
       this.compareTravels.push(travel);
@@ -106,15 +110,11 @@ class TravelModel extends ObservableModel {
       let allCompares = this.compareTravels;
 <<<<<<< HEAD
       for (let i in allCompares){
-<<<<<<< HEAD
           if (travel.id === allCompares[i].id && travel.travelType === allCompares[i].travelType ){
 =======
       for (var i in allCompares){
           if (travel.id === allCompares[i].id){
 >>>>>>> parent of 778e56c... Compare
-=======
-          if (travel.id === allCompares[i].id){
->>>>>>> parent of b0d2653... Flygresor.se
               allCompares.splice(i,1);
           }
       }
@@ -140,15 +140,11 @@ class TravelModel extends ObservableModel {
           let results = this.allResults;
 <<<<<<< HEAD
           for (let i in results){
-<<<<<<< HEAD
               if (travel.id === results[i].id && travel.travelType === results[i].travelType){
 =======
           for (var i in results){
               if (travel.id === results[i].id){
 >>>>>>> parent of 778e56c... Compare
-=======
-              if (travel.id === results[i].id){
->>>>>>> parent of b0d2653... Flygresor.se
                   results.splice(i,1);
               }
           }
