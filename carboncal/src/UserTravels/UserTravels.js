@@ -40,6 +40,7 @@ class UserList extends Component {
             directions: {
                 wayPoints:[{address : travel.startPoint},{address : travel.endPoint}]
             },
+            center: [travel.longitud,travel.latitud],
             showResult:true
            }):
         this.setState({
@@ -62,7 +63,7 @@ class UserList extends Component {
        
         let userTravelList = null;
         userTravelList = this.state.savedTravels.map((travel,index) =>(
-            {content: <div id={travel.id + "savedTravels"} className="container h-100">
+             <div id={travel.id + "savedTravels"} className="container h-100">
                     
                         <div id="full_badge" className="badge badge-dark">
                         <div className="row justify-content-end">
@@ -86,19 +87,17 @@ class UserList extends Component {
                                 <ReactBingmaps
                                 className = "customClass"
                                 bingmapKey = "AlJeTIGD1dCPM4-OE_z9xDQohB4ll2vpaaEYv72_48tSOt--Jy_oY5UaFftaiXKp"
-                                center = {[13.0827, 80.2707]}
+                                center = {this.state.directions}
                                 directions =  {this.state.directions}
                                 requestOptions = {this.state.requestOptions}
                                  > 
                                  </ReactBingmaps>
                         </div>
-                        </div>
-                        :null}
-                   
-                    
+                        </div>:null}
+                              
             </div>
             </div>
-        }
+        
         
      
           
@@ -107,12 +106,12 @@ class UserList extends Component {
             
         ));
      
-        var placeholder = (
+        /*var placeholder = (
             <div className="placeholderContent">PLACEHOLDER</div>
         );
         var onSort = function(sortedList, dropEvent) {
             console.log("sortedList", sortedList, dropEvent)
-         }
+         }*/
        
         
         

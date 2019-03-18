@@ -11,10 +11,6 @@ class TopBar extends Component {
         }
         }
 
-    
-
-       
-   
     render() { 
         return (
         <React.Fragment>
@@ -28,8 +24,6 @@ class TopBar extends Component {
                             <i class="fas fa-th-list mr-2"></i>My list<span id="topBarCounter" className="ml-2">{this.props.currentSavedTravels}</span>
 
                         </button>
-                        
-
                     </Link>
                     <div className="btn-group">
                         <button type="button" className="btn btn-success dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">

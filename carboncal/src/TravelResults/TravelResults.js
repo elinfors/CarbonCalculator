@@ -7,6 +7,7 @@ import PieChart from 'react-minimal-pie-chart';
 import CompareTravels from '../CompareTravels/CompareTravels';
 
 
+
 class TravelResults extends Component {
     constructor(props){
     super(props);
@@ -14,6 +15,8 @@ class TravelResults extends Component {
       status: "LOADING",
       id:"",
       showCompare: false,
+      compareButton: "btn btn-secondary",
+      compareButtonText: "Compare Travels" 
     }
     }
 
@@ -42,13 +45,12 @@ class TravelResults extends Component {
       }
     }
 
-    saveTravelCompare(id){
-      let allResults = this.props.model.allResults;
-      for (var i in allResults){
-        if (allResults[i].travelID === (id)){
-          this.props.model.saveCompare(allResults[i]);
-        }
-      }
+    saveTravelCompare(travel){
+      this.setState({
+        compareButton: "btn btn-success"
+       })
+      this.props.model.saveCompare(travel);
+
     }
 
     handleColor(emission){ //Changes the Piechart color depending on emission
@@ -61,9 +63,15 @@ class TravelResults extends Component {
     }
 
     handleCompare(){
+      this.state.showCompare === false ? 
       this.setState({
         showCompare: true,
-    });
+        compareButtonText: "Hide"
+    }):
+      this.setState({
+        showCompare: false,
+        compareButtonText: "Compare Travels"
+    })
 
     }
 
@@ -124,11 +132,10 @@ class TravelResults extends Component {
                         </span>
                       </div>
                       <div className="col-sm-12"> 
-                          <button type="button" onClick = {()=> {this.saveTravelCompare(travel.travelID)}} className="btn btn-success btn-lg">COMPARE</button>
-                          <button type="button" onClick = {()=> {this.simpleDialog.show();this.saveUserTravel(travel.travelID)}} ref={(section) => { this.scrollTo = section; }} className="btn btn-success btn-lg">Add to my travels</button>
+                          <button type="button" onClick = {()=> {this.saveTravelCompare(travel)}} className="btn btn-info btn-lg">Compare</button>
+                          <button type="button" onClick = {()=> {this.simpleDialog.show();this.saveUserTravel(travel.travelID)}} ref={(section) => { this.scrollTo = section; }} className="btn btn-info btn-lg">Add to My List</button>
                          
-                          <SkyLight dialogStyles={myBigGreenDialog} hideOnOverlayClicked ref={ref => this.simpleDialog = ref} title="Added to list">
-                          </SkyLight>
+                          <SkyLight dialogStyles={myBigGreenDialog} hideOnOverlayClicked ref={ref => this.simpleDialog = ref} title="Added to list"/>
                     </div>
                    </div>
                 ))
@@ -166,20 +173,20 @@ class TravelResults extends Component {
                     <div className="col-sm-12" id="chooseRideText">
                     <span><i id="infoSymbolThreeBig" className="fas fa-check-circle m-2"></i></span>
                     <span id="chooseTextBig">Your result</span>
-                    <button id="compare_button" onClick={() => {this.handleCompare()}}>COMPARE TRAVELS</button>
+                    <button id="compare_button" className={this.state.compareButton} onClick={() => {this.handleCompare()}}>{this.state.compareButtonText}</button>
                     </div>
                 </div>
             </div>
             <div key={"travelList"} className="container h-100">
               <div className="col-sm-12" id="getResultContainer">
+              {this.state.showCompare?
+             <CompareTravels key={this.state.key} travelResults={this.state} model={this.props.model} ></CompareTravels>
+            :null}
                    {travelList}
-
               </div>
             </div>
 
-            {this.state.showCompare?
-             <CompareTravels key={this.state.key} model={this.props.model} ></CompareTravels>
-            :null}
+            
 
             </React.Fragment>
 

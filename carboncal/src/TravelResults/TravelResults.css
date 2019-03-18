@@ -107,3 +107,8 @@ box-shadow: 0px 0px 31px -5px rgba(0,0,0,0.75);
 #co2Text{
     font-size:12px;
 }
+
+#compare_button{
+    float:right;
+    margin-top: 10px;
+}
