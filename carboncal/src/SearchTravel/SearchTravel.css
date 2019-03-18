@@ -1,23 +1,32 @@
 #chooseRideContainer{
     margin-top:20px;
-    
+    border-radius: 10px;
 }
+h6{
+    font-family: 'Exo 2', sans-serif;
+    color:white;
+}
+
 #chooseRideText{
-    background-color:#1b1b1b;
+    background-color: rgb(69, 144, 173);
     font-family: 'Exo 2', sans-serif;
     font-size:35px;
     -webkit-box-shadow: 0px 5px 16px -3px rgba(0,0,0,0.75);
     -moz-box-shadow: 0px 5px 16px -3px rgba(0,0,0,0.75);
     box-shadow: 0px 5px 16px -3px rgba(0,0,0,0.75);
     z-index:99;
+    border-top-right-radius: 10px;
+    border-top-left-radius: 10px;
 }
 #chooseTextBig{
     color:white;
 }
 
 #vehicleSymbolContainer{
-    background-color:#a7a7a7;
+    background-color:#36576b;
     text-align:center;
+    border-bottom-right-radius: 10px;
+    border-bottom-left-radius: 10px;
 }
 
 .btn-circle.btn-xl {
@@ -31,7 +40,9 @@
   }
 
   #searchFormContainer{
-      background-color:#a7a7a7;
+      background-color:#36576b;
+      border-bottom-right-radius: 10px;
+      border-bottom-left-radius: 10px;
 
   }
   #smallBadge{
@@ -74,11 +85,20 @@
     box-shadow: 0px 5px 16px -3px rgba(0,0,0,0.75);
 }
 #chooseNumberOfPeopleBox{
-    background-color:grey;
+    background-color:rgb(69, 144, 173);
+    border-top-right-radius: 10px;
+    border-top-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+    border-bottom-left-radius: 10px;
+    margin-bottom: 10px;
 }
 
 #form-group{
-    padding:10px;
+    padding:5px;
+}
+
+#inlineFormCustomSelect{
+    text-align:center;
 }
 #formText{
     font-size:20px;
@@ -96,5 +116,9 @@
 
 #remindUser{
     text-align:center;
-    visibility:hidden;
+}
+
+#numberOfCarTravelers{
+    display:inline-block;
+    margin:10px;
 }
