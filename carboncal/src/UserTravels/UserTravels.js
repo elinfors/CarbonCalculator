@@ -73,9 +73,6 @@ class UserList extends Component {
                         <span id="destinationResult" className="m-3">{travel.endPoint}</span>
                             
 <<<<<<< HEAD
-<<<<<<< HEAD
->>>>>>> parent of b0d2653... Flygresor.se
-=======
 >>>>>>> parent of b0d2653... Flygresor.se
 =======
 >>>>>>> parent of b0d2653... Flygresor.se
