@@ -115,11 +115,17 @@ handleTravelSearch(){
 }
     render() {
         let travelTypes = travelTypesInstance.state.types.map(types =>(
-            <div key={types.id} className="col-sm-2" id="chooseVehicleBox">
-                <button onClick={() => this.handleTravelType(types)} id={types.value + "Button"} type="button" className="btn btn-danger btn-circle btn-xl m-4" style={{backgroundColor: types.color, borderColor: types.color, zoom:types.zoom}}>
+            <div key={types.id} className="col-xs-2" id="chooseVehicleBox">
+                
+                <div className="col-sm-12">
+                    <button onClick={() => this.handleTravelType(types)} id={types.value + "Button"} type="button" className="btn btn-danger btn-circle btn-xl m-4" style={{backgroundColor: types.color, borderColor: types.color, zoom:types.zoom}}>
+                
                 <i className={types.image}></i>
                 </button>
-                <h5 className="badge badge-pill badge-light">{types.text}</h5>
+                </div>
+                <div className="col-sm-12">
+                    <h5 className="badge badge-pill badge-light">{types.text}</h5>
+                </div>
             </div>
             ));
             let carTravelersList = travelTypesInstance.state.types.map((types,index) =>(
