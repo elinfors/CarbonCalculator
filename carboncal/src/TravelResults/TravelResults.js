@@ -115,8 +115,12 @@ class TravelResults extends Component {
 
                       <div className="col-sm-12 block">
                         <span class="badge badge-pill badge-secondary">
-                          <span className="mr-2"><i className={travel.image} id="travelIcon"style={{backgroundColor: travel.color, borderColor: travel.color}}></i></span>
+                          <span className="mr-2"><i className={travel.image} id="travelIcon" style={{backgroundColor: travel.color, borderColor: travel.color}}></i></span>
                           <span className="mr-2"id="distanceResult"><CountUp end={travel.distance} duration={5}/>  KM</span>
+                        </span>
+                        <span class="badge badge-pill badge-secondary">
+                          <span className="mr-2"><i className="fas fa-hiking" id="travelIcon" style={{backgroundColor: travel.color, borderColor: travel.color}}></i></span>
+                          <span className="mr-2" id="distanceResult"><CountUp end={travel.numberOfTravelers} duration={5}/></span>
                         </span>
                       </div>
                       <div className="col-sm-12"> 
