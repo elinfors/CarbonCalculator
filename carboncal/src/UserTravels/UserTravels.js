@@ -23,6 +23,7 @@ class UserList extends Component {
         
         this.setState({
           savedTravels: this.props.model.savedTravels,
+          totalEmission: this.calculateTotalEmission()
          })
       }
   
@@ -31,6 +32,7 @@ class UserList extends Component {
         this.props.model.addObserver(this);
         this.setState({
           savedTravels: this.props.model.savedTravels,
+          totalEmission: this.calculateTotalEmission(),
          })
       }
 
@@ -53,11 +55,9 @@ class UserList extends Component {
         this.state.savedTravels.map(travel =>(
             totalEmission += travel.emission
         ))
-        console.log(totalEmission);
+        return totalEmission;
+        //console.log(this.totalEmission);
     }
-      
-    
-      
     
     render() { 
        
@@ -128,14 +128,14 @@ class UserList extends Component {
             <div className="row">
             <div className="col-sm-6">
             {userTravelList}
-            {this.calculateTotalEmission()}
+    
+            {/*<DragSortableList items= placeholder={placeholder} onSort={onSort} dropBackTransitionDuration={0.3} type="vertical"/>*/}
             </div>
             <div className="col-sm-6">
-                    <p>heej</p>
+            {this.state.totalEmission}
             </div>
             
             </div>
-            {/*<DragSortableList items= placeholder={placeholder} onSort={onSort} dropBackTransitionDuration={0.3} type="vertical"/>*/}
             </div>
             </div>
             </div>
