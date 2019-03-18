@@ -1,4 +1,4 @@
-import travelTypesInstance from '../SearchTravel/TravelTypes'
+import travelTypesInstance from './TravelTypes'
 import ObservableModel from "./ObservableModel"
 import carbonCalculator from "./carbonCalculator"
 const BASE_URL = "http://dev.virtualearth.net/REST/V1/Routes/driving?"
@@ -61,6 +61,13 @@ class TravelModel extends ObservableModel {
       }
 
     saveTravel(travel){
+        let date = new Date();
+        let month, day = 0
+        date.getDate() < 10 ? day = "0" + date.getDate(): day = date.getDate();
+        date.getMonth() < 10 ? month = "0" + date.getMonth(): month = date.getMonth();
+        travel["date"] = day + " " + month + " " + date.getFullYear();
+
+        console.log(travel["date"])
         this.savedTravels.push(travel);
         this.notifyObservers();
         //console.log(this.savedTravels);
@@ -69,7 +76,7 @@ class TravelModel extends ObservableModel {
     removeSavedTravel(travel){
           let list = this.savedTravels;
           for (var i in list){
-              if (travel.id === list[i].id){
+              if (travel.id === list[i].id && travel.travelType === list[i].travelType){
                   list.splice(i,1);
               }
           }
@@ -81,15 +88,21 @@ class TravelModel extends ObservableModel {
     }
 
     saveCompare(travel){
-      this.compareTravels.push(travel);
+      let AllTravelTypeEmission = travelTypesInstance.state.types.map(types =>(
+          carbonCalculator.calculateCarbonEmission(travel.distance,types.value,travel.numberOfTravelers)
+      ))
+      travel["AllTravelTypeEmission"] = AllTravelTypeEmission;
+      travel["maxEmission"] = Math.max.apply(null, AllTravelTypeEmission);
+      travel["minEmission"] = Math.min.apply(null, AllTravelTypeEmission);
+      this.compareTravels.push(travel);      
       this.notifyObservers();
       console.log(this.compareTravels);
     }
 
     removeComparedTravel(travel){
       let allCompares = this.compareTravels;
-      for (var i in allCompares){
-          if (travel.id === allCompares[i].id){
+      for (let i in allCompares){
+          if (travel.id === allCompares[i].id && travel.travelType === allCompares[i].travelType ){
               allCompares.splice(i,1);
           }
       }
@@ -113,8 +126,8 @@ class TravelModel extends ObservableModel {
 
     removeResult(travel){
           let results = this.allResults;
-          for (var i in results){
-              if (travel.id === results[i].id){
+          for (let i in results){
+              if (travel.id === results[i].id && travel.travelType === results[i].travelType){
                   results.splice(i,1);
               }
           }
