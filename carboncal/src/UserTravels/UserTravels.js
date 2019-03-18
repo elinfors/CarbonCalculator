@@ -15,18 +15,18 @@ class UserList extends Component {
             routeMode:"driving"},
             showResult:false,
             totalEmission: 0
-            } 
-            
+            }
+
         }
 
     update(){
-        
+
         this.setState({
           savedTravels: this.props.model.savedTravels,
           totalEmission: this.calculateTotalEmission()
          })
       }
-  
+
     componentDidMount(){
         console.log(this.state.directions)
         this.props.model.addObserver(this);
@@ -47,7 +47,7 @@ class UserList extends Component {
            }):
         this.setState({
             showResult:false
-           })  
+           })
     }
 
     calculateTotalEmission(){
@@ -58,13 +58,13 @@ class UserList extends Component {
         return totalEmission;
         //console.log(this.totalEmission);
     }
-    
-    render() { 
-       
+
+    render() {
+
         let userTravelList = null;
-       
+
         userTravelList = this.state.savedTravels.map((travel,index) =>(
-           
+
                     <div id={travel.id + "savedTravels"}>
                         <div className="container" id="full_badge">
                             <div className="col-sm-12" id="itemListRow">
@@ -77,8 +77,8 @@ class UserList extends Component {
                                 <span><i id="delete_button"onClick={()=> this.props.model.removeSavedTravel(travel)} className="m-2 far fa-times-circle"></i></span>
                             </div>
                             <div className="col-sm-12">
-                                <i className={travel.image} id="travelIconInUserTravel"style={{backgroundColor: travel.color, borderColor: travel.color, width: "50px", height:"50px", lineHeight: "3.5"}}></i>
-                                <span id="carbonListItems" className="round round-lg m-2">{Math.round(travel.emission*1000)}</span>
+                                <span><i className={travel.image} id="travelIconInUserTravel"style={{backgroundColor: travel.color, borderColor: travel.color, width: "70px", height:"70px", lineHeight: "3.5"}}></i></span>
+                                <span id="carbonListItems" className="round round-lg">{(travel.emission*1000).toFixed()}</span>
                                 <button className="btn btn-info justify-content-center" onClick={() => this.handleMap(travel)}>
                                     <i class="fas fa-th-list mr-2">Show Map</i>
                                 </button>
@@ -92,34 +92,34 @@ class UserList extends Component {
                                         center = {this.state.directions}
                                         directions =  {this.state.directions}
                                         requestOptions = {this.state.requestOptions}
-                                        > 
+                                        >
                                         </ReactBingmaps>
                                 </div>
                                 </div>:null}
-                              
+
             </div>
             </div>
-        
-            
-            
-            
-        
-             
-               
-            
+
+
+
+
+
+
+
+
         ));
-     
+
         /*var placeholder = (
             <div className="placeholderContent">PLACEHOLDER</div>
         );
         var onSort = function(sortedList, dropEvent) {
             console.log("sortedList", sortedList, dropEvent)
          }*/
-       
-        
-        
+
+
+
         return (
-            
+
             <React.Fragment>
             <TopBar currentSavedTravels={this.props.model.savedTravels.length}></TopBar>
             <div id="item_block_container" className="container h-100">
@@ -128,22 +128,24 @@ class UserList extends Component {
             <div className="row">
             <div className="col-sm-6">
             {userTravelList}
-    
+
             {/*<DragSortableList items= placeholder={placeholder} onSort={onSort} dropBackTransitionDuration={0.3} type="vertical"/>*/}
             </div>
             <div className="col-sm-6">
-            {this.state.totalEmission}
+            <h3>
+            {(this.state.totalEmission*1000).toFixed()}
+            </h3>
             </div>
-            
+
             </div>
             </div>
             </div>
             </div>
             </React.Fragment>
-        
+
           );
-          
+
     }
     }
- 
+
 export default UserList;
