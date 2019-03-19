@@ -24,7 +24,7 @@ class SearchTravel extends Component {
 }
 
 
-update(){
+/*update(){
     this.setState({
       savedTravels: this.props.model.savedTravels,
      })
@@ -35,7 +35,7 @@ componentDidMount(){
     this.setState({
       savedTravels: this.props.model.savedTravels,
      })
-  }
+  }*/
 
 handleTravelType(travelType){
    travelTypesInstance.state.types.map(types => (types.value === travelType.value? types.zoom = 1.1 : types.zoom = 1))
@@ -164,8 +164,11 @@ handleTravelSearch(){
                 </nav>
                 {this.state.showCarPassengers?
                                 <div className="col-sm-6" id="chooseNumberOfPeopleBox">
-                                    <h6 id="numberOfPeopleText">How many will you be in the {this.state.text}?</h6>
+                                    <h6 id="numberOfPeopleText">Total number of people in the {this.state.text}:</h6>
+                                        <span>
+                                        <i id="peopleIcon"class="fas fa-male"></i>
                                         {carTravelersList}
+                                        </span>
                                         {this.state.addMorePassengers?
                                         <form className="form-group" id="form-group">
                                             <h6 id="numberOfPeopleText">Are you even more?</h6>
