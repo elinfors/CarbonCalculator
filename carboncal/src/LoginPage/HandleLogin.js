@@ -29,6 +29,7 @@ class HandleLogin extends Component {
         firebase.firestore().collection("usersTravelLists").doc(user.uid).get().then(function(doc){
             if (doc.exists) {
                 modelInstance.savedTravels = doc.data().savedTravels;
+                modelInstance.notifyObservers();
                 console.log("Document data:", doc.data().savedTravels);
             } else {
                 // doc.data() will be undefined in this case
