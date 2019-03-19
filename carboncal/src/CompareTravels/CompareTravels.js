@@ -18,6 +18,7 @@ class CompareTravels extends Component {
             compareTravels: this.props.model.compareTravels,
            })
         scrollToComponent(this.scrollTo, { offset: 0, align: 'middle', duration: 200, ease:'inExpo'})
+        console.log(this.state.compareTravels);
     }
 
     componentDidMount(){

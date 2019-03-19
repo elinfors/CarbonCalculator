@@ -3,6 +3,7 @@ import TopBar from '../TopBar/TopBar';
 import './UserTravels.css';
 import DragSortableList from 'react-drag-sortable'
 import { ReactBingmaps } from 'react-bingmaps';
+import BarChartTravel from '../Charts/barChart';
 
 class UserList extends Component {
     constructor(props){
@@ -23,7 +24,9 @@ class UserList extends Component {
 
         this.setState({
           savedTravels: this.props.model.savedTravels,
-          totalEmission: this.calculateTotalEmission()
+          totalEmission: this.calculateTotalEmission(),
+          NumberOfGlobes: this.calculateNumberOfGlobes(),
+          restGlobes: this.getRestofGlobes(this.calculateNumberOfGlobes()),
          })
       }
 
@@ -33,6 +36,8 @@ class UserList extends Component {
         this.setState({
           savedTravels: this.props.model.savedTravels,
           totalEmission: this.calculateTotalEmission(),
+          NumberOfGlobes: this.calculateNumberOfGlobes(),
+          restGlobes: this.getRestofGlobes(this.calculateNumberOfGlobes()),
          })
       }
 
@@ -58,6 +63,37 @@ class UserList extends Component {
         return totalEmission;
         //console.log(this.totalEmission);
     }
+
+    calculateNumberOfGlobes(){
+        let totalEmission = 0;
+        this.state.savedTravels.map(travel =>(
+            totalEmission += travel.emission
+        ))
+        let NumberOfGlobes = totalEmission/2;
+
+        return NumberOfGlobes;
+    }
+
+    getRestofGlobes(NumberOfGlobes){
+        let rest = NumberOfGlobes - Math.floor(NumberOfGlobes)
+
+        return(rest.toFixed(1));
+    }
+
+    createGlobes(NumberOfGlobes, rest){
+        let globes = []
+
+        for (var j = 1; j < NumberOfGlobes; j++){
+            globes.push(<span id="globespan" ><i style= {{fontSize: '100px'}} className="fas fa-globe-americas"></i></span>)
+        }
+        if(rest > 0){
+            let size = (100*rest);
+            globes.push(<span id="globespan"><i style= {{fontSize: size+'px'}} className="fas fa-globe-americas"></i></span>)
+        }
+        return globes;
+    }
+
+
 
     render() {
 
@@ -116,13 +152,6 @@ class UserList extends Component {
             </div>
             </div>
 
-
-
-
-
-
-
-
         ));
 
         /*var placeholder = (
@@ -149,10 +178,36 @@ class UserList extends Component {
             </div>
             <div className="col-sm-6">
             <h3>
-            {(this.state.totalEmission*1000).toFixed()}
+              
+            {/*{(this.state.totalEmission*1000).toFixed()}
+            {(this.state.restGlobes)}*/}
+            {Math.floor(this.state.NumberOfGlobes)}
+            {this.state.restGlobes}
+
             </h3>
+            <div className="row">
+            <div className="col-sm-12">
+            <div className="row globes">
+                <h2>You need {parseFloat(this.state.NumberOfGlobes).toFixed(1)} globes</h2>
             </div>
 
+            <div className="row globes">
+                {this.createGlobes(this.state.NumberOfGlobes, this.state.restGlobes)}
+            </div>
+
+            <div className="row globes">
+                <BarChartTravel/>
+            </div>
+
+            
+            </div>
+                
+                
+            </div>
+            
+            
+            </div>
+            
             </div>
             </div>
             </div>
