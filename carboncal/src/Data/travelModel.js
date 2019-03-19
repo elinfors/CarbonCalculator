@@ -22,7 +22,7 @@ class TravelModel extends ObservableModel {
 
     setUserTravel(userTravelObject){
         console.log(this.savedTravels);
-        userTravelObject.travelType === "smallCar" || userTravelObject.travelType === "mediumCar" || userTravelObject.travelType === "largeCar" ?
+       // userTravelObject.travelType === "smallCar" || userTravelObject.travelType === "mediumCar" || userTravelObject.travelType === "largeCar" ?
         this.getRoute(userTravelObject.startPoint,userTravelObject.endPoint).then(data => {
           let travelData = data.resourceSets[0].resources[0];
           userTravelObject["distance"] = travelData.travelDistance;
@@ -36,7 +36,7 @@ class TravelModel extends ObservableModel {
           this.notifyObservers();
         }).catch(error =>{
           return error
-        }):this.getAirports(userTravelObject.startPosition,userTravelObject.endPosition);
+        })//:this.getAirports(userTravelObject.startPosition,userTravelObject.endPosition);
     }
 
     getRoute(startPosition,endPosition) {
