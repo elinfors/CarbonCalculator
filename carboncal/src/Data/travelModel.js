@@ -1,7 +1,8 @@
-
 import ObservableModel from "./ObservableModel"
 import carbonCalculator from "./carbonCalculator"
 import travelTypesInstance from './TravelTypes'
+import firebase from 'firebase';
+import 'firebase/database';
 const BING_URL = "http://dev.virtualearth.net/REST/V1/Routes/driving?"
 const BASE_URL = "https://distanceto.p.rapidapi.com/get?"
 const httpOptions = {
@@ -16,9 +17,11 @@ class TravelModel extends ObservableModel {
     this.allResults = [];
     this.compareTravels = [];
     this.numberOfTravelers = 1;
+    this.user = {};
     }
 
     setUserTravel(userTravelObject){
+        console.log(this.savedTravels);
         userTravelObject.travelType === "smallCar" || userTravelObject.travelType === "mediumCar" || userTravelObject.travelType === "largeCar" ?
         this.getRoute(userTravelObject.startPoint,userTravelObject.endPoint).then(data => {
           let travelData = data.resourceSets[0].resources[0];
@@ -77,11 +80,20 @@ class TravelModel extends ObservableModel {
         date.getDate() < 10 ? day = "0" + date.getDate(): day = date.getDate();
         date.getMonth() < 10 ? month = "0" + date.getMonth(): month = date.getMonth();
         travel["date"] = day + " " + month + 1 + " " + date.getFullYear();
-
-        console.log(travel["date"])
         this.savedTravels.push(travel);
         this.notifyObservers();
-        //console.log(this.savedTravels);
+        console.log(this.user.userID)
+        console.log(this.savedTravels);
+        //Uppdatera
+        firebase.firestore().collection("usersTravelLists/").doc(this.user.userID).set({
+          savedTravels: this.savedTravels
+        })
+        .then(function(docRef) {
+          console.log("Document written with ID: ", docRef.id);
+        })
+        .catch(function(error) {
+          console.error("Error adding document: ", error);
+        });
       }
 
     removeSavedTravel(travel){
@@ -92,6 +104,15 @@ class TravelModel extends ObservableModel {
               }
           }
           this.notifyObservers();
+          firebase.firestore().collection("usersTravelLists/").doc(this.user.userID).update({
+            savedTravels: this.savedTravels
+          })
+          .then(function(docRef) {
+            console.log("Document written with ID: ", docRef.id);
+          })
+          .catch(function(error) {
+            console.error("Error adding document: ", error);
+          });
       }
 
     getSavedTravels(){
@@ -133,7 +154,6 @@ class TravelModel extends ObservableModel {
       }
       return total;
     }
-
 
     removeResult(travel){
           let results = this.allResults;

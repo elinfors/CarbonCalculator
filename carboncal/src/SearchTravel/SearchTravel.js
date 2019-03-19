@@ -26,14 +26,14 @@ class SearchTravel extends Component {
 
 /*update(){
     this.setState({
-      savedTravels: this.props.model.savedTravels,
+        savedTravelsLength: this.props.model.savedTravels.length,
      })
   }
 
 componentDidMount(){
     this.props.model.addObserver(this);
     this.setState({
-      savedTravels: this.props.model.savedTravels,
+        savedTravelsLength: this.props.model.savedTravels.length,
      })
   }*/
 
