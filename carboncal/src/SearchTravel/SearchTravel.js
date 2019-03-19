@@ -17,12 +17,14 @@ class SearchTravel extends Component {
        addMorePassengers:false,
        showResult: false,
        showWarning: false,
-       warning: ""
+       warning: "",
+    
     }
     this.handleTravelSearch = this.handleTravelSearch.bind(this)
 }
 
-update(){
+
+/*update(){
     this.setState({
         savedTravelsLength: this.props.model.savedTravels.length,
      })
@@ -33,7 +35,7 @@ componentDidMount(){
     this.setState({
         savedTravelsLength: this.props.model.savedTravels.length,
      })
-  }
+  }*/
 
 handleTravelType(travelType){
    travelTypesInstance.state.types.map(types => (types.value === travelType.value? types.zoom = 1.1 : types.zoom = 1))
@@ -115,59 +117,75 @@ handleTravelSearch(){
 }
     render() {
         let travelTypes = travelTypesInstance.state.types.map(types =>(
-            <div key={types.id} className="col-xs-2" id="chooseVehicleBox">
-                
-                <div className="col-sm-12">
-                    <button onClick={() => this.handleTravelType(types)} id={types.value + "Button"} type="button" className="btn btn-danger btn-circle btn-xl m-4" style={{backgroundColor: types.color, borderColor: types.color, zoom:types.zoom}}>
-                
-                <i className={types.image}></i>
-                </button>
+            <div key={types.id} className="col-xs-1" id="chooseVehicleBox">
+                <div className="col-sm-12" id="vehicleSymbolContainer">
+                    <button id="vehicleCircle" onClick={() => this.handleTravelType(types)} id={types.value + "Button"} type="button" className="btn btn-danger btn-circle btn-xl m-3" style={{backgroundColor: types.color, borderColor: types.color, zoom:types.zoom}}>
+                        <i id="imageType" className={types.image}></i>
+                    </button>
                 </div>
                 <div className="col-sm-12">
-                    <h5 className="badge badge-pill badge-light">{types.text}</h5>
+                    <h5 id="symbolText" className="badge badge-pill badge-light">{types.text}</h5>
                 </div>
             </div>
             ));
             let carTravelersList = travelTypesInstance.state.types.map((types,index) =>(
                 <div key={"carTraver" + types.id} id="numberOfCarTravelers">
-                    <button onClick={this.handleNumberOfTravelers} value={index + 1} className="btn btn-danger btn-circle btn-l m-2">{index + 1}</button>
+                    <button id="addPassengers" onClick={this.handleNumberOfTravelers} value={index + 1} className="btn btn-secondary btn-l">{index + 1}</button>
                 </div>
             ));
             carTravelersList[7] =  <div key={"carTraver" + 7} id="numberOfCarTravelers">
-            <button onClick={() => this.setState({addMorePassengers:true})} className="btn btn-danger btn-circle btn-l m-2">+</button>
+            <button id="addPassengers" onClick={() => this.setState({addMorePassengers:true})} className="btn btn-secondary btn-l">+</button>
             </div>
         return (
+      
       <React.Fragment>
-
             <TopBar currentSavedTravels={this.props.model.savedTravels.length}/>
-
             <div id="chooseRideContainer" className="container h-100">
                 <div className="d-flex justify-content-center h-100">
                     <div className="col-sm-12" id="chooseRideText">
                         <span><i id="infoSymbolOneBig" className="fas fa-check-circle m-2"></i></span>
                         <span id="chooseTextBig">Choose your ride</span>
-
                     </div>
                 </div>
             </div>
-            <div className="container h-100">
-                <div className="d-flex justify-content-center h-100">
-                    <div className="col-sm-12" id="vehicleSymbolContainer">
-                        {travelTypes}
-                        {this.state.showCarPassengers?
-                            <div className="col-sm-6" id="chooseNumberOfPeopleBox">
-                                <h6>How many will you be in the {this.state.text}?</h6>
-                                {carTravelersList}
-                                    {this.state.addMorePassengers?
+
+    <div className="container h-100">
+        <div className="d-flex justify-content-center h-100">
+            <div className="col-sm-12" id="vehicleSymbolContainer">
+                <nav className="navbar navbar-expand-lg" id="vehicleNavbar">
+                        <button id="arrowDownButton" className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
+                            <span><i className="fas fa-sort-down"></i></span>
+                        </button>  
+                        <div className="collapse navbar-collapse justify-content-center" id="navbarTogglerDemo02">
+                            {travelTypes}
+                            
+                        </div>
+                        
+                </nav>
+                {this.state.showCarPassengers?
+                                <div className="col-sm-6" id="chooseNumberOfPeopleBox">
+                                    <h6 id="numberOfPeopleText">Total number of people in the {this.state.text}:</h6>
+                                        <span>
+                                        <i id="peopleIcon"class="fas fa-male"></i>
+                                        {carTravelersList}
+                                        </span>
+                                        {this.state.addMorePassengers?
                                         <form className="form-group" id="form-group">
-                                            <h6>Are you even more?</h6>
+                                            <h6 id="numberOfPeopleText">Are you even more?</h6>
                                             <input className="form-control" id="inlineFormCustomSelect" type="number" min="1" max="10" value={this.state.numberOfTravelers} onChange={this.handleNumberOfTravelers}></input>
                                         </form>:null}
-                            </div>
-                        :null}
-                    </div>
-                </div>
+                                </div>
+                                :null}
             </div>
+        </div>
+    </div>
+
+  
+  
+
+            
+            
+            
 
 
             <div id="chooseRideContainer" className="container h-100">

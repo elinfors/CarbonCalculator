@@ -30,7 +30,7 @@ const data = [
 static jsfiddleUrl = 'https://jsfiddle.net/alidingling/30763kr7/';
 */
 const data = [
-    {name: 'Your Travels', pv: 40, amt: 2400,},
+    {name: <span><i class="fas fa-globe-europe"></i></span>, pv: 40, amt: 2400,},
     {name: 'Average Travels', pv: 50, amt: 2400,},
     {name: 'Recomended', pv: 70, amt: 2400,}
   ];

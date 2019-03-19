@@ -116,5 +116,74 @@
 
 #numberOfCarTravelers{
     display:inline-block;
-    margin:10px;
+    margin:5px;
 }
+
+
+
+
+  @media (max-width: 500px) {
+    #vehicleSymbolContainer{
+      padding:0px !important;
+
+    }
+  }
+
+  @media (min-width: 500px) {
+    #chooseVehicleBox{
+      margin:0px 20px 0px 20px;
+
+    }
+  }
+
+@media (max-width: 500px) {
+    #infoText{
+        font-size:16px;
+    }
+}
+
+.fa-sort-down{
+    color:white;
+    font-size:20px;
+    
+}
+
+#vehicleNavbar{
+justify-content:center;
+}
+
+#arrowDownButton{
+    margin:5px;
+    background-color:orange;
+    width:30%;
+}
+
+
+
+@media (max-width: 500px) {
+    #symbolText{
+        font-size:60%;
+    }
+}
+
+@media (min-width: 500px) {
+     #vehicleCircle{
+        width:50px;
+        height:50px;
+}
+
+}
+
+#numberOfPeopleText{
+    color:white;
+    padding-top:5px;
+    font-weight:600;
+    
+}
+
+#peopleIcon{
+    font-size: 30px;
+    margin-top: 20px;
+}
+
+
