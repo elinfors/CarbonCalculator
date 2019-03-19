@@ -2,10 +2,10 @@
 import ObservableModel from "./ObservableModel"
 import carbonCalculator from "./carbonCalculator"
 import travelTypesInstance from './TravelTypes'
-const BASE_URL = "http://dev.virtualearth.net/REST/V1/Routes/driving?"
-//const BASE_URL = "https://maps.googleapis.com/maps/api/distancematrix/json?units=imperial&"
+const BING_URL = "http://dev.virtualearth.net/REST/V1/Routes/driving?"
+const BASE_URL = "https://distanceto.p.rapidapi.com/get?"
 const httpOptions = {
-  headers: { "X-Mashape-Key": "AlJeTIGD1dCPM4-OE_z9xDQohB4ll2vpaaEYv72_48tSOt--Jy_oY5UaFftaiXKp"}
+  headers: { "X-Mashape-Key": "3d2a031b4cmsh5cd4e7b939ada54p19f679jsn9a775627d767"}
 }
 
 class TravelModel extends ObservableModel {
@@ -19,7 +19,7 @@ class TravelModel extends ObservableModel {
     }
 
     setUserTravel(userTravelObject){
-        
+        userTravelObject.travelType === "smallCar" || userTravelObject.travelType === "mediumCar" || userTravelObject.travelType === "largeCar" ?
         this.getRoute(userTravelObject.startPoint,userTravelObject.endPoint).then(data => {
           let travelData = data.resourceSets[0].resources[0];
           userTravelObject["distance"] = travelData.travelDistance;
@@ -31,16 +31,26 @@ class TravelModel extends ObservableModel {
           this.allResults.push(userTravelObject);
           console.log(userTravelObject);
           this.notifyObservers();
-        });
+        }).catch(error =>{
+          return error
+        }):this.getAirports(userTravelObject.startPosition,userTravelObject.endPosition);
     }
 
     getRoute(startPosition,endPosition) {
-        const url = `${BASE_URL}wp.0=`+ startPosition + `&wp.1=` + endPosition + `&optmz=distance&key=AlJeTIGD1dCPM4-OE_z9xDQohB4ll2vpaaEYv72_48tSOt--Jy_oY5UaFftaiXKp`;
+        const url = `${BING_URL}wp.0=`+ startPosition + `&wp.1=` + endPosition + `&optmz=distance&key=AlJeTIGD1dCPM4-OE_z9xDQohB4ll2vpaaEYv72_48tSOt--Jy_oY5UaFftaiXKp`;
         //const url = `${BASE_URL}origins=`+ startPosition + `&destinations=`+ endPosition + `&key=AIzaSyA8eRwbJyrmHHGkHdBaRi6_tJmRUmAf7Vk`
         console.log(url);
         console.log("Testar URL");
         return fetch(url).then(this.processResponse);
       }
+
+    getAirports(startPosition,endPosition){
+        const route = JSON.stringify([{"t":startPosition},{"t":endPosition}])
+        const url = `${BASE_URL}` + route +`car=false&foot=false`;
+        return fetch(url, httpOptions).then(this.processResponse).then(data => {
+          console.log(data)
+        });
+    }
 
     processResponse(response) {
         if (response.ok) {
@@ -66,7 +76,7 @@ class TravelModel extends ObservableModel {
         let month, day = 0
         date.getDate() < 10 ? day = "0" + date.getDate(): day = date.getDate();
         date.getMonth() < 10 ? month = "0" + date.getMonth(): month = date.getMonth();
-        travel["date"] = day + " " + month + " " + date.getFullYear();
+        travel["date"] = day + " " + month + 1 + " " + date.getFullYear();
 
         console.log(travel["date"])
         this.savedTravels.push(travel);

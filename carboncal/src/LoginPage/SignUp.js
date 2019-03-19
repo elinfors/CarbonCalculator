@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 import './LoginPage.css';
 import fire from './Fire';
+import Loader from 'react-loader-spinner';
 
 class SignUp extends Component {
     constructor(props){
@@ -9,7 +11,8 @@ class SignUp extends Component {
             email: "",
             password: "",
             message: "",
-            showMessage: false
+            showMessage: false,
+            loading: false
         }
     this.handleCreateAccount = this.handleCreateAccount.bind(this);
     this.handleInput = this.handleInput.bind(this);
@@ -20,17 +23,22 @@ class SignUp extends Component {
     }
 
     handleCreateAccount(e){
+        this.setState({loading:true})
         e.preventDefault();
         fire.auth().createUserWithEmailAndPassword(this.state.email, this.state.password).then((u)=>{
         this.setState({
+            
             message: "Account Created",
-            showMessage: true
+            showMessage: true,
+            loading: false
+
         })}
         ).catch((error)=>{
             console.log(error);
             this.setState({
                 message: "Could not create an account!",
-                showMessage: true
+                showMessage: true,
+                loading: false
             })
         });
     }
@@ -60,7 +68,13 @@ class SignUp extends Component {
                             {this.state.showMessage ?
                                 <div className="col-sm-12">
                                      <h3>{this.state.message}</h3>
+                                     <Link to="/Login">
+                                     <button type="button" className="btn btn-info btn-lg">Go Back to Login</button>
+                                     </Link>
                                  </div> :null} 
+                                 {this.state.loading ?
+                            <Loader type="Plane" color="#00BFFF" height="100" width="100"/>
+                                 :null}
                         </div>
                     </div>
                     
