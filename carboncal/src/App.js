@@ -8,6 +8,7 @@ import SignUp from "./LoginPage/SignUp";
 import SearchTravel from './SearchTravel/SearchTravel';
 import UserTravels from './UserTravels/UserTravels';
 import HandleLogin from './LoginPage/HandleLogin';
+import LoginPage from './LoginPage/LoginPage';
 
 class App extends Component {
   render() {
@@ -20,6 +21,11 @@ class App extends Component {
       <Route 
       path = "/SignUp"
       render ={() => <SignUp/>}
+      />
+
+      <Route 
+      path = "/Login"
+      render ={() => <LoginPage/>}
       />
 
       <Route 

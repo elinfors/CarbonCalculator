@@ -113,17 +113,23 @@ class TravelResults extends Component {
                             <i className="d-flex justify-content-end" onClick={()=>this.props.model.removeResult(travel)} className="far fa-times-circle"></i>
                           </div>
                      </div>
+                     <div className="row d-flex" >
+                        <Tooltip  id="carbon-per" className="m-2" placement="right" content={(100*(travel.emission/2)).toFixed(1)+"% of recomended carbon emission per year"} style={{width: "90%"}}>
+                          <div className="progress">
+               
+                          <div id="progress-bar" className="progress-bar" role="progressbar" style={{maxWidth: travel.emission*100/2 + "%", backgroundColor: this.handleColor(travel.emission)}} aria-valuenow={travel.emission*100/2} aria-valuemin="0" aria-valuemax="2000">
+                          <span className="title">{(100*(travel.emission/2)).toFixed(1)}%</span>
+                          </div>
+                         </div>
+                        </Tooltip>
+                      </div>
 
                       <div className="badge badge-warning m-2 p-3" >
                         <span id="emission_text" ><CountUp end={travel.emission*1000} duration={5}/></span><br/>
                         <span id="co2Text">KG CO2/person</span>
 
                       </div>
-                      <div className="row d-flex" >
-                    <Tooltip id="carbon-per" className="m-2" placement="right" content={(100*(travel.emission/2)).toFixed(1)+"% of recomended carbon emission per year"} style={{width: "90%"}}>
-                      <div className="progress">
-                      <div id="progress-bar" className="progress-bar" role="progressbar" style={{width: travel.emission*100/2 + "%", backgroundColor: this.handleColor(travel.emission)}} aria-valuenow={travel.emission*100/2} aria-valuemin="0" aria-valuemax="100">{(100*(travel.emission/2)).toFixed(1)}%</div>
-                      </div></Tooltip></div>
+                      
                      
 
 

@@ -4,12 +4,14 @@ import { Link } from 'react-router-dom';
 import fire from './Fire';
 import firebase from 'firebase';
 import StyledFirebaseAuth from 'react-firebaseui/StyledFirebaseAuth';
+import Loader from 'react-loader-spinner';
 
 
 class LoginPage extends Component {
     constructor(props){
         super(props);
         this.state = {
+            loading: false,
             email: "",
             password: ""
         }
@@ -21,7 +23,9 @@ class LoginPage extends Component {
     handleLogin(e){
         e.preventDefault();
         console.log("hej");
+        this.setState({loading:true});
         fire.auth().signInWithEmailAndPassword(this.state.email, this.state.password).then((u)=>{
+        
         console.log(u)}).catch((error)=>{
             console.log(error);
         });
@@ -44,14 +48,20 @@ class LoginPage extends Component {
     }
 
     render() { 
-        return ( 
+            return ( 
+                this.state.loading ?
+                <form id="loginForm">
+                    <div className="d-flex justify-content-center h-100">
+                <Loader type="Plane" color="#00BFFF" height="100" width="100"/>
+                    </div>
+                </form>
+                :
                 <form id="loginForm">
                     <div className="d-flex justify-content-center h-100">
                         <div className="col-sm-4" id="signInText">
                             <div className="col-sm-12">
                                 <h2> Sign in</h2>
                             </div>
-                               
                                 <div className="col-sm-12" id="loginBox">
                                     <div className="form-group">
                                         <label htmlFor="inputEmail">Email</label>
