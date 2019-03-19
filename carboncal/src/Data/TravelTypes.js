@@ -38,6 +38,13 @@ class TravelTypes extends Component {
             value: "train",
             text: "Train",
             color:"#FBB6F5"
+        },
+        {
+            id: "shipButton",
+            image: "fas fa-ship",
+            value: "ship",
+            text: "Ship",
+            color:"#BBE1F8"
         }]
     }
 }

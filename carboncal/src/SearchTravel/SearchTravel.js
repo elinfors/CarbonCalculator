@@ -26,14 +26,14 @@ class SearchTravel extends Component {
 
 update(){
     this.setState({
-        savedTravelsLength: this.props.model.savedTravels.length,
+      savedTravels: this.props.model.savedTravels,
      })
   }
 
 componentDidMount(){
     this.props.model.addObserver(this);
     this.setState({
-        savedTravelsLength: this.props.model.savedTravels.length,
+      savedTravels: this.props.model.savedTravels,
      })
   }
 
@@ -164,11 +164,8 @@ handleTravelSearch(){
                 </nav>
                 {this.state.showCarPassengers?
                                 <div className="col-sm-6" id="chooseNumberOfPeopleBox">
-                                    <h6 id="numberOfPeopleText">Total number of people in the {this.state.text}:</h6>
-                                        <span>
-                                        <i id="peopleIcon"class="fas fa-male"></i>
+                                    <h6 id="numberOfPeopleText">How many will you be in the {this.state.text}?</h6>
                                         {carTravelersList}
-                                        </span>
                                         {this.state.addMorePassengers?
                                         <form className="form-group" id="form-group">
                                             <h6 id="numberOfPeopleText">Are you even more?</h6>

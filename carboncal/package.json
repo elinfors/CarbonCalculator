@@ -6,7 +6,6 @@
     "@nearform/react-animation": "^1.0.6",
     "apexcharts": "^3.5.1",
     "bootstrap": "^4.3.1",
-    "canvasjs": "^1.8.1",
     "firebase": "^5.9.0",
     "postscribe": "^2.0.8",
     "react": "^16.8.3",
