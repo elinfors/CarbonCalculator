@@ -105,7 +105,7 @@ class UserList extends Component {
                         <div className="container" id="full_badge">
                             <div className="col-sm-12" id="itemListRow">
                                 <span className="badge badge-secondary m-2">{travel.date}</span>
-                                <i className="d-flex justify-content-end m-1" onClick={()=>this.props.model.removeResult(travel)} className="far fa-times-circle"></i>
+                                <i className="d-flex justify-content-end m-1" onClick={()=>this.props.model.removeSavedTravel(travel)} className="far fa-times-circle"></i>
                             </div>
                             <div id="destinationResultContainer"className="col-sm-12 justify-content-between">
                                 <span className="m-2">
@@ -123,13 +123,14 @@ class UserList extends Component {
                                 <span id="carbonListItems" className="">{(travel.emission*1000).toFixed()}</span>
                                 <br/>
                                 <span id="carbonText"> KG CO2/person</span>
-                               
-                            </div>
-                            <div id="buttonRow"className="row justify-content-end">
                                 <button id="mapButton" className="btn btn-info m-2" onClick={() => this.handleMap(travel)}>
                                     <i className="fas fa-map-marker-alt"></i>
                                     <span className="">Map</span>
                                 </button>
+                               
+                            </div>
+                            <div id="buttonRow"className="row justify-content-end">
+                                
                             </div>
                           
                             
