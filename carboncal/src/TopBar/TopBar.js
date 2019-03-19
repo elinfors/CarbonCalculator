@@ -13,7 +13,7 @@ class TopBar extends Component {
         this.handleLogout = this.handleLogout.bind(this);
     }
         
-    handleLogout(){ 
+    handleLogout(){
         fire.auth().signOut();
     }
 
