@@ -37,14 +37,8 @@ class TravelResults extends Component {
        })
     }
 
-    saveUserTravel(id) {
-
-      let allResults = this.props.model.allResults;
-      for (var i in allResults){
-          if (allResults[i].travelID === (id)){
-            this.props.model.saveTravel(allResults[i]);
-          }
-      }
+    saveUserTravel(travel) {
+      this.props.model.saveTravel(travel);
     }
 
     saveTravelCompare(travel){
@@ -151,7 +145,7 @@ class TravelResults extends Component {
                           <i className="far fa-copy" onClick = {()=> {this.saveTravelCompare(travel)}}></i>
                           </Tooltip>
                           <Tooltip placement="right" content="Click to save travel">
-                          <i className="far fa-plus-square" onClick = {()=> {this.simpleDialog.show();this.saveUserTravel(travel.travelID)}} ref={(section) => { this.scrollTo = section; }}></i>
+                          <i className="far fa-plus-square" onClick = {()=> {this.simpleDialog.show();this.saveUserTravel(travel)}} ref={(section) => { this.scrollTo = section; }}></i>
                           </Tooltip>
 
                           <SkyLight dialogStyles={myBigGreenDialog} hideOnOverlayClicked ref={ref => this.simpleDialog = ref} title="Added to list"/>
