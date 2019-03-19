@@ -68,21 +68,37 @@ class UserList extends Component {
                     <div id={travel.id + "savedTravels"}>
                         <div className="container" id="full_badge">
                             <div className="col-sm-12" id="itemListRow">
-                                <span className="m-2">{travel.date}</span>
+                                <span className="badge badge-secondary m-2">{travel.date}</span>
+                                <i className="d-flex justify-content-end m-1" onClick={()=>this.props.model.removeResult(travel)} className="far fa-times-circle"></i>
+                            </div>
+                            <div id="destinationResultContainer"className="col-sm-12 justify-content-between">
                                 <span className="m-2">
+                                    <span className="mr-3">
+                                    <i className={travel.image}></i>
+                                    </span>
                                     <span id="destinationResult" className="">{travel.startPoint}</span>
                                     <span className=""><i id="rightArrow" className="fas fa-arrow-right"></i></span>
                                     <span id="destinationResult" className="">{travel.endPoint}</span>
                                 </span>
-                                <span><i id="delete_button"onClick={()=> this.props.model.removeSavedTravel(travel)} className="m-2 far fa-times-circle"></i></span>
+                              
                             </div>
-                            <div className="col-sm-12">
-                                <span><i className={travel.image} id="travelIconInUserTravel"style={{backgroundColor: travel.color, borderColor: travel.color, width: "70px", height:"70px", lineHeight: "3.5"}}></i></span>
-                                <span id="carbonListItems" className="round round-lg">{(travel.emission*1000).toFixed()}</span>
-                                <button className="btn btn-info justify-content-center" onClick={() => this.handleMap(travel)}>
-                                    <i class="fas fa-th-list mr-2">Show Map</i>
+                            <div id="userTravelContainer" className="col-sm-12">
+                             
+                                <span id="carbonListItems" className="">{(travel.emission*1000).toFixed()}</span>
+                                <br/>
+                                <span id="carbonText"> KG CO2/person</span>
+                               
+                            </div>
+                            <div id="buttonRow"className="row justify-content-end">
+                                <button id="mapButton" className="btn btn-info m-2" onClick={() => this.handleMap(travel)}>
+                                    <i className="fas fa-map-marker-alt"></i>
+                                    <span className="">Map</span>
                                 </button>
                             </div>
+                          
+                            
+                            
+                            
                             {this.state.showResult?
                                 <div id="mapContainer"className="col-sm-12" >
                                 <div id="mapTwo">
