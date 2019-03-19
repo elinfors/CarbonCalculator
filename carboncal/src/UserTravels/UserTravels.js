@@ -180,7 +180,7 @@ class UserList extends Component {
             </div>
 
             <div className="row globes">
-                <BarChartTravel/>
+                <BarChartTravel userEmission={this.state.totalEmission}/>
             </div>
 
             
