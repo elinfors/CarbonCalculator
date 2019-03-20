@@ -183,6 +183,8 @@ handleTravelSearch(){
                                     <h6 id="numberOfPeopleText">Total number of people in the {this.state.text}:</h6>
                                         <span>
                                         <i id="peopleIcon"class="fas fa-male"></i>
+                                        </span>
+                                        <span>
                                         {carTravelersList}
                                         </span>
                                         {this.state.addMorePassengers?
