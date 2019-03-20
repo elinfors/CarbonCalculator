@@ -46,11 +46,13 @@ text-align:center;
 
 #start_end_text{
     vertical-align: middle;
-    font-size: 14px;
+    font-size: 16px;
     font-weight:600;
     background-color:rgb(69, 144, 173);
     color:white;
-    justify-content:space-between; 
+    justify-content:space-between;
+    height: 40px; 
+    align-items: center;
 }
 
 #startPoint{
@@ -71,6 +73,7 @@ text-align:center;
 
 #travelItemResult{
     line-height:1;
+    width: 300px;
     display:inline-block;
     background-color:lightgrey;
     margin:10px;
@@ -92,6 +95,7 @@ box-shadow: 0px 0px 31px -5px rgba(0,0,0,0.75);
     display: inline-block;
     line-height:50px;
     margin:3px 0px 3px 0px;
+    margin-bottom: 10px;
 }
 
 #travelIcon2{
@@ -100,6 +104,8 @@ font-size: 30px;
 
 #distanceResult{
     font-size:20px;
+    color: #FFFFFF;
+    font-weight: 600;
 }
 
 #travelDistanceButton{
@@ -141,14 +147,25 @@ font-size: 30px;
 }
 
 .fa-plus-square{
-    font-size: 50px;
-    margin: 20px 20px 20px 20px;
+    font-size: 30px;
+    padding: 10px 20px 10px 20px;
+    margin-top: 5px;
+    margin-bottom: 5px; 
+    background-color: #28a745;
+    border-radius: 7;
+   
     
 }
 
 .fa-copy{
-    font-size: 50px;
-    margin: 20px 20px 20px 20px;
+    font-size: 30px;
+    padding: 10px 20px 10px 20px;
+    margin-top: 5px;
+    margin-bottom: 5px; 
+    margin-right: 130px;
+    background-color: #217a58;
+    border-radius: 7;
+
 }
 
 .fa-plus-square:hover,.fa-copy:hover{
@@ -186,14 +203,18 @@ font-size: 30px;
   }
 
 #result_buttons{
-    background-color: #eaeaea;
-    padding-right: 0px;
-    padding-left: 0px;
+
+
 }
+
   #progress-bar-title{
       font-size:14px;
       color:black;
       margin-left:5px;
       font-weight:600;
       
+  }
+
+  #compare_travel{
+
   }

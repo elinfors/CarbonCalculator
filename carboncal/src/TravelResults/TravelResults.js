@@ -73,8 +73,6 @@ class TravelResults extends Component {
 
 
     render() {
-      //console.log(typeof this.handleColor(3));
-      //style för addtolist popup
 
       var myBigGreenDialog = {
         backgroundColor: '#17a2b8',
@@ -94,18 +92,19 @@ class TravelResults extends Component {
                 break;
             case "LOADED":
                 travelList =  this.state.allResults.map((travel,index) =>(
-                    <div key={travel.id+index} className = "col-sm-3" id="travelItemResult">
+                    <div key={travel.id+index} className = "" id="travelItemResult">
 
-                     <div className="row d-flex" key={"point" + travel.id} id="start_end_text">
-                          <div className="ml-1 mt-2">
-                            <span id="startPoint"className="text-truncate p-1">{travel.startPoint}</span>
-                            <span className="p-1"><i className="fas fa-arrow-right"></i></span>
-                            <span id="endPoint"className="text-truncate p-1">{travel.endPoint}</span>
+                     <div className="col-sm-12" key={"point" + travel.id} id="start_end_text">
+                            
+                              <div className="m-1 float-left" style={{lineHeight: "1.5"}}>
+                                <span id="startPoint"className="text-truncate p-1">{travel.startPoint}</span>
+                                <i className="fas fa-arrow-right"></i>
+                                <span id="endPoint"className="text-truncate p-1">{travel.endPoint}</span>
+                              </div>
+                              <div className="container justify-content-end">
+                                <i className="far fa-times-circle d-flex justify-content-end" onClick={()=>this.props.model.removeResult(travel)}></i>
+                              </div>
 
-                          </div>
-                          <div>
-                            <i className="d-flex justify-content-end" onClick={()=>this.props.model.removeResult(travel)} className="far fa-times-circle"></i>
-                          </div>
                      </div>
                      <div className="col-sm-12" >
                         <Tooltip  id="carbon-per" className="m-2" placement="right" content={(100*(travel.emission/2)).toFixed(1)+"% of recomended carbon emission per year"} style={{width: "90%"}}>
@@ -124,8 +123,6 @@ class TravelResults extends Component {
 
                       </div>
                       
-                     
-
 
                       <div className="col-sm-12 block">
                         
@@ -134,16 +131,15 @@ class TravelResults extends Component {
                   
                       
                       </div>
-                      <div id="result_buttons"className="row d-flex"> 
+                      <div id="result_buttons"className="col-sm-12"> 
                           {/*<button type="button" onClick = {()=> {this.saveTravelCompare(travel)}} className="btn btn-info btn-lg">Compare</button>
-                          <button type="button" onClick = {()=> {this.simpleDialog.show();this.saveUserTravel(travel.travelID)}} ref={(section) => { this.scrollTo = section; }} className="btn btn-info btn-lg">Add to My List</button>*/}
-                          <Tooltip placement="left" content="Click to compare">
+                          <button type="button" onClick = {()=> {this.simpleDialog.show();this.saveUserTravel(travel.travelID)}} ref={(section) => { this.scrollTo = section; }} className="btn btn-info btn-lg">Add to My List</button>*/}   
+                          <Tooltip class="compare_travel"placement="left" content="Click to compare">
                           <i className="far fa-copy" onClick = {()=> {this.saveTravelCompare(travel)}}></i>
                           </Tooltip>
                           <Tooltip placement="right" content="Click to save travel">
                           <i className="far fa-plus-square" onClick = {()=> {this.simpleDialog.show();this.saveUserTravel(travel)}} ref={(section) => { this.scrollTo = section; }}></i>
                           </Tooltip>
-
                           <SkyLight dialogStyles={myBigGreenDialog} hideOnOverlayClicked ref={ref => this.simpleDialog = ref} title="Added to list"/>
                     </div>
                    </div>
@@ -153,28 +149,7 @@ class TravelResults extends Component {
             travelList = <b>Failed to load data, please try again</b>;
 
         }
-        //
-        //}
-        //let classes = "badge m-2 badge-";
-        //classes += (this.props.model.getCarbonEmission() > 0.004) ? "danger" : "success";
-        //let travelList = this.state.travel;
-        //let carbonEmission = this.props.model.getCarbonEmission();
-        //import { AnimateOnChange } from '@nearform/react-animation';
-        /*{<AnimateOnChange
-          animationIn="bounceIn"
-          animationOut="bounceOut"
-          durationOut={800}>
-      <i class="fas fa-dice-d6"></i>
-       </AnimateOnChange>}
-       <PieChart
-                        data={[
-                          { title: '', value: 2000-((travel.emission)*1000), color: this.handleColor(travel.emission)},
-                          { title: (100*(travel.emission/2)).toFixed(2)+' % of recommended emissions per person per year', value: (travel.emission)*1000 , color: this.handleColor(travel.emission) }
-                        ]}
-                        x={100} y={100} radius={40} lineWidth={20} totalValue={2000} lengthAngle={-360}
-                        />
 
-       */
         return (
             <React.Fragment>
             <div key={"frame"} id="chooseRideContainer" className="container h-100">
@@ -202,7 +177,6 @@ class TravelResults extends Component {
           );
     }
 }
-//<h2>Distance: {travelList} km</h2>
-// <span id="carbonResult">Carbon emission: TON CO2/person</span>
+
 
 export default TravelResults;

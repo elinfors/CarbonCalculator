@@ -21,7 +21,7 @@ class TopBar extends Component {
     render() { 
         return (
         <React.Fragment>
-            <nav id="navBar" className="navbar fixed-top navbar-dark bg-dark">
+            <nav id="navBar" className="navbar fixed-top">
                 <div className="container h-100">
                     <Link to="/searchTravel">
                         <span className="navbar-brand">Home</span>
