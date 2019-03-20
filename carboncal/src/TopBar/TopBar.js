@@ -3,8 +3,6 @@ import './TopBar.css';
 import { Link } from 'react-router-dom';
 import fire from '../LoginPage/Fire';
 
-
-
 class TopBar extends Component {
     constructor(){
         super();
@@ -15,7 +13,7 @@ class TopBar extends Component {
         
     handleLogout(){ 
         fire.auth().signOut();
-        localStorage.removeItem('user');
+        //localStorage.removeItem('user');
     }
 
     render() { 
@@ -39,8 +37,10 @@ class TopBar extends Component {
                         <div className="dropdown-menu">
                             <span className="dropdown-item" href="#">My Account</span>
                             <div className="dropdown-divider"></div>
+                            <Link to="/">
                             <button onClick={this.handleLogout} className="dropdown-item" id="logOutButton" href="#">Log Out
                             </button>
+                            </Link>
                         </div>
                     </div>
                 </div>

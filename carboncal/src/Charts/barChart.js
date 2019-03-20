@@ -29,26 +29,107 @@ const data = [
 ];
 static jsfiddleUrl = 'https://jsfiddle.net/alidingling/30763kr7/';
 */
+/*
 const data = [
     {name: <span><i class="fas fa-globe-europe"></i></span>, pv: 40, amt: 2400,},
     {name: 'Average Travels', pv: 50, amt: 2400,},
     {name: 'Recomended', pv: 70, amt: 2400,}
   ];
+*/
 
 class BarChartTravel extends Component {
     constructor(props) {
         super(props);
         
+        
     }
 
+    update(){
+      this.setState({
+        savedTravels: this.props.savedTravels,
+        typeEmission: this.getTypeEmission(this.props.savedTravels)
+      })
+    }
+
+    componentDidMount(){
+      this.props.model.addObserver(this);
+      this.setState({
+        typeEmission: this.getTypeEmission(this.props.savedTravels)
+      })
+    }
+    
+
+    setData(small, medium, large, plane, train){
+      let data = [
+      {name: 'Small Car', pv: 1000*small, amt: 2400,},
+      {name: 'Medium', pv: 1000*medium, amt: 2400,},
+      {name: 'Large Car', pv: 1000*large, amt: 2400,},
+      {name: 'Plane', pv: 1000*plane, amt: 2400,},
+      {name: 'Train', pv: 1000*train, amt: 2400,}
+    ];
+    return data
+
+    }
+
+    getTypeEmission(savedTravels){
+      let totalTypeEmission = {
+          smallCar: 0,
+          mediumCar: 0,
+          largeCar: 0,
+          plane: 0,
+          train: 0
+      };
+
+      let travels = savedTravels;
+
+      for (var i in travels){
+          if(travels[i].travelType == "smallCar"){
+              totalTypeEmission.smallCar += travels[i].emission;
+              
+          }
+          else if(travels[i].travelType == "mediumCar"){
+              totalTypeEmission.mediumCar += travels[i].emission;
+          }
+          else if(travels[i].travelType == "largeCar"){
+              totalTypeEmission.largeCar += travels[i].emission;
+          }
+          else if(travels[i].travelType == "plane"){
+              totalTypeEmission.plane += travels[i].emission;
+          }
+          else if(travels[i].travelType == "train"){
+              totalTypeEmission.train += travels[i].emission;
+          }
+      }
+     /* this.setState({
+        smallCar: totalTypeEmission.smallCar,
+        mediumCar: totalTypeEmission.mediumCar,
+        largeCar: totalTypeEmission.largeCar,
+        plane: totalTypeEmission.plane,
+        train: totalTypeEmission.train,
+
+      })*/
+      return totalTypeEmission;
+    }
+  
+     
   
 
   render() {
+   //console.log("HÄÄÄR"+this.state.smallCar);
     return (
       <BarChart
         width={500}
         height={300}
-        data={data}
+       /* data={this.setData(this.state.typeEmission.smallCar,
+                          this.state.typeEmission.mediumCar,
+                          this.state.typeEmission.largear)}
+                          */
+        data = {this.setData(this.getTypeEmission(this.props.savedTravels).smallCar,
+          this.getTypeEmission(this.props.savedTravels).mediumCar,
+          this.getTypeEmission(this.props.savedTravels).largeCar,
+          this.getTypeEmission(this.props.savedTravels).plane,
+          this.getTypeEmission(this.props.savedTravels).train
+          )}
         margin={{
           top: 5, right: 30, left: 20, bottom: 5,
         }}
