@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import fire from './Fire'
-import { Link } from 'react-router-dom';
 import firebase from 'firebase';
 import SearchTravel from '../SearchTravel/SearchTravel';
 import LoginPage from './LoginPage';
@@ -17,8 +16,10 @@ class HandleLogin extends Component {
     componentDidMount(){
         this.authListener(); 
     }
+    
     componentWillMount(){
-            firebase.auth().setPersistence(firebase.auth.Auth.Persistence.SESSION)
+       // this.authListener(); 
+            /*firebase.auth().setPersistence(firebase.auth.Auth.Persistence.SESSION)
             .then(function() {
                 // Existing and future Auth states are now persisted in the current
                 // session only. Closing the window would clear any existing state even
@@ -31,14 +32,16 @@ class HandleLogin extends Component {
                 // Handle Errors here.
                 var errorCode = error.code;
                 var errorMessage = error.message;
-            });
+            });*/
     }
 
     authListener(){
         
         fire.auth().onAuthStateChanged((user) => {
             console.log(user + " användare utloggad?");
-            this.setState({ user })
+            if(user){
+            this.setState({ user,userID: user.uid });
+            modelInstance.user = this.state;
             firebase.database().ref('usersTravelList').set({
                 users: user.uid
             })
@@ -56,18 +59,20 @@ class HandleLogin extends Component {
         }).catch(function(error) {
             console.log("Error getting document:", error);
         });
+        } else{
+            this.setState({ user: null });
+            localStorage.removeItem('user');
+            console.log("remove");
+        }
         
             console.log(user);
-            if (user){
+           /* if (user){
                 this.setState({ user,userID: user.uid });
                 modelInstance.user = this.state;
                 console.log(modelInstance.user);
                 localStorage.setItem('user', JSON.stringify(user.uid));
-            }else{
-                this.setState({ user: null });
-                localStorage.removeItem('user');
-                console.log("remove");
-            }
+            }*/
+           
         }); 
        
         

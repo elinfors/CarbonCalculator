@@ -101,8 +101,6 @@ class UserList extends Component {
 
 
     render() {
- //console.log("saved"+this.state.savedTravels[0].emission);
-
         let userTravelList = null;
 
         userTravelList = this.state.savedTravels.map((travel,index) =>(
