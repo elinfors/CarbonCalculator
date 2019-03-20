@@ -16,16 +16,34 @@ class HandleLogin extends Component {
     
     componentDidMount(){
         this.authListener(); 
-        firebase.auth().onAuthStateChanged(userData => {
-            this.setState({user: userData})
-        })
+    }
+    componentWillMount(){
+            firebase.auth().setPersistence(firebase.auth.Auth.Persistence.SESSION)
+            .then(function() {
+                // Existing and future Auth states are now persisted in the current
+                // session only. Closing the window would clear any existing state even
+                // if a user forgets to sign out.
+                // ...
+                // New sign-in will be persisted with session persistence.
+                return firebase.auth().signInWithEmailAndPassword(this.state.email, this.state.password);
+            })
+            .catch(function(error) {
+                // Handle Errors here.
+                var errorCode = error.code;
+                var errorMessage = error.message;
+            });
     }
 
     authListener(){
+        
         fire.auth().onAuthStateChanged((user) => {
+            console.log(user + " användare utloggad?");
+            this.setState({ user })
             firebase.database().ref('usersTravelList').set({
                 users: user.uid
-        })
+            })
+
+        //Hämtar användarens data från databasen
         firebase.firestore().collection("usersTravelLists").doc(user.uid).get().then(function(doc){
             if (doc.exists) {
                 modelInstance.savedTravels = doc.data().savedTravels;
@@ -44,12 +62,14 @@ class HandleLogin extends Component {
                 this.setState({ user,userID: user.uid });
                 modelInstance.user = this.state;
                 console.log(modelInstance.user);
-                //localStorage.setItem('user', user.uid);
+                localStorage.setItem('user', JSON.stringify(user.uid));
             }else{
                 this.setState({ user: null });
-                //localStorage.removeItem('user');
+                localStorage.removeItem('user');
+                console.log("remove");
             }
         }); 
+       
         
     }
 

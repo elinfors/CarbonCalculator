@@ -28,8 +28,8 @@ class LoginPage extends Component {
         console.log(u)}).catch((error)=>{
             console.log(error);
         });
-    }
-    
+        
+    } 
 
     handleInput(e){
         this.setState({[e.target.name]: e.target.value})
