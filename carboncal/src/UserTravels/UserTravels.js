@@ -176,8 +176,9 @@ class UserList extends Component {
             </div>
 
             <div className="row globes">
-                {/*{this.createGlobes(this.state.NumberOfGlobes, this.state.restGlobes)}*/}
-                {this.createGlobes(4, 0.3)}
+            {this.createGlobes(this.state.NumberOfGlobes, this.state.restGlobes)}
+              
+            
             </div>
 
             <div className="row globes">

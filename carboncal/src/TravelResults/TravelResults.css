@@ -80,6 +80,10 @@ box-shadow: 0px 0px 31px -5px rgba(0,0,0,0.75);
     margin:3px 0px 3px 0px;
 }
 
+#travelIcon2{
+font-size: 30px;
+}
+
 #distanceResult{
     font-size:20px;
 }
@@ -165,3 +169,9 @@ box-shadow: 0px 0px 31px -5px rgba(0,0,0,0.75);
       opacity: 1;
     }
   }
+
+#result_buttons{
+    background-color: #eaeaea;
+    padding-right: 0px;
+    padding-left: 0px;
+}

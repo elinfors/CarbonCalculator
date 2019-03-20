@@ -134,17 +134,13 @@ class TravelResults extends Component {
 
 
                       <div className="col-sm-12 block">
-                        <span class="badge badge-pill badge-secondary">
-                          <span className="mr-2"><i className={travel.image} id="travelIcon" style={{backgroundColor: travel.color, borderColor: travel.color}}></i></span>
-                          <span className="mr-2"id="distanceResult"><CountUp end={travel.distance} duration={5}/>  KM</span>
-                        </span>
                         
-                        <span class="badge badge-pill badge-secondary">
-                          <span className="mr-2"><i className="fas fa-hiking" id="travelIcon" style={{backgroundColor: travel.color, borderColor: travel.color}}></i></span>
-                          <span className="mr-2" id="distanceResult"><CountUp end={travel.numberOfTravelers} duration={5}/></span>
-                        </span>
+                          <span className="mr-2"><i className={travel.image} id="travelIcon" style={{backgroundColor: travel.color, borderColor: travel.color}}></i></span>
+                          <span className="mr-2"id="distanceResult"><CountUp end={travel.distance} duration={5}/>  km</span>
+                  
+                      
                       </div>
-                      <div className="col-sm-12"> 
+                      <div id="result_buttons"className="row d-flex"> 
                           {/*<button type="button" onClick = {()=> {this.saveTravelCompare(travel)}} className="btn btn-info btn-lg">Compare</button>
                           <button type="button" onClick = {()=> {this.simpleDialog.show();this.saveUserTravel(travel.travelID)}} ref={(section) => { this.scrollTo = section; }} className="btn btn-info btn-lg">Add to My List</button>*/}
                           <Tooltip placement="left" content="Click to compare">

@@ -77,8 +77,11 @@
 }
 
 #item_block_container{
-    background-color: #eaeaea;
+    background-color: rgba(193, 193, 193, 0.5);
+    margin-top: 60px;
+
 }
+
 
 #delete_button{
     margin-right: 16px;
