@@ -30,7 +30,7 @@ class UserList extends Component {
           totalEmission: this.calculateTotalEmission(),
           NumberOfGlobes: this.calculateNumberOfGlobes(),
           restGlobes: this.getRestofGlobes(this.calculateNumberOfGlobes()),
-          typeEmission: this.getTypeEmission(this.state.savedTravels),
+         // typeEmission: this.getTypeEmission(this.state.savedTravels),
          })
       }
 
@@ -42,7 +42,7 @@ class UserList extends Component {
           totalEmission: this.calculateTotalEmission(),
           NumberOfGlobes: this.calculateNumberOfGlobes(),
           restGlobes: this.getRestofGlobes(this.calculateNumberOfGlobes()),
-          typeEmission: this.getTypeEmission(this.state.savedTravels)
+         // typeEmission: this.getTypeEmission(this.state.savedTravels)
          })
       }
 
@@ -98,41 +98,9 @@ class UserList extends Component {
         return globes;
     }
 
-    getTypeEmission(savedTravels){
-        let totalTypeEmission = {
-            smallCar: 0,
-            mediumCar: 0,
-            largeCar: 0,
-            plane: 0,
-            train: 0
-        }
-
-        let travels = this.state.savedTravels;
-
-        for (var i in travels){
-            if(travels[i].travelType == "smallCar"){
-                totalTypeEmission.smallCar += travels.emission;
-            }
-            else if(travels[i].travelType == "mediumCar"){
-                totalTypeEmission.mediumCar += travels.emission;
-            }
-            else if(travels[i].travelType == "largeCar"){
-                totalTypeEmission.largeCar += travels.emission;
-            }
-            else if(travels[i].travelType == "plane"){
-                totalTypeEmission.plane += travels.emission;
-            }
-            else if(travels[i].travelType == "train"){
-                totalTypeEmission.train += travels.emission;
-            }
-        }
-        return totalTypeEmission;
-    }
-
 
 
     render() {
-
         let userTravelList = null;
 
         userTravelList = this.state.savedTravels.map((travel,index) =>(
@@ -232,7 +200,7 @@ class UserList extends Component {
                                             {this.createGlobes(this.state.NumberOfGlobes, this.state.restGlobes)}
                                         </div>
                                         <div className="row globes">
-                                            <BarChartTravel/>
+                                            <BarChartTravel savedTravels = {this.state.savedTravels} model = {this.props.model}/>
                                         </div> 
                                     </div> 
                                 </div>
