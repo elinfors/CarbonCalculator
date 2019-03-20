@@ -79,7 +79,7 @@ class TravelModel extends ObservableModel {
         let month, day = 0
         date.getDate() < 10 ? day = "0" + date.getDate(): day = date.getDate();
         date.getMonth() < 10 ? month = "0" + date.getMonth(): month = date.getMonth();
-        travel["date"] = day + "" + month + 1 + "" + date.getFullYear();
+        travel["date"] = day + " " + month + " " + date.getFullYear();
         this.savedTravels.push(travel);
         this.notifyObservers();
         console.log(this.user.userID)
