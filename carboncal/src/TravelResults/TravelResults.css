@@ -50,10 +50,24 @@ text-align:center;
     font-weight:600;
     background-color:rgb(69, 144, 173);
     color:white;
-    justify-content:space-between;  
-   
+    justify-content:space-between; 
 }
 
+#startPoint{
+    max-width:100px;
+    display: inline-block;
+    white-space: nowrap;
+    overflow: hidden !important;
+    text-overflow: ellipsis;
+}
+
+#endPoint{
+    max-width:100px;
+    display: inline-block;
+    white-space: nowrap;
+    overflow: hidden !important;
+    text-overflow: ellipsis;
+}
 
 #travelItemResult{
     line-height:1;
@@ -113,6 +127,7 @@ box-shadow: 0px 0px 31px -5px rgba(0,0,0,0.75);
     margin-top: 10px;
 }
 
+
 #progress-bar{
     color: black;
     background-color: #ffc300;
@@ -164,4 +179,12 @@ box-shadow: 0px 0px 31px -5px rgba(0,0,0,0.75);
     to {
       opacity: 1;
     }
+  }
+
+  #progress-bar-title{
+      font-size:14px;
+      color:black;
+      margin-left:5px;
+      font-weight:600;
+      
   }

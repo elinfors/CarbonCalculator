@@ -99,7 +99,7 @@ class TravelResults extends Component {
                      <div className="row d-flex" key={"point" + travel.id} id="start_end_text">
                           <div className="ml-1 mt-2">
                             <span id="startPoint"className="text-truncate p-1">{travel.startPoint}</span>
-                            <i className="fas fa-arrow-right p-1"></i>
+                            <span className="p-1"><i className="fas fa-arrow-right"></i></span>
                             <span id="endPoint"className="text-truncate p-1">{travel.endPoint}</span>
 
                           </div>
@@ -107,12 +107,12 @@ class TravelResults extends Component {
                             <i className="d-flex justify-content-end" onClick={()=>this.props.model.removeResult(travel)} className="far fa-times-circle"></i>
                           </div>
                      </div>
-                     <div className="row d-flex" >
+                     <div className="col-sm-12" >
                         <Tooltip  id="carbon-per" className="m-2" placement="right" content={(100*(travel.emission/2)).toFixed(1)+"% of recomended carbon emission per year"} style={{width: "90%"}}>
-                          <div className="progress">
+                          <div className="progress" style={{height: "25px"}}>
                
                           <div id="progress-bar" className="progress-bar" role="progressbar" style={{maxWidth: travel.emission*100/2 + "%", backgroundColor: this.handleColor(travel.emission)}} aria-valuenow={travel.emission*100/2} aria-valuemin="0" aria-valuemax="2000">
-                          <span className="title">{(100*(travel.emission/2)).toFixed(1)}%</span>
+                          <span id="progress-bar-title" className="title">{(100*(travel.emission/2)).toFixed(1)}%</span>
                           </div>
                          </div>
                         </Tooltip>

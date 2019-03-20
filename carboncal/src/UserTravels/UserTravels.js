@@ -4,6 +4,8 @@ import './UserTravels.css';
 import DragSortableList from 'react-drag-sortable'
 import { ReactBingmaps } from 'react-bingmaps';
 import BarChartTravel from '../Charts/barChart';
+import Tooltip from "react-simple-tooltip"
+
 
 class UserList extends Component {
     constructor(props){
@@ -123,14 +125,16 @@ class UserList extends Component {
                                 <span id="carbonListItems" className="">{(travel.emission*1000).toFixed()}</span>
                                 <br/>
                                 <span id="carbonText"> KG CO2/person</span>
+
+                               
+                               
+                            </div>
+                            <div id="buttonRow"className="row justify-content-between">
+                            
                                 <button id="mapButton" className="btn btn-info m-2" onClick={() => this.handleMap(travel)}>
                                     <i className="fas fa-map-marker-alt"></i>
                                     <span className="">Map</span>
                                 </button>
-                               
-                            </div>
-                            <div id="buttonRow"className="row justify-content-end">
-                                
                             </div>
                           
                             
@@ -169,49 +173,39 @@ class UserList extends Component {
             <React.Fragment>
             <TopBar currentSavedTravels={this.props.model.savedTravels.length}></TopBar>
             <div id="item_block_container" className="container h-100">
-            <div className="d-block p-2 text-white">
-            <div className="container h-100">
-            <div className="row">
-            <div className="col-sm-6">
-            {userTravelList}
+                <div className="d-block p-2 text-white">
+                    <div className="container h-100">
+                        <div className="row">
+                            <div className="col-sm-6">
+                                {userTravelList}
 
             {/*<DragSortableList items= placeholder={placeholder} onSort={onSort} dropBackTransitionDuration={0.3} type="vertical"/>*/}
-            </div>
-            <div className="col-sm-6">
-            <h3>
-              
-            {/*{(this.state.totalEmission*1000).toFixed()}
-            {(this.state.restGlobes)}*/}
-            {Math.floor(this.state.NumberOfGlobes)}
-            {this.state.restGlobes}
-
-            </h3>
-            <div className="row">
-            <div className="col-sm-12">
-            <div className="row globes">
-                <h2>You need {parseFloat(this.state.NumberOfGlobes).toFixed(1)} globes</h2>
-            </div>
-
-            <div className="row globes">
-                {this.createGlobes(this.state.NumberOfGlobes, this.state.restGlobes)}
-            </div>
-
-            <div className="row globes">
-                <BarChartTravel/>
-            </div>
-
-            
-            </div>
-                
-                
-            </div>
-            
-            
-            </div>
-            
-            </div>
-            </div>
-            </div>
+                            </div>
+                            <div className="col-sm-6">
+                                <div id="totalEmissionHeader" className="col-sm-12">
+                                    <span id="totalEmissionHeaderText">Total C02 emission for this year</span>
+                                    {/*{(this.state.totalEmission*1000).toFixed()}
+                                    {(this.state.restGlobes)}*/}
+                                   {/*} {Math.floor(this.state.NumberOfGlobes)}
+                                    {this.state.restGlobes}*/}
+                                </div>
+                                <div className="row">
+                                    <div className="col-sm-12">
+                                        <div className="row globes">
+                                            <h2>You need {parseFloat(this.state.NumberOfGlobes).toFixed(1)} globes</h2>
+                                        </div>
+                                        <div className="row globes">
+                                            {this.createGlobes(this.state.NumberOfGlobes, this.state.restGlobes)}
+                                        </div>
+                                        <div className="row globes">
+                                            <BarChartTravel/>
+                                        </div> 
+                                    </div> 
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
             </React.Fragment>
 
