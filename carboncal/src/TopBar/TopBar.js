@@ -22,11 +22,11 @@ class TopBar extends Component {
             <nav id="navBar" className="navbar fixed-top">
                 <div className="container h-100">
                     <Link to="/searchTravel">
-                        <span className="navbar-brand">Home</span>
+                        <span className="navbar-brand">CARBON CALCULATOR</span>
                     </Link>
                     <Link to="/UserTravels">
                         <button className="btn btn-info justify-content-center">
-                            <i className="fas fa-th-list mr-2"></i>My list<span id="topBarCounter" className="ml-2">{this.props.currentSavedTravels}</span>
+                            <i className="fas fa-th-list mr-2"></i>My saved travels:<span id="topBarCounter" className="ml-2">{this.props.currentSavedTravels}</span>
 
                         </button>
                     </Link>
