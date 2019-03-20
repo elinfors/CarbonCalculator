@@ -1,3 +1,7 @@
+//* Component for camparing travels
+//* Each travel you have searched for with a specific traveltype, 
+//* you can click the "comparebutton" to get a new view with the CO2 emission for every traveltype
+
 import React, { Component } from 'react';
 import scrollToComponent from 'react-scroll-to-component';
 import travelTypesInstance from '../Data/TravelTypes';
@@ -17,6 +21,8 @@ class CompareTravels extends Component {
         this.setState({
             compareTravels: this.props.model.compareTravels,
            })
+        //* Npm package that scrolls to the new view when button is clicked 
+           
         scrollToComponent(this.scrollTo, { offset: 0, align: 'middle', duration: 200, ease:'inExpo'})
         console.log(this.state.compareTravels);
     }
