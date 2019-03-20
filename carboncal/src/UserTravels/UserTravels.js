@@ -132,7 +132,6 @@ class UserList extends Component {
 
 
     render() {
-
         let userTravelList = null;
 
         userTravelList = this.state.savedTravels.map((travel,index) =>(
