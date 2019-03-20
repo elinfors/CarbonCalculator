@@ -107,7 +107,7 @@ class TravelResults extends Component {
 
                      </div>
                      <div className="col-sm-12" >
-                        <Tooltip  id="carbon-per" className="m-2" placement="right" content={(100*(travel.emission/2)).toFixed(1)+"% of recomended carbon emission per year"} style={{width: "90%"}}>
+                        <Tooltip  id="carbon-per" className="m-2" background= "rgba(54, 55, 56, 0.9)" border="none" radius="4" placement="right" content={(100*(travel.emission/2)).toFixed(1)+"% of recomended carbon emission per year"} style={{width: "90%"}}>
                           <div className="progress" style={{height: "25px"}}>
                
                           <div id="progress-bar" className="progress-bar" role="progressbar" style={{maxWidth: travel.emission*100/2 + "%", backgroundColor: this.handleColor(travel.emission)}} aria-valuenow={travel.emission*100/2} aria-valuemin="0" aria-valuemax="2000">
@@ -134,10 +134,10 @@ class TravelResults extends Component {
                       <div id="result_buttons"className="col-sm-12"> 
                           {/*<button type="button" onClick = {()=> {this.saveTravelCompare(travel)}} className="btn btn-info btn-lg">Compare</button>
                           <button type="button" onClick = {()=> {this.simpleDialog.show();this.saveUserTravel(travel.travelID)}} ref={(section) => { this.scrollTo = section; }} className="btn btn-info btn-lg">Add to My List</button>*/}   
-                          <Tooltip class="compare_travel"placement="left" content="Click to compare">
+                          <Tooltip class="compare_travel"placement="left" content="Click to compare" background= "rgba(54, 55, 56, 0.9)" border="none" radius="4">
                           <i className="far fa-copy" onClick = {()=> {this.saveTravelCompare(travel)}}></i>
                           </Tooltip>
-                          <Tooltip placement="right" content="Click to save travel">
+                          <Tooltip placement="right" content="Click to save travel" background= "rgba(54, 55, 56, 0.9)" border="none" radius="4">
                           <i className="far fa-plus-square" onClick = {()=> {this.simpleDialog.show();this.saveUserTravel(travel)}} ref={(section) => { this.scrollTo = section; }}></i>
                           </Tooltip>
                           <SkyLight dialogStyles={myBigGreenDialog} hideOnOverlayClicked ref={ref => this.simpleDialog = ref} title="Added to list"/>
