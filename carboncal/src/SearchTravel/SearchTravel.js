@@ -24,18 +24,18 @@ class SearchTravel extends Component {
 }
 
 
-/*update(){
+update(){
     this.setState({
-      savedTravels: this.props.model.savedTravels,
+        savedTravelsLength: this.props.model.savedTravels.length,
      })
   }
 
 componentDidMount(){
     this.props.model.addObserver(this);
     this.setState({
-      savedTravels: this.props.model.savedTravels,
+        savedTravelsLength: this.props.model.savedTravels.length,
      })
-  }*/
+  }
 
 handleTravelType(travelType){
    travelTypesInstance.state.types.map(types => (types.value === travelType.value? types.zoom = 1.1 : types.zoom = 1))

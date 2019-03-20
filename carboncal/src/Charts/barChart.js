@@ -56,7 +56,7 @@ class BarChartTravel extends Component {
        
         <XAxis dataKey="name" />
         <YAxis/>
-        <Tooltip content="hej"/>
+        {/*<Tooltip content="hej"/>*/}
         {/*<Legend />*/}
         <Bar dataKey="vv" fill="#8884d8" />
         <Bar dataKey="pv" fill="#8884d8" />

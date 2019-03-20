@@ -4,6 +4,8 @@ import './UserTravels.css';
 import DragSortableList from 'react-drag-sortable'
 import { ReactBingmaps } from 'react-bingmaps';
 import BarChartTravel from '../Charts/barChart';
+import Tooltip from "react-simple-tooltip"
+
 
 class UserList extends Component {
     constructor(props){
@@ -16,6 +18,7 @@ class UserList extends Component {
             routeMode:"driving"},
             showResult:false,
             totalEmission: 0
+            
             }
 
         }
@@ -27,6 +30,7 @@ class UserList extends Component {
           totalEmission: this.calculateTotalEmission(),
           NumberOfGlobes: this.calculateNumberOfGlobes(),
           restGlobes: this.getRestofGlobes(this.calculateNumberOfGlobes()),
+          typeEmission: this.getTypeEmission(this.state.savedTravels),
          })
       }
 
@@ -38,6 +42,7 @@ class UserList extends Component {
           totalEmission: this.calculateTotalEmission(),
           NumberOfGlobes: this.calculateNumberOfGlobes(),
           restGlobes: this.getRestofGlobes(this.calculateNumberOfGlobes()),
+          typeEmission: this.getTypeEmission(this.state.savedTravels)
          })
       }
 
@@ -93,6 +98,37 @@ class UserList extends Component {
         return globes;
     }
 
+    getTypeEmission(savedTravels){
+        let totalTypeEmission = {
+            smallCar: 0,
+            mediumCar: 0,
+            largeCar: 0,
+            plane: 0,
+            train: 0
+        }
+
+        let travels = this.state.savedTravels;
+
+        for (var i in travels){
+            if(travels[i].travelType == "smallCar"){
+                totalTypeEmission.smallCar += travels.emission;
+            }
+            else if(travels[i].travelType == "mediumCar"){
+                totalTypeEmission.mediumCar += travels.emission;
+            }
+            else if(travels[i].travelType == "largeCar"){
+                totalTypeEmission.largeCar += travels.emission;
+            }
+            else if(travels[i].travelType == "plane"){
+                totalTypeEmission.plane += travels.emission;
+            }
+            else if(travels[i].travelType == "train"){
+                totalTypeEmission.train += travels.emission;
+            }
+        }
+        return totalTypeEmission;
+    }
+
 
 
     render() {
@@ -104,21 +140,40 @@ class UserList extends Component {
                     <div id={travel.id + "savedTravels"}>
                         <div className="container" id="full_badge">
                             <div className="col-sm-12" id="itemListRow">
-                                <span className="m-2">{travel.date}</span>
+                                <span className="badge badge-secondary m-2">{travel.date}</span>
+                                <i className="d-flex justify-content-end m-1" onClick={()=>this.props.model.removeSavedTravel(travel)} className="far fa-times-circle"></i>
+                            </div>
+                            <div id="destinationResultContainer"className="col-sm-12 justify-content-between">
                                 <span className="m-2">
+                                    <span className="mr-3">
+                                    <i className={travel.image}></i>
+                                    </span>
                                     <span id="destinationResult" className="">{travel.startPoint}</span>
                                     <span className=""><i id="rightArrow" className="fas fa-arrow-right"></i></span>
                                     <span id="destinationResult" className="">{travel.endPoint}</span>
                                 </span>
-                                <span><i id="delete_button"onClick={()=> this.props.model.removeSavedTravel(travel)} className="m-2 far fa-times-circle"></i></span>
+                              
                             </div>
-                            <div className="col-sm-12">
-                                <span><i className={travel.image} id="travelIconInUserTravel"style={{backgroundColor: travel.color, borderColor: travel.color, width: "70px", height:"70px", lineHeight: "3.5"}}></i></span>
-                                <span id="carbonListItems" className="round round-lg">{(travel.emission*1000).toFixed()}</span>
-                                <button className="btn btn-info justify-content-center" onClick={() => this.handleMap(travel)}>
-                                    <i class="fas fa-th-list mr-2">Show Map</i>
+                            <div id="userTravelContainer" className="col-sm-12">
+                             
+                                <span id="carbonListItems" className="">{(travel.emission*1000).toFixed()}</span>
+                                <br/>
+                                <span id="carbonText"> KG CO2/person</span>
+
+                               
+                               
+                            </div>
+                            <div id="buttonRow"className="row justify-content-between">
+                            
+                                <button id="mapButton" className="btn btn-info m-2" onClick={() => this.handleMap(travel)}>
+                                    <i className="fas fa-map-marker-alt"></i>
+                                    <span className="">Map</span>
                                 </button>
                             </div>
+                          
+                            
+                            
+                            
                             {this.state.showResult?
                                 <div id="mapContainer"className="col-sm-12" >
                                 <div id="mapTwo">
@@ -152,51 +207,39 @@ class UserList extends Component {
             <React.Fragment>
             <TopBar currentSavedTravels={this.props.model.savedTravels.length}></TopBar>
             <div id="item_block_container" className="container h-100">
-            <div className="d-block p-2 text-white">
-            <div className="container h-100">
-            <div className="row">
-            <div className="col-sm-6">
-            {userTravelList}
+                <div className="d-block p-2 text-white">
+                    <div className="container h-100">
+                        <div className="row">
+                            <div className="col-sm-6">
+                                {userTravelList}
 
             {/*<DragSortableList items= placeholder={placeholder} onSort={onSort} dropBackTransitionDuration={0.3} type="vertical"/>*/}
-            </div>
-            <div className="col-sm-6">
-            <h3>
-              
-            {/*{(this.state.totalEmission*1000).toFixed()}
-            {(this.state.restGlobes)}*/}
-            {Math.floor(this.state.NumberOfGlobes)}
-            {this.state.restGlobes}
-
-            </h3>
-            <div className="row">
-            <div className="col-sm-12">
-            <div className="row globes">
-                <h2>You need {parseFloat(this.state.NumberOfGlobes).toFixed(1)} globes</h2>
-            </div>
-
-            <div className="row globes">
-            {this.createGlobes(this.state.NumberOfGlobes, this.state.restGlobes)}
-              
-            
-            </div>
-
-            <div className="row globes">
-                <BarChartTravel/>
-            </div>
-
-            
-            </div>
-                
-                
-            </div>
-            
-            
-            </div>
-            
-            </div>
-            </div>
-            </div>
+                            </div>
+                            <div className="col-sm-6">
+                                <div id="totalEmissionHeader" className="col-sm-12">
+                                    <span id="totalEmissionHeaderText">Total C02 emission for this year</span>
+                                    {/*{(this.state.totalEmission*1000).toFixed()}
+                                    {(this.state.restGlobes)}*/}
+                                   {/*} {Math.floor(this.state.NumberOfGlobes)}
+                                    {this.state.restGlobes}*/}
+                                </div>
+                                <div className="row">
+                                    <div className="col-sm-12">
+                                        <div className="row globes">
+                                            <h2>You need {parseFloat(this.state.NumberOfGlobes).toFixed(1)} globes</h2>
+                                        </div>
+                                        <div className="row globes">
+                                            {this.createGlobes(this.state.NumberOfGlobes, this.state.restGlobes)}
+                                        </div>
+                                        <div className="row globes">
+                                            <BarChartTravel/>
+                                        </div> 
+                                    </div> 
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
             </React.Fragment>
 

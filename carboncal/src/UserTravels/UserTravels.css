@@ -1,12 +1,14 @@
 #carbonListItems{
-    font-size:20px;
+    font-size:75px;
     margin:0px 30px 0px 30px;
+    border-bottom:5px solid white;
 }
 
 
 
 #itemListRow{
-    background-color:black;
+    background-color:grey;
+    padding:5px;
 }
 
 #userListContainer{
@@ -15,9 +17,12 @@
 }
 #destinationResult{
     font-size:20px;
+    color:white;
 }
 
 #rightArrow{
+    font-size:16px;
+    color:white;
     margin:0px 10px 0px 10px;
 }
 
@@ -64,15 +69,16 @@
     color: #ffffff;
     width:100%;
     background-color:#293945;
+    margin-top:10px;
 }
 
 #travelIconInUserTravel{
     font-size: 25px;
-    float: left;
     border-radius: 50px;
     color: white;
     font-weight: bold;
-    line-height:20px;
+    padding:20px;
+    margin-left:20px;
     
 }
 
@@ -99,6 +105,29 @@
     text-align:center;
 }
 
+#userTravelContainer{
+   
+    text-align:center;
+
+}
+
+#mapButton{
+    float:right;
+    margin-bottom:10px;
+}
+
+#destinationResultContainer{
+    border-bottom:1px solid grey;
+    text-align:center;
+}
+#carbonText{
+    margin:0px 0px 10px 0px;
+}
+
+#buttonRow{
+    margin-left:0px;
+    margin-right:0px;
+}
 .fa-globe-americas{
     color: #37844e;
     margin: 20px 20px 20px 20px;
@@ -111,5 +140,11 @@
     align-items: center;
 }
 
-
+#totalEmissionHeader{
+    background-color:rgb(67, 131, 109);
+    margin-top:10px;
+    text-align:center;
+    font-size:24px;
+    padding:10px;
+}
 
