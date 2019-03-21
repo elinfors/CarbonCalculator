@@ -43,7 +43,8 @@ class TravelResults extends Component {
 
     saveTravelCompare(travel){
       this.setState({
-        compareButton: "btn btn-success"
+        compareButton: "btn btn-success",
+        showCompare: true
        })
       this.props.model.saveCompare(travel);
 
@@ -157,7 +158,9 @@ class TravelResults extends Component {
                     <div className="col-sm-12" id="chooseRideText">
                     <span><i id="infoSymbolThreeBig" className="fas fa-check-circle m-2"></i></span>
                     <span id="chooseTextBig">Your result</span>
-                    <button id="compare_button" className={this.state.compareButton} onClick={() => {this.handleCompare()}}>{this.state.compareButtonText}</button>
+                    {this.state.showCompare?
+                    <button id="compare_button" className={this.state.compareButton} onClick={() => {this.handleCompare()}}>Hide</button>
+                    :null}
                     </div>
                 </div>
             </div>

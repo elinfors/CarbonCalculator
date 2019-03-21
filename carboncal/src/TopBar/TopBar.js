@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import './TopBar.css';
 import { Link } from 'react-router-dom';
 import fire from '../LoginPage/Fire';
+import firebase from 'firebase';
 
 class TopBar extends Component {
     constructor(){
@@ -24,10 +25,10 @@ class TopBar extends Component {
                     <Link to="/searchTravel">
                         <span className="navbar-brand">CARBON CALCULATOR</span>
                     </Link>
+                        <span className="navbar-brand">Logged in as <span className="text-info">{firebase.auth().currentUser ? firebase.auth().currentUser.email : "undefined"}</span> </span>
                     <Link to="/UserTravels">
                         <button className="btn btn-info justify-content-center">
                             <i className="fas fa-th-list mr-2"></i>My saved travels:<span id="topBarCounter" className="ml-2">{this.props.currentSavedTravels}</span>
-
                         </button>
                     </Link>
                     <div className="btn-group">
