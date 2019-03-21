@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import {
   BarChart, Bar, Cell, XAxis, YAxis, CartesianGrid, Tooltip, Legend,
 } from 'recharts';
+
 /*
 const data = [
   {
@@ -39,67 +40,78 @@ const data = [
 class BarChartTravel extends Component {
     constructor(props) {
         super(props);
-        this.getTypeEmission = this.getTypeEmission.bind(this)
-        this.state = {
-          smallCar:0,
-          mediumCar:0,
-          largeCar:0,
-          plane:0,
-          train:0
-        }
+        
+        
     }
 
     update(){
-      this.getTypeEmission();
+      this.setState({
+        savedTravels: this.props.savedTravels,
+        typeEmission: this.getTypeEmission(this.props.savedTravels)
+      })
     }
 
     componentDidMount(){
       this.props.model.addObserver(this);
-      this.getTypeEmission();
+      this.setState({
+        typeEmission: this.getTypeEmission(this.props.savedTravels)
+      })
     }
-  
-    getTypeEmission(){
-  
-      let smallCarEmission, mediumCarEmission, largeCarEmission, planeEmission, trainEmission;
-      smallCarEmission = mediumCarEmission = largeCarEmission = planeEmission = trainEmission = 0;
-      let travels = this.props.savedTravels;
+    
+
+    setData(small, medium, large, plane, train){
+      let data = [
+      {name: 'Small Car', pv: 1000*small, amt: 2400,},
+      {name: 'Medium', pv: 1000*medium, amt: 2400,},
+      {name: 'Large Car', pv: 1000*large, amt: 2400,},
+      {name: 'Plane', pv: 1000*plane, amt: 2400,},
+      {name: 'Train', pv: 1000*train, amt: 2400,}
+    ];
+    return data
+
+    }
+
+    getTypeEmission(savedTravels){
+      let totalTypeEmission = {
+          smallCar: 0,
+          mediumCar: 0,
+          largeCar: 0,
+          plane: 0,
+          train: 0
+      };
+
+      let travels = savedTravels;
 
       for (var i in travels){
           if(travels[i].travelType == "smallCar"){
-              smallCarEmission += travels[i].emission; 
+              totalTypeEmission.smallCar += travels[i].emission;
+              
           }
           else if(travels[i].travelType == "mediumCar"){
-              mediumCarEmission += travels[i].emission;
+              totalTypeEmission.mediumCar += travels[i].emission;
           }
           else if(travels[i].travelType == "largeCar"){
-              largeCarEmission += travels[i].emission;
+              totalTypeEmission.largeCar += travels[i].emission;
           }
           else if(travels[i].travelType == "plane"){
-              planeEmission += travels[i].emission;
+              totalTypeEmission.plane += travels[i].emission;
           }
           else if(travels[i].travelType == "train"){
-              trainEmission += travels[i].emission;
+              totalTypeEmission.train += travels[i].emission;
           }
       }
-      this.setState({
-        smallCar: smallCarEmission,
-        mediumCar: mediumCarEmission,
-        largeCar: largeCarEmission,
-        plane: planeEmission,
-        train: trainEmission
-      })
+     /* this.setState({
+        smallCar: totalTypeEmission.smallCar,
+        mediumCar: totalTypeEmission.mediumCar,
+        largeCar: totalTypeEmission.largeCar,
+        plane: totalTypeEmission.plane,
+        train: totalTypeEmission.train,
+
+      })*/
+      return totalTypeEmission;
     }
   
-    setData(){
-      let data = [
-      {name: 'Small Car', pv: 1000*this.state.smallCar, amt: 2400,},
-      {name: 'Medium', pv: 1000*this.state.mediuCarm, amt: 2400,},
-      {name: 'Large Car', pv: 1000*this.state.largeCar, amt: 2400,},
-      {name: 'Plane', pv: 1000*this.state.plane, amt: 2400,},
-      {name: 'Train', pv: 1000*this.state.train, amt: 2400,}
-    ];
-      return data
-    }   
+     
   
 
   render() {
@@ -112,7 +124,12 @@ class BarChartTravel extends Component {
                           this.state.typeEmission.mediumCar,
                           this.state.typeEmission.largear)}
                           */
-        data = {this.setData()}
+        data = {this.setData(this.getTypeEmission(this.props.savedTravels).smallCar,
+          this.getTypeEmission(this.props.savedTravels).mediumCar,
+          this.getTypeEmission(this.props.savedTravels).largeCar,
+          this.getTypeEmission(this.props.savedTravels).plane,
+          this.getTypeEmission(this.props.savedTravels).train
+          )}
         margin={{
           top: 5, right: 30, left: 20, bottom: 5,
         }}

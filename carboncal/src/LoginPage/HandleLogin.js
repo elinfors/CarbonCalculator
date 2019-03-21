@@ -18,8 +18,8 @@ class HandleLogin extends Component {
     }
     
     componentWillMount(){
-        this.authListener(); 
-            firebase.auth().setPersistence(firebase.auth.Auth.Persistence.SESSION)
+       // this.authListener(); 
+            /*firebase.auth().setPersistence(firebase.auth.Auth.Persistence.SESSION)
             .then(function() {
                 // Existing and future Auth states are now persisted in the current
                 // session only. Closing the window would clear any existing state even
@@ -32,12 +32,11 @@ class HandleLogin extends Component {
                 // Handle Errors here.
                 var errorCode = error.code;
                 var errorMessage = error.message;
-            });
+            });*/
     }
 
     authListener(){
-        let user = firebase.auth().currentUser;
-        console.log(user)
+        
         fire.auth().onAuthStateChanged((user) => {
             console.log(user + " användare utloggad?");
             if(user){

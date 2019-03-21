@@ -4,9 +4,7 @@ import TravelResults from '../TravelResults/TravelResults'
 import travelTypesInstance from '../Data/TravelTypes'
 import Autocomplete from 'react-google-autocomplete';
 import './SearchTravel.css';
-import ChooseInstructions from './ChooseInstructions';
 
-// This component renders the whole search view
 class SearchTravel extends Component {
     constructor(){
     super();
@@ -20,25 +18,26 @@ class SearchTravel extends Component {
        showResult: false,
        showWarning: false,
        warning: "",
+    
     }
     this.handleTravelSearch = this.handleTravelSearch.bind(this)
 }
 
 
-update(){ //Updates the number of savedtravels in topBar
+update(){
     this.setState({
         savedTravelsLength: this.props.model.savedTravels.length,
      })
   }
 
-componentDidMount(){ //Updates the number of savedtravels in topBar
+componentDidMount(){
     this.props.model.addObserver(this);
     this.setState({
         savedTravelsLength: this.props.model.savedTravels.length,
      })
   }
 
-handleTravelType(travelType){ //Updates the state when a user selects a travelType
+handleTravelType(travelType){
    travelTypesInstance.state.types.map(types => (types.value === travelType.value? types.zoom = 1.1 : types.zoom = 1))
    travelType.value === "smallCar"|| travelType.value === "mediumCar" || travelType.value === "largeCar" ? this.setState({
         travelType: travelType.value,
@@ -49,7 +48,7 @@ handleTravelType(travelType){ //Updates the state when a user selects a travelTy
         color: travelType.color,
         showZoom: travelType.value,
         showWarning: false
-    }) : this.setState({ //If the traveltype isn't a car, update the plane or train + hide the addpassengerview
+    }) : this.setState({
         travelType: travelType.value,
         numberOfTravelers: 1,
         showCarPassengers: false,
@@ -62,7 +61,7 @@ handleTravelType(travelType){ //Updates the state when a user selects a travelTy
     });
 }
 
-handleTravelStartPoint = (places) => { //Updates the state with the choosen start point
+handleTravelStartPoint = (places) => {
     console.log(places)
     this.setState({
         startPoint: places.address_components[0].long_name + "," + places.address_components.slice(-1)[0].long_name,
@@ -70,7 +69,7 @@ handleTravelStartPoint = (places) => { //Updates the state with the choosen star
     });
 }
 
-handleTravelEndPoint = (places) => { //Updates the state with the choosen end point
+handleTravelEndPoint = (places) => {
     console.log(places)
     this.setState({
         endPoint: places.address_components[0].long_name + "," + places.address_components.slice(-1)[0].long_name,
@@ -78,13 +77,13 @@ handleTravelEndPoint = (places) => { //Updates the state with the choosen end po
     });
 }
 
-handleNumberOfTravelers = (event) => { //Updates the state with the number of travelers
+handleNumberOfTravelers = (event) => {
     this.setState({
         numberOfTravelers: event.target.value,
     })
 }
 
-remindUser(){ //Error messages if the user hasn't entered all the inputs
+remindUser(){
 
     if (this.state.travelType === ""){
         this.setState({
@@ -109,7 +108,7 @@ remindUser(){ //Error messages if the user hasn't entered all the inputs
     }
 }
 
-handleTravelSearch(){ //Sends the users travel to the model. 
+handleTravelSearch(){
     this.props.model.setUserTravel(this.state);
     this.setState({
         showResult: true,
@@ -117,8 +116,7 @@ handleTravelSearch(){ //Sends the users travel to the model.
     });
 }
     render() {
-        //Renders the traveltypes bar
-        let travelTypes = travelTypesInstance.state.types.map(types =>( 
+        let travelTypes = travelTypesInstance.state.types.map(types =>(
             <div key={types.id} className="col-xs-1" id="chooseVehicleBox">
                 <div className="col-sm-12" id="vehicleSymbolContainer">
                     <button id="vehicleCircle" onClick={() => this.handleTravelType(types)} id={types.value + "Button"} type="button" className="btn btn-danger btn-circle btn-xl m-3" style={{backgroundColor: types.color, borderColor: types.color, zoom:types.zoom}}>
@@ -142,7 +140,30 @@ handleTravelSearch(){ //Sends the users travel to the model.
       
       <React.Fragment>
             <TopBar currentSavedTravels={this.props.model.savedTravels.length}/>
-            <ChooseInstructions/>
+            <div className="container h-100" id="infoTextContainer">
+                <div className="d-flex justify-content-center h-100">
+                    <div className="col-sm-4 m-2">
+                        <span><i id="infoSymbolOne" className="fas fa-check-circle m-2"></i></span>
+                        <span id="infoText">Choose your ride</span>
+                    </div>
+                    <div className="col-sm-4 m-2">
+                        <span><i id="infoSymbolTwo" className="fas fa-check-circle m-2"></i></span>
+                        <span id="infoText">Choose your travel</span>
+                    </div>
+                    <div className="col-sm-4 m-2">
+                        <span><i id="infoSymbolThree" className="fas fa-check-circle m-2"></i></span>
+                        <span id="infoText">Receive your result</span>
+                    </div>
+                </div>
+            </div>
+            <div id="chooseRideContainer" className="container h-100">
+                <div className="d-flex justify-content-center h-100">
+                    <div className="col-sm-12" id="chooseRideText">
+                        <span><i id="infoSymbolOneBig" className="fas fa-check-circle m-2"></i></span>
+                        <span id="chooseTextBig">Choose your ride</span>
+                    </div>
+                </div>
+            </div>
 
     <div className="container h-100">
         <div className="d-flex justify-content-center h-100">
@@ -157,7 +178,7 @@ handleTravelSearch(){ //Sends the users travel to the model.
                         </div>
                         
                 </nav>
-                {this.state.showCarPassengers? //Add passengers to the car
+                {this.state.showCarPassengers?
                                 <div className="col-sm-6" id="chooseNumberOfPeopleBox">
                                     <h6 id="numberOfPeopleText">Total number of people in the {this.state.text}:</h6>
                                         <span>
@@ -177,7 +198,15 @@ handleTravelSearch(){ //Sends the users travel to the model.
         </div>
     </div>
 
-            <div id="chooseRideContainer" className="container h-100"> {/*Contains the searchbar*/}
+  
+  
+
+            
+            
+            
+
+
+            <div id="chooseRideContainer" className="container h-100">
                 <div className="d-flex justify-content-center h-100">
                     <div className="col-sm-12" id="chooseRideText">
                         <span><i id="infoSymbolTwoBig" className="fas fa-check-circle m-2"></i></span>
@@ -196,10 +225,12 @@ handleTravelSearch(){ //Sends the users travel to the model.
                         <form className="form">
                             <div className="col-sm-12" id="searchForms">
                                 <span id="smallBadge" className="badge badge-secondary">From</span>
+                                {/*<input id="locationFrom" className="form-control form-control-lg" autoComplete="off" type="text" placeholder="Your start position..." onChange={this.handleTravelStartPoint}></input>*/}
                                 <Autocomplete style={{width:"100%",fontSize:"20px",marginTop:"10px"}}  onPlaceSelected={(place) => {this.handleTravelStartPoint(place);}}types={['(regions)']}/>
                             </div>
                             <div className="col-sm-12" id="searchForm">
                                 <span id="smallBadge" className="badge badge-secondary">To</span>
+                            {/*<input id="locationTo" className="form-control form-control-lg" autoComplete="off" type="text" placeholder="Your destination..." onChange={this.handleTravelEndPoint}></input>*/}
                                 <Autocomplete style={{width:"100%",fontSize:"20px",marginTop:"10px"}}  onPlaceSelected={(place) => {this.handleTravelEndPoint(place);}}types={['(regions)']}/>
                         </div>
                     </form>
@@ -210,7 +241,7 @@ handleTravelSearch(){ //Sends the users travel to the model.
 
             </div>
 
-            {this.state.showResult? //Shows the travelResult when the user pressed "get your result"
+            {this.state.showResult?
                 <TravelResults model={this.props.model}/>
             :null}
              </React.Fragment>

@@ -26,7 +26,7 @@ class LoginPage extends Component {
         this.setState({loading:true});
         fire.auth().signInWithEmailAndPassword(this.state.email, this.state.password).then((u)=>{
         console.log(u)}).catch((error)=>{
-            alert(error);
+            console.log(error);
         });
         
     } 
